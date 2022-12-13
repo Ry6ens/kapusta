@@ -2,7 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 import s from './NotFound.module.scss';
 
-import Button from 'components/Shared/Button';
+import Button from 'components/ui/Button/Button';
 
 export default function NotFoundPage() {
   const location = useLocation();
@@ -24,7 +24,7 @@ export default function NotFoundPage() {
         </p>
 
         <Link to={backLinkHref}>
-          <Button text="Повернутися" btnClass="btnLight" />
+          <Button text="Повернутися" />
         </Link>
       </div>
     </div>
