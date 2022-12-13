@@ -1,13 +1,26 @@
-import Section from '../Section/Section';
+import LogoKapusta from 'components/icons/LogoKapusta/LogoKapusta';
 
-import Logo from 'images/logo/logo.png';
+import UserInfo from 'components/UserInfo/UserInfo';
+
+import s from './Header.module.scss';
 
 export default function Header() {
+  const isLogin = true;
+
   return (
-    <header>
-      <Section>
-        <img src={Logo} alt="logo" />
-      </Section>
-    </header>
+    <>
+      {!isLogin && (
+        <header className={s.header}>
+          <LogoKapusta width="90" height="31" />
+        </header>
+      )}
+
+      {isLogin && (
+        <header className={s.header}>
+          <LogoKapusta width="90" height="31" />
+          <UserInfo />
+        </header>
+      )}
+    </>
   );
 }

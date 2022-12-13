@@ -25,3 +25,11 @@
         max-width: 122px;
     }
 }
+
+.btnExit {
+    text-decoration: underline;
+    color: var(--text-color);
+    background-color: transparent;
+
+    border: none;
+}

@@ -35,6 +35,7 @@ body {
     line-height: var(--line-height);
     letter-spacing: var(--letter-spacing);
 
+    color: var(--text-color);
     text-transform: var(--text-transform);
 
     &.no-scroll {
