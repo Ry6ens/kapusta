@@ -1,7 +1,17 @@
 @use 'styles/mixins';
 
 .section {
-  margin-bottom: 50px;
+  padding: 0px 20px;
+}
+
+.sectionHome {
+  height: 526px;
+  position: relative;
 
   padding: 0px 20px;
+
+  background-image: url('../../../images/background/backg.png');
+  background-size: cover;
+  background-position: left;
+  background-repeat: no-repeat;
 }

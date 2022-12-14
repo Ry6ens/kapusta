@@ -7,7 +7,9 @@ function App() {
   return (
     <>
       <Header />
-      <UserRoutes />
+      <main>
+        <UserRoutes />
+      </main>
     </>
   );
 }
