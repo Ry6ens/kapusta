@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import jwt_decode from 'jwt-decode';
 
-import { googleLogIn } from 'redux/auth/auth-operations';
+import { login } from 'redux/auth/auth-operations';
 
 import Text from 'components/ui/Text/Text';
 import FormInputEmail from 'components/FormComponents/FormInputEmail';
@@ -31,13 +32,11 @@ export default function FormLogin() {
       size: 'large',
     });
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  function handleCallbackResponse(response) {
-    const userObj = jwt_decode(response.credential);
-    dispatch(googleLogIn(userObj));
-  }
+    function handleCallbackResponse(response) {
+      const userObj = jwt_decode(response.credential);
+      dispatch(login(userObj));
+    }
+  }, [dispatch]);
 
   const { control, handleSubmit, reset } = useForm({
     defaultValues: {
@@ -46,9 +45,12 @@ export default function FormLogin() {
     },
   });
 
-  const onSubmit = (data, e) => {
-    e.preventDefault();
+  const getClassName = ({ isActive }) => {
+    return isActive ? `${s.link} ${s.active}` : s.link;
+  };
 
+  const onSubmit = data => {
+    dispatch(login(data));
     reset();
   };
 
@@ -79,8 +81,10 @@ after registering:"
         type="password"
       />
       <div className={s.buttonsLay}>
-        <Button text="Log in" />
-        <Button text="Registration" />
+        <Button text="Log in" btnClass="btnLogin" />
+        <NavLink className={getClassName} to="/signup">
+          Registration
+        </NavLink>
       </div>
     </form>
   );

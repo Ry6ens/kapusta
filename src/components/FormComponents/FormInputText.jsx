@@ -2,68 +2,52 @@ import { Controller } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
 import { styled } from '@mui/material/styles';
 
-const CssTextField = styled(TextField)({
+const TextFieldStyled = styled(TextField)({
   '& label': {
-    paddingLeft: '10px',
-    fontFamily: "'ZionTrainOTLight', Sans-serif",
-    fontSize: '16px',
-    fontWeight: '300',
-    lineHeight: '2',
-    letterSpacing: '0.24em',
+    fontSize: '14px',
+    lineHeight: '1.14',
+    letterSpacing: '0.04em',
     textTransform: 'initial',
-    zIndex: '1',
+    color: '#A6ABB9',
+    background: '#F6F7FB',
   },
-  '& label.Mui-focused': {
-    fontFamily: "'ZionTrainOTLight', Sans-serif",
-    fontWeight: '500',
-    color: '#43291b',
-    left: '3px',
+  '& div': {
+    border: 'none',
+    borderRadius: '30px',
+    background: '#F6F7FB',
   },
-  '& .MuiInput-underline': {
-    marginTop: '30px',
-  },
-  '& .MuiInput-underline:before': {
-    borderBottom: '1px solid hsl(0deg, 0%, 80%)',
-    bottom: '-3px',
-  },
-  '& .MuiInput-underline:after': {
-    borderBottom: '2px solid #43291b',
-    bottom: '-3px',
-  },
-  '& .MuiInput-input': {
-    paddingLeft: '10px',
-    fontFamily: "'ZionTrainOTLight', Sans-serif",
-    fontSize: '16px',
-    fontWeight: '300',
-    lineHeight: '2',
-    letterSpacing: '0.24em',
+  '& div input': {
+    padding: '17px',
+
+    fontSize: '14px',
+    lineHeight: '1.14',
+    letterSpacing: '0.04em',
     textTransform: 'initial',
-    boxShadow:
-      'inset 0 0 0 1px rgba(253, 251, 248, 1), inset 0 0 0 100px rgba(253, 251, 248, 1)',
+
+    color: '#A6ABB9',
+    background: '#F6F7FB',
+
+    borderRadius: '30px',
   },
-  '& .MuiFormHelperText-root': {
-    paddingLeft: '10px',
-    fontFamily: "'ZionTrainOTLight', Sans-serif",
-    fontSize: '10px',
-    fontWeight: '300',
-    lineHeight: '2',
-    letterSpacing: '0.24em',
+  '& p': {
+    margin: '4px 0px',
+
     textTransform: 'initial',
   },
 });
 
-export default function FormInputText({ name, control, label, type, required }) {
+export default function FormInputText({ name, control, label, type }) {
   return (
     <Controller
       name={name}
       control={control}
       rules={{
-        required,
+        required: 'This is a required field',
       }}
       render={({ field: { onChange, value }, fieldState: { error } }) => (
-        <CssTextField
-          label={label}
-          variant="standard"
+        <TextFieldStyled
+          variant="outlined"
+          placeholder={label}
           type={type}
           value={value}
           onChange={onChange}
