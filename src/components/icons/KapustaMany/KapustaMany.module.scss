@@ -1,0 +1,13 @@
+@use 'styles/mixins';
+
+.home {
+    display: none;
+
+    @include mixins.mq(tablet) {
+        display: block;
+
+        position: absolute;
+        top: 30px;
+        left: 10px;
+    }
+}

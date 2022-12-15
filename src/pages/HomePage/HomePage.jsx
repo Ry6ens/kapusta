@@ -1,3 +1,5 @@
+import Section from 'components/layout/Section/Section';
+
 export default function HomePage() {
-  return <>HomePage</>;
+  return <Section sectionClass="sectionHome"></Section>;
 }

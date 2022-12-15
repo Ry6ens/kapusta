@@ -1,0 +1,21 @@
+@use 'styles/mixins';
+
+.homeTop {
+    position: absolute;
+    top: 104px;
+    right: -34px;
+
+    @include mixins.mq(tablet) {
+        display: none;
+    }
+}
+
+.homeBottom {
+    margin-top: 15px;
+
+    text-align: left;
+
+    @include mixins.mq(tablet) {
+        display: none;
+    }
+}

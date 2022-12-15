@@ -14,6 +14,7 @@
     --second-accent-color: #FED9BF;
 
     --text-color: #52555F;
+    --text-color-invert: #ffffff;
     --second-text-color: #000000;
     --accent-text-color: #E7192E;
 
@@ -38,7 +39,9 @@ body {
     color: var(--text-color);
     text-transform: var(--text-transform);
 
+
     &.no-scroll {
         overflow: hidden;
     }
+
 }

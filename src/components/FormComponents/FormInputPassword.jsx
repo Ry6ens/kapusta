@@ -83,15 +83,15 @@ border: none;
 `
 );
 
-export default function FormInputEmail({ name, control, label, type }) {
+export default function FormInputPassword({ name, control, label, type }) {
   return (
     <Controller
       name={name}
       control={control}
       rules={{
         required: 'This is a required field',
-        pattern:
-          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+        minLength: 3,
+        maxLength: 30,
       }}
       render={({ field: { onChange, value }, fieldState: { error } }) => (
         <TextFieldStyled
