@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import { register, login, logout, refresh, getUser } from './auth-opetations';
+import { signUp, login } from './auth-operations';
 
 const initialState = {
   user: {},
@@ -14,14 +14,14 @@ const initialState = {
   newUser: {},
 };
 
-// const accessAuth = (store, payload) => {
-//   store.loading = false;
-//   store.isLogin = true;
-//   store.user = payload.user;
-//   store.sid = payload.sid;
-//   store.accessToken = payload.accessToken;
-//   store.refreshToken = payload.refreshToken;
-// };
+const accessAuth = (store, payload) => {
+  store.loading = false;
+  store.isLogin = true;
+  store.user = payload.user;
+  store.sid = payload.sid;
+  store.accessToken = payload.accessToken;
+  store.refreshToken = payload.refreshToken;
+};
 
 const auth = createSlice({
   name: 'auth',
@@ -31,96 +31,41 @@ const auth = createSlice({
       store.newUser = {};
     },
   },
+  extraReducers: builder => {
+    // SignUp by email
+    builder
+      .addCase(signUp.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(signUp.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.isLogin = false;
+        state.newUser = payload;
+        state.user = { ...state.user };
+        state.sid = '';
+        state.accessToken = '';
+        state.refreshToken = '';
+      })
+      .addCase(signUp.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload.data.message;
+      });
 
-  //   extraReducers: {
-  //     // * REGISTER
-
-  //     [register.pending]: store => {
-  //       store.loading = true;
-  //       store.error = null;
-  //     },
-
-  //     [register.fulfilled]: (store, { payload }) => {
-  //       store.loading = false;
-  //       store.isLogin = false;
-  //       store.newUser = payload;
-  //       store.user = { ...store.user };
-  //       store.sid = '';
-  //       store.accessToken = '';
-  //       store.refreshToken = '';
-  //     },
-
-  //     [register.rejected]: (store, { payload }) => {
-  //       store.loading = false;
-  //       store.error = payload.data.message;
-  //     },
-
-  //     // * LOGIN
-
-  //     [login.pending]: store => {
-  //       store.loading = true;
-  //       store.error = null;
-  //     },
-
-  //     [login.fulfilled]: (store, { payload }) => accessAuth(store, payload),
-
-  //     [login.rejected]: (store, { payload }) => {
-  //       store.loading = false;
-  //       store.error = payload.data.message;
-  //     },
-
-  //     // * LOGOUT
-
-  //     [logout.pending]: store => {
-  //       store.loading = true;
-  //       store.error = null;
-  //     },
-  //     [logout.fulfilled]: () => ({ ...initialState }),
-  //     [logout.rejected]: (store, { payload }) => {
-  //       store.loading = false;
-  //       store.error = payload;
-  //     },
-
-  //     // * REFRESH
-
-  //     [refresh.pending]: store => {
-  //       store.loading = true;
-  //       store.error = null;
-  //       store.isRefreshing = true;
-  //     },
-
-  //     [refresh.fulfilled]: (store, { payload }) => {
-  //       store.isLogin = true;
-  //       store.loading = false;
-  //       store.sid = payload.sid;
-  //       store.accessToken = payload.newAccessToken;
-  //       store.refreshToken = payload.newRefreshToken;
-  //       store.isRefreshing = false;
-  //     },
-
-  //     [refresh.rejected]: (store, { payload }) => {
-  //       store.loading = false;
-  //       store.error = payload;
-  //     },
-
-  //     // * GET USER
-
-  //     [getUser.pending]: store => {
-  //       store.loading = true;
-  //       store.error = null;
-  //     },
-
-  //     [getUser.fulfilled]: (store, { payload }) => {
-  //       store.isLogin = true;
-  //       store.loading = false;
-  //       store.user = payload;
-  //     },
-
-  //     [getUser.rejected]: (store, { payload }) => {
-  //       store.loading = false;
-  //       store.error = payload;
-  //     },
-  //   },
+    // LogIn
+    builder
+      .addCase(login.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(login.fulfilled, (state, { payload }) => {
+        accessAuth(state, payload);
+      })
+      .addCase(login.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload.data.message;
+      });
+  },
 });
 
 export default auth.reducer;

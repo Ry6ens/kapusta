@@ -1,4 +1,4 @@
-import { useMediaQuery } from 'react-responsive';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 import LogoutIcon from 'components/icons/Logout/Logout';
 import VerticalLineIcon from 'components/icons/VerticalLine/VerticalLine';
@@ -8,8 +8,8 @@ import Button from 'components/ui/Button/Button';
 import s from './UserInfo.module.scss';
 
 export default function UserInfo() {
-  const isMobile = useMediaQuery({ maxWidth: 767.98 });
-  const isTablet = useMediaQuery({ minWidth: 768 });
+  const isMobile = useMediaQuery('(max-width:767.98px)');
+  const isTablet = useMediaQuery('(min-width:768px)');
 
   return (
     <div className={s.userinfo}>
