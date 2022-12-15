@@ -5,7 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 // import PrivateRoute from './PrivateRoutes';
 
 const HomePage = lazy(() => import('pages/HomePage/HomePage'));
-const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
+const SignUpPage = lazy(() => import('pages/SignUpPage/SignUpPage'));
 const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
 const ReportPage = lazy(() => import('pages/ReportPage/ReportPage'));
 const NotFoundPage = lazy(() => import('pages/NotFoundPage/NotFoundPage'));
@@ -15,7 +15,7 @@ export default function UserRoutes() {
     <Suspense fallback={null}>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/signup" element={<RegisterPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/report" element={<ReportPage />} />
 

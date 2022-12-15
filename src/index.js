@@ -8,6 +8,8 @@ import { persistedStore, store } from 'redux/store';
 import App from './App';
 import 'styles/styles.scss';
 
+import ScrollToTop from 'components/ScrollToTop/ScrollToTop';
+
 const container = document.getElementById('root');
 const root = createRoot(container);
 
@@ -16,6 +18,7 @@ root.render(
     <BrowserRouter>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistedStore}>
+          <ScrollToTop />
           <App />
         </PersistGate>
       </Provider>
