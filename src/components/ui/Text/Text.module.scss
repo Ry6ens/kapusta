@@ -1,0 +1,38 @@
+@use 'styles/mixins';
+
+.textFormHead {
+  text-align: center;
+  text-transform: initial;
+}
+
+.textFormCommit {
+  margin-top: 30px;
+  min-width: 230px;
+
+  text-align: left;
+  text-transform: initial;
+}
+
+.textFormEmail {
+  margin-top: 15px;
+  margin-bottom: 10px;
+
+  text-align: left;
+  text-transform: initial;
+
+  @include mixins.mq(tablet) {
+    margin-top: 20px;
+  }
+}
+
+.textFormPassword {
+  margin-top: 20px;
+  margin-bottom: 10px;
+
+  text-align: left;
+  text-transform: initial;
+
+  @include mixins.mq(tablet) {
+    margin-top: 30px;
+  }
+}

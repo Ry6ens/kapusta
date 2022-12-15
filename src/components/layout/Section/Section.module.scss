@@ -5,13 +5,26 @@
 }
 
 .sectionHome {
-  height: 526px;
   position: relative;
 
   padding: 0px 20px;
 
   background-image: url('../../../images/background/backg.png');
-  background-size: cover;
-  background-position: left;
+  background-size: 1280px 286px;
+  background-position: top left;
   background-repeat: no-repeat;
+
+  text-align: center;
+
+  overflow: hidden;
+
+  @include mixins.mq(tablet) {
+    background-size: 1440px 526px;
+  }
+
+  @include mixins.mq(desktop) {
+    padding: 0px 20px 50px 20px;
+
+    background-size: 1440px 526px;
+  }
 }

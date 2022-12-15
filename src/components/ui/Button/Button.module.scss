@@ -1,7 +1,7 @@
 @use 'styles/mixins';
 
 .btn {
-    max-width: 116px;
+    width: 116px;
     height: 44px;
 
     font-weight: 700;
@@ -19,6 +19,7 @@
     &:hover,
     :focus {
         background-color: var(--btn-hover);
+        color: var(--text-color-invert);
     }
 
     @include mixins.mq(tablet) {

@@ -1,0 +1,51 @@
+@use 'styles/mixins';
+
+.form {
+    margin: 200px auto 0px auto;
+    padding: 40px 20px;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 280px;
+
+    background: #FFFFFF;
+
+    box-shadow: 5px 10px 20px rgba(170, 178, 197, 0.4);
+    border-radius: 30px;
+
+    text-align: center;
+
+    @include mixins.mq(tablet) {
+        position: relative;
+
+        margin: 260px auto 0px auto;
+        padding: 56px 85px;
+
+        width: 425px;
+    }
+
+    @include mixins.mq(desktop) {
+        top: 115px;
+
+        margin: 0 90px 0 auto;
+    }
+}
+
+.googleButton {
+    margin-top: 15px;
+
+    display: flex;
+    justify-content: center;
+
+    @include mixins.mq(tablet) {
+        margin-top: 35px;
+    }
+}
+
+.buttonsLay {
+    display: flex;
+    gap: 10px;
+
+    margin-top: 40px;
+}
