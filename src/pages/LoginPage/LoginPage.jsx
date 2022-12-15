@@ -9,7 +9,7 @@ import LogoKapustaTabIcon from 'components/icons/LogoKapustaTab/LogoKapustaTab';
 
 export default function LoginPage() {
   return (
-    <Section sectionClass="sectionHome">
+    <Section sectionClass="section">
       <LogoKapustaMobIcon iconClass="home" width="183" height="63" />
       <LogoKapustaTabIcon iconClass="home" width="305" height="100" />
       <KapustaManyIcon iconClass="home" width="1334" height="232" />
