@@ -1,8 +1,9 @@
 @use './mixins';
-@import 'fonts';
-@import 'reset';
-@import 'container';
+
 @import 'common';
+@import 'container';
+@import 'react-datepicker';
+@import 'reset';
 
 :root {
     --font-family: "Roboto", Sans-serif;
@@ -16,6 +17,7 @@
     --text-color: #52555F;
     --text-color-invert: #ffffff;
     --second-text-color: #000000;
+    --third-text-color: rgba(82, 85, 95, 0.7);
     --accent-text-color: #E7192E;
 
     --text-size: 12px;
@@ -45,5 +47,11 @@ body {
     &.no-scroll {
         overflow: hidden;
     }
+}
 
+#root {
+    max-width: 1440px;
+    min-height: 100vh;
+
+    margin: 0 auto;
 }
