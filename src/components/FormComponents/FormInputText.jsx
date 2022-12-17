@@ -36,7 +36,7 @@ const TextFieldStyled = styled(TextField)({
   },
 });
 
-export default function FormInputText({ name, control, label, type }) {
+export default function FormInputText({ name, control, label }) {
   return (
     <Controller
       name={name}
@@ -46,9 +46,9 @@ export default function FormInputText({ name, control, label, type }) {
       }}
       render={({ field: { onChange, value }, fieldState: { error } }) => (
         <TextFieldStyled
+          type="text"
           variant="outlined"
           placeholder={label}
-          type={type}
           value={value}
           onChange={onChange}
           error={!!error}

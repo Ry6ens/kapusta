@@ -6,9 +6,11 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { persistedStore, store } from 'redux/store';
 
 import App from './App';
-import 'styles/styles.scss';
 
 import ScrollToTop from 'components/ScrollToTop/ScrollToTop';
+
+import 'react-datepicker/dist/react-datepicker.css';
+import 'styles/styles.scss';
 
 const container = document.getElementById('root');
 const root = createRoot(container);

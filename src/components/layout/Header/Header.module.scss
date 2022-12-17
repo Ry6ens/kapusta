@@ -1,6 +1,27 @@
 .header {
     padding: 13px 20px;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    background: var(--background-color);
+
+    z-index: 100;
+}
+
+.headerFixed {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+
+    padding: 13px 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: var(--background-color);
+
+    z-index: 100;
 }

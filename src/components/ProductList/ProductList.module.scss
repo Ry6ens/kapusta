@@ -1,0 +1,57 @@
+.list {
+    max-width: 425px;
+    min-height: 220px;
+
+    margin: 75px auto 0 auto;
+}
+
+.item {
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+
+    display: grid;
+    grid-row-gap: 3px;
+    grid-template-areas:
+        "title title price icon"
+        "date category price icon";
+
+    text-align: left;
+
+    border-bottom: 1px solid var(--btn-color);
+}
+
+.title {
+    grid-area: title;
+
+    font-weight: 700;
+}
+
+.price {
+    grid-area: price;
+
+    display: grid;
+    justify-items: center;
+    align-items: center;
+
+    font-weight: 700;
+}
+
+.date {
+    grid-area: date;
+
+    font-size: 8px;
+    line-height: 1.13;
+}
+
+.category {
+    grid-area: category;
+
+    font-size: 8px;
+    line-height: 1.13;
+    text-transform: initial;
+}
+
+.overlayBtns {
+    display: flex;
+    gap: 15px
+}

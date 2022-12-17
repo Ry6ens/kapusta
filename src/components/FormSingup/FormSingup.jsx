@@ -49,7 +49,7 @@ export default function FormLogin() {
     <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
       <Text text="Sing up using your work email:" textClass="textFormHead" />
       <Text text="Name:" textClass="textFormEmail" />
-      <FormInputText name="name" control={control} label="name" type="text" />
+      <FormInputText name="name" control={control} label="name" />
       <Text text="Email:" textClass="textFormEmail" />
       <FormInputEmail
         name="email"
