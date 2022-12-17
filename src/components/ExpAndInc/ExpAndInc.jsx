@@ -22,7 +22,6 @@ import s from './ExpAndInc.module.scss';
 
 export default function ExpAndInc() {
   const isMobile = useMediaQuery('(max-width: 767px)');
-  const isTablet = useMediaQuery('(min-width: 768px)');
 
   const [isExpenses, setIsExpenses] = useState(true);
   const [isIncome, setIsIncome] = useState(false);

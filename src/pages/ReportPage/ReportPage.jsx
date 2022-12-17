@@ -17,7 +17,7 @@ export default function ReportPage() {
   return (
     <Section sectionClass="section">
       <div className={s.wrappTop}>
-        <Link to="/home">
+        <Link to="/">
           <div className={s.arrowWrap}>
             <ArrowLeft />
             {isTablet && <p>Main page</p>}
