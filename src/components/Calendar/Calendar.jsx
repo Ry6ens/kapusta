@@ -7,7 +7,7 @@ import s from './Calendar.module.scss';
 export default function Calendar() {
   const [startDate, setStartDate] = useState(new Date());
   return (
-    <>
+    <div>
       <p className={s.CurrentPeriod}>Current period:</p>
       <div className={s.wrap}>
         <DatePicker
@@ -17,6 +17,6 @@ export default function Calendar() {
           showMonthYearPicker
         />
       </div>
-    </>
+    </div>
   );
 }

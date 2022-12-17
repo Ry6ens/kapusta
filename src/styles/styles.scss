@@ -5,45 +5,45 @@
 @import 'common';
 
 :root {
-    --font-family: "Roboto", Sans-serif;
+  --font-family: 'Roboto', Sans-serif;
 
-    --background-color: #ffffff;
-    --second-background-color: #F5F6FB;
+  --background-color: #ffffff;
+  --second-background-color: #f5f6fb;
 
-    --accent-color: #FF751D;
-    --second-accent-color: #FED9BF;
+  --accent-color: #ff751d;
+  --second-accent-color: #fed9bf;
 
-    --text-color: #52555F;
-    --text-color-invert: #ffffff;
-    --second-text-color: #000000;
-    --accent-text-color: #E7192E;
+  --text-color: #52555f;
+  --text-color-invert: #ffffff;
+  --second-text-color: #000000;
+  --accent-text-color: #e7192e;
 
-    --text-size: 12px;
-    --line-height: 1.17;
-    --letter-spacing: 0.04em;
+  --text-size: 12px;
+  --line-height: 1.17;
+  --letter-spacing: 0.04em;
 
-    --text-transform: uppercase;
+  --text-transform: uppercase;
 
-    --border-color: #E0E5EB;
+  --border-color: #e0e5eb;
 
-    --btn-color: #F5F6FB;
-    --btn-hover: #FF751D;
-    --second-btn-hover: #de6418;
+  --btn-color: #f5f6fb;
+  --btn-hover: #ff751d;
+  --second-btn-hover: #de6418;
 
+  --expenses-color: #e53935;
+  --income-color: #407946;
 }
 
 body {
-    font-family: var(--font-family);
-    font-size: var(--text-size);
-    line-height: var(--line-height);
-    letter-spacing: var(--letter-spacing);
+  font-family: var(--font-family);
+  font-size: var(--text-size);
+  line-height: var(--line-height);
+  letter-spacing: var(--letter-spacing);
 
-    color: var(--text-color);
-    text-transform: var(--text-transform);
+  color: var(--text-color);
+  text-transform: var(--text-transform);
 
-
-    &.no-scroll {
-        overflow: hidden;
-    }
-
+  &.no-scroll {
+    overflow: hidden;
+  }
 }

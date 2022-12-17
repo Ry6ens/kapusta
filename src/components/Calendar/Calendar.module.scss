@@ -1,5 +1,12 @@
+@use 'styles/mixins';
+
 .wrap {
-  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  @include mixins.mq(mobile-only) {
+    margin-bottom: 32px;
+  }
   & input {
     font-weight: 700;
     font-size: 14px;
@@ -8,6 +15,7 @@
     width: 130px;
     text-align: center;
     text-transform: uppercase;
+    cursor: pointer;
   }
 }
 
