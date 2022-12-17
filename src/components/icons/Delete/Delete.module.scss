@@ -1,0 +1,17 @@
+.iconProductList {
+    grid-area: icon;
+
+    display: grid;
+    justify-items: end;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.iconProductList:hover svg {
+    fill: var(--btn-hover)
+}
+
+.iconProductList:focus svg {
+    fill: var(--btn-hover)
+}

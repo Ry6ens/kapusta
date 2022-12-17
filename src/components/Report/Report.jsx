@@ -11,7 +11,7 @@ export default function Report() {
   const isTablet = useMediaQuery('(min-width: 768px)');
   return (
     <div className={s.wrappTop}>
-      <Link to="/home">
+      <Link to="/">
         <div className={s.arrowWrap}>
           <LogoutIcon />
           {isTablet && <p>Main page</p>}

@@ -38,16 +38,16 @@ export default function FormLogin() {
     }
   }, [dispatch]);
 
+  const getClassName = ({ isActive }) => {
+    return isActive ? `${s.link} ${s.active}` : s.link;
+  };
+
   const { control, handleSubmit, reset } = useForm({
     defaultValues: {
       email: '',
       password: '',
     },
   });
-
-  const getClassName = ({ isActive }) => {
-    return isActive ? `${s.link} ${s.active}` : s.link;
-  };
 
   const onSubmit = data => {
     dispatch(login(data));
