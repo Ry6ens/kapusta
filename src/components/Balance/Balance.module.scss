@@ -1,9 +1,6 @@
 @use 'styles/mixins';
 
 .wrapp {
-  @include mixins.mq(mobile-only) {
-    margin-bottom: 32px;
-  }
   @include mixins.mq(tablet) {
     display: flex;
     align-items: center;
