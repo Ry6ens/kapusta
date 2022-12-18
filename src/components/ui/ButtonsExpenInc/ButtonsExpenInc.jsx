@@ -1,31 +1,16 @@
-// import s from './ButtonsExpenInc.module.scss';
-import './ButtonsExpenInc.scss';
+import { Link } from 'react-router-dom';
 
-import Button from 'components/ui/Button/Button';
+import s from './ButtonsExpenInc.module.scss';
 
 export default function ButtonsExpenInc() {
-  const handleClick = ({ target, currentTarget }) => {
-    console.log(currentTarget.textContent);
-
-    if (currentTarget.textContent === 'Expenses') {
-      currentTarget.classList.toggle('is-active');
-      return;
-    }
-    if (currentTarget.textContent === 'Income') {
-      currentTarget.classList.toggle('is-active');
-      return;
-    }
-    currentTarget.classList.toggle('is-active');
-    document.body.classList.toggle('no-scroll');
-  };
   return (
-    <div className="overlay">
-      <Button text="Expenses" btnClass="btnExpenInc" onClick={handleClick} />
-      {/* <div className="hamburger hamburger--squeeze" type="button" onClick={handleClick}>
+    <div className={s.overlay}>
+      <Link className={s.btnExpenInc} to="/expenses">
         Expenses
-        <div className="hamburger-menu_nav">Expenses</div>
-      </div> */}
-      <Button text="Income" btnClass="btnExpenInc" onClick={handleClick} />
+      </Link>
+      <Link className={s.btnExpenInc} to="/income">
+        Income
+      </Link>
     </div>
   );
 }
