@@ -36,13 +36,13 @@ const TextFieldStyled = styled(TextField)({
   },
 });
 
-export default function FormInputEmail({ name, control, label, type }) {
+export default function FormInputEmail({ name, control, label, type, required }) {
   return (
     <Controller
       name={name}
       control={control}
       rules={{
-        required: 'This is a required field',
+        required: required,
         pattern:
           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       }}

@@ -1,0 +1,12 @@
+@use 'styles/mixins';
+
+.overleyTab {
+
+    @include mixins.mq(tablet) {
+        margin-top: 40px;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+    }
+}

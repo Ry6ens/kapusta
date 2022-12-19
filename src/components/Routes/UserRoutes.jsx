@@ -8,7 +8,9 @@ const HomePage = lazy(() => import('pages/HomePage/HomePage'));
 const SignUpPage = lazy(() => import('pages/SignUpPage/SignUpPage'));
 const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
 const ExpensesPage = lazy(() => import('pages/ExpensesPage/ExpensesPage'));
+const AddExpensesPage = lazy(() => import('pages/AddExpensesPage/AddExpensesPage'));
 const IncomePage = lazy(() => import('pages/IncomePage/IncomePage'));
+const AddIncomePage = lazy(() => import('pages/AddIncomePage/AddIncomePage'));
 const ReportPage = lazy(() => import('pages/ReportPage/ReportPage'));
 const NotFoundPage = lazy(() => import('pages/NotFoundPage/NotFoundPage'));
 
@@ -19,8 +21,12 @@ export default function UserRoutes() {
         <Route path="/" element={<HomePage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/expenses" element={<ExpensesPage />} />
-        <Route path="/income" element={<IncomePage />} />
+        <Route path="/expenses" element={<ExpensesPage />}>
+          <Route path="add" element={<AddExpensesPage />} />
+        </Route>
+        <Route path="/income" element={<IncomePage />}>
+          <Route path="add" element={<AddIncomePage />} />
+        </Route>
         <Route path="/report" element={<ReportPage />} />
 
         <Route path="*" element={<NotFoundPage />} />

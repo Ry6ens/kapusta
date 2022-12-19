@@ -1,0 +1,12 @@
+.overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 45px;
+    height: 44px;
+
+    border: 2px solid var(--background-color);
+    border-radius: 22px 0px 0px 22px;
+    transform: matrix(-1, 0, 0, 1, 0, 0);
+}

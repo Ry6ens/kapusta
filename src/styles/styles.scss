@@ -6,53 +6,54 @@
 @import 'reset';
 
 :root {
-  --font-family: 'Roboto', Sans-serif;
+    --font-family: 'Roboto', Sans-serif;
 
-  --background-color: #ffffff;
-  --second-background-color: #f5f6fb;
+    --background-color: #ffffff;
+    --second-background-color: #f5f6fb;
 
-  --accent-color: #ff751d;
-  --second-accent-color: #fed9bf;
+    --accent-color: #ff751d;
+    --second-accent-color: #fed9bf;
 
-  --text-color: #52555f;
-  --text-color-invert: #ffffff;
-  --second-text-color: #000000;
-  --third-text-color: rgba(82, 85, 95, 0.7);
-  --accent-text-color: #e7192e;
+    --text-color: #52555f;
+    --text-color-invert: #ffffff;
+    --text-color-input: #C7CCDC;
+    --second-text-color: #000000;
+    --third-text-color: rgba(82, 85, 95, 0.7);
+    --accent-text-color: #e7192e;
 
-  --text-size: 12px;
-  --line-height: 1.17;
-  --letter-spacing: 0.04em;
+    --text-size: 12px;
+    --line-height: 1.17;
+    --letter-spacing: 0.04em;
 
-  --text-transform: uppercase;
+    --text-transform: uppercase;
 
-  --border-color: #e0e5eb;
+    --border-color: #e0e5eb;
 
-  --btn-color: #f5f6fb;
-  --btn-hover: #ff751d;
-  --second-btn-hover: #de6418;
+    --btn-color: #f5f6fb;
+    --btn-hover: #ff751d;
+    --second-btn-hover: #de6418;
 
-  --expenses-color: #e53935;
-  --income-color: #407946;
+    --expenses-color: #e53935;
+    --income-color: #407946;
 }
 
 body {
-  font-family: var(--font-family);
-  font-size: var(--text-size);
-  line-height: var(--line-height);
-  letter-spacing: var(--letter-spacing);
+    font-family: var(--font-family);
+    font-size: var(--text-size);
+    line-height: var(--line-height);
+    letter-spacing: var(--letter-spacing);
 
-  color: var(--text-color);
-  text-transform: var(--text-transform);
+    color: var(--text-color);
+    text-transform: var(--text-transform);
 
-  &.no-scroll {
-    overflow: hidden;
-  }
+    &.no-scroll {
+        overflow: hidden;
+    }
 }
 
 #root {
-  max-width: 1440px;
-  min-height: 100vh;
+    max-width: 1440px;
+    min-height: 100vh;
 
-  margin: 0 auto;
+    margin: 0 auto;
 }

@@ -80,4 +80,32 @@
         background-color: var(--btn-hover);
         color: var(--text-color-invert);
     }
+
+    @include mixins.mq(tablet) {
+        width: 125px;
+
+        border-radius: 16px;
+    }
+}
+
+.btnFormAddExpInc {
+    width: 130px;
+    height: 44px;
+
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: var(--text-transform);
+
+    background-color: var(--btn-color);
+    color: var(--text-color);
+    border-color: transparent;
+    box-shadow: 1px 3px 5px rgba(82, 85, 95, 0.15);
+
+    border-radius: 16px;
+
+    &:hover,
+    :focus {
+        background-color: var(--btn-hover);
+        color: var(--text-color-invert);
+    }
 }

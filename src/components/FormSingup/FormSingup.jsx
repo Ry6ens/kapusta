@@ -49,13 +49,19 @@ export default function FormLogin() {
     <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
       <Text text="Sing up using your work email:" textClass="textFormHead" />
       <Text text="Name:" textClass="textFormEmail" />
-      <FormInputText name="name" control={control} label="name" />
+      <FormInputText
+        name="name"
+        control={control}
+        label="name"
+        required="This is a required field"
+      />
       <Text text="Email:" textClass="textFormEmail" />
       <FormInputEmail
         name="email"
         control={control}
         label="your@email.com"
         type="email"
+        required="This is a required field"
       />
       <Text text="Password:" textClass="textFormPassword" />
       <FormInputPassword
@@ -63,6 +69,7 @@ export default function FormLogin() {
         control={control}
         label="Password"
         type="password"
+        required="This is a required field"
       />
       <Text text="Confirm password:" textClass="textFormPassword" />
       <FormInputPassword
@@ -70,6 +77,7 @@ export default function FormLogin() {
         control={control}
         label="Confirm password"
         type="password"
+        required="This is a required field"
       />
       <div className={s.buttonsLay}>
         <NavLink className={getClassName} to="/login">

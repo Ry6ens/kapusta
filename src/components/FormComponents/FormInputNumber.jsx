@@ -13,6 +13,10 @@ const TextFieldStyledMob = styled(TextField)({
     border: '2px solid #FFFFFF',
     borderRadius: '22px 0px 0px 22px',
   },
+  '& div fieldset': {
+    border: '1px solid transparent',
+    borderRadius: '22px 0px 0px 22px',
+  },
   '& input': {
     padding: '12px 14px 12px 60px',
 
@@ -47,6 +51,11 @@ const TextFieldStyledTab = styled(TextField)({
     border: '2px solid #FFFFFF',
     borderRadius: '16px',
   },
+  '& div fieldset': {
+    border: '2px solid var(--background-color)',
+    borderTopLeftRadius: '30px',
+    borderTopRightRadius: '30px',
+  },
   '& input': {
     padding: '12px 20px 12px 40px',
 
@@ -72,7 +81,7 @@ const TextFieldStyledTab = styled(TextField)({
   },
 });
 
-export default function FormInputText({ name, control, label }) {
+export default function FormInputNumber({ name, control, label, required }) {
   const isMobile = useMediaQuery('(max-width:767.98px)');
   const isTablet = useMediaQuery('(min-width:768px)');
 
@@ -81,21 +90,21 @@ export default function FormInputText({ name, control, label }) {
       name={name}
       control={control}
       rules={{
-        required: 'This is a required field',
+        required: required,
       }}
       render={({ field: { onChange, value }, fieldState: { error } }) => (
         <>
           {isMobile && (
             <TextFieldStyledMob
               type="number"
-              variant="standard"
+              variant="outlined"
               placeholder={label}
               value={value}
               onChange={onChange}
               error={!!error}
               helperText={error ? error.message : null}
               InputProps={{
-                disableUnderline: true,
+                disableunderline: 'true',
               }}
             />
           )}

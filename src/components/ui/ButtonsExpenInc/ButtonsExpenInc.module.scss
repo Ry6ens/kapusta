@@ -4,11 +4,20 @@
     position: fixed;
     bottom: 0;
 
+    width: 100vw;
+
     display: flex;
     gap: 5px;
     justify-content: center;
 
-    width: 100vw;
+    @include mixins.mq(tablet) {
+        position: relative;
+
+        justify-content: flex-start;
+
+        gap: 0px;
+
+    }
 }
 
 .btnExpenInc {
@@ -32,4 +41,18 @@
         background-color: var(--btn-hover);
         color: var(--text-color-invert);
     }
+
+    @include mixins.mq(tablet) {
+        width: 140px;
+        height: 40px;
+
+
+        background: #FEFEFE;
+        border-radius: 16px 16px 0px 0px;
+    }
+}
+
+.active {
+    color: var(--text-color-invert);
+    background-color: var(--btn-hover)
 }
