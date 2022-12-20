@@ -1,4 +1,4 @@
-import s from './Summary.module.scss';
+import s from './SummaryTable.module.scss';
 
 import items from './items';
 

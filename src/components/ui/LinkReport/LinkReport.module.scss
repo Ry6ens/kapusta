@@ -11,4 +11,9 @@
         margin: 0px;
 
     }
+
+    @include mixins.mq(desktop) {
+        margin-left: 300px;
+
+    }
 }

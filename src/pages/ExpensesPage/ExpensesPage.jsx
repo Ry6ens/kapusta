@@ -10,11 +10,12 @@ import FormAddBalance from 'components/FormAddBalance/FormAddBalance';
 import CalendarHome from 'components/CalendarHome/CalendarHome';
 import TransactionList from 'components/TransactionList/TransactionList';
 import SlideWindow from 'components/SlideWindow/SlideWindow.jsx';
-import FormAddExpInc from 'components/FormAddExpenses/FormAddExpenses.jsx';
+import FormAddExpenses from 'components/FormAddExpenses/FormAddExpenses.jsx';
 import TransactionTable from 'components/TransactionTable/TransactionTable';
-import Summary from 'components/Summary/Summary';
+import SummaryTable from 'components/SummaryTable/SummaryTable';
 
 import KapustaTwoIcon from 'components/icons/KapustaTwo/KapustaTwo';
+import KapustaManyIcon from 'components/icons/KapustaMany/KapustaMany';
 
 import s from './ExpensesPage.module.scss';
 
@@ -22,7 +23,9 @@ import products from './products.js';
 
 export default function ExpensesPage() {
   const isMobile = useMediaQuery('(max-width: 767.98px)');
-  const isTablet = useMediaQuery('(min-width: 768px)');
+  const isTabletMin = useMediaQuery('(min-width: 768px)');
+  const isTabletMax = useMediaQuery('(max-width: 1279.98px)');
+  const isDesktop = useMediaQuery('(min-width: 1280px)');
 
   return (
     <>
@@ -49,7 +52,7 @@ export default function ExpensesPage() {
         </>
       )}
 
-      {isTablet && (
+      {isTabletMin && isTabletMax && (
         <Section sectionClass="section">
           <div className={s.overleyTab}>
             <LinkReport />
@@ -57,14 +60,34 @@ export default function ExpensesPage() {
           </div>
           <ButtonsExpenInc />
           <div className={s.overlayExpInc}>
-            <FormAddExpInc />
+            <FormAddExpenses />
             <TransactionTable products={products} />
           </div>
           <div className={s.overlaySum}>
-            <Summary />
+            <SummaryTable />
             <KapustaTwoIcon width="185" height="145" />
           </div>
         </Section>
+      )}
+
+      {isDesktop && (
+        <>
+          <Section>
+            <div className={s.overleyTab}>
+              <LinkReport />
+              <FormAddBalance />
+            </div>
+            <ButtonsExpenInc />
+            <div className={s.overlayExpInc}>
+              <FormAddExpenses />
+              <div className={s.overlayTablSum}>
+                <TransactionTable products={products} />
+                <SummaryTable />
+              </div>
+            </div>
+            <KapustaManyIcon iconClass="expens" width="1334" height="232" />
+          </Section>
+        </>
       )}
     </>
   );

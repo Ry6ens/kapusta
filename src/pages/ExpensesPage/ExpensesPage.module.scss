@@ -12,6 +12,10 @@
         justify-content: space-between;
         align-items: center;
     }
+
+    @include mixins.mq(desktop) {
+        width: 100%;
+    }
 }
 
 .overlayExpInc {
@@ -28,6 +32,12 @@
     @include mixins.mq(tablet) {
         padding: 25px 40px 40px 40px;
     }
+
+    @include mixins.mq(desktop) {
+        width: 1098px;
+
+        padding: 30px 30px 60px 30px;
+    }
 }
 
 .overlaySum {
@@ -38,4 +48,11 @@
     display: flex;
     align-items: flex-end;
     gap: 235px;
+}
+
+.overlayTablSum {
+    margin-top: 60px;
+
+    display: flex;
+    gap: 75px;
 }

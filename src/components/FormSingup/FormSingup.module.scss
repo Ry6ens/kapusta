@@ -28,7 +28,8 @@
     @include mixins.mq(desktop) {
         top: 115px;
 
-        margin: 0 90px 0 auto;
+        margin-top: 0;
+        margin-right: 0;
     }
 }
 

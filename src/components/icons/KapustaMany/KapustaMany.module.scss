@@ -11,3 +11,10 @@
         left: 10px;
     }
 }
+
+.expens {
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+    z-index: -1;
+}

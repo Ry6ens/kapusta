@@ -22,6 +22,10 @@
 
         gap: 0px;
     }
+
+    @include mixins.mq(desktop) {
+        width: 1098px;
+    }
 }
 
 .btnExpenInc {
