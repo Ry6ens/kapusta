@@ -69,6 +69,34 @@ const products = [
     date: '05.09.2019',
     category: 'Transport',
   },
+  {
+    id: 11,
+    title: 'Undeground',
+    price: '- 30.00 UAH',
+    date: '05.09.2019',
+    category: 'Transport',
+  },
+  {
+    id: 12,
+    title: 'Undeground',
+    price: '- 30.00 UAH',
+    date: '05.09.2019',
+    category: 'Transport',
+  },
+  {
+    id: 13,
+    title: 'Undeground',
+    price: '- 30.00 UAH',
+    date: '05.09.2019',
+    category: 'Transport',
+  },
+  {
+    id: 14,
+    title: 'Undeground',
+    price: '- 30.00 UAH',
+    date: '05.09.2019',
+    category: 'Transport',
+  },
 ];
 
 export default products;

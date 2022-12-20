@@ -2,6 +2,7 @@ import { Controller } from 'react-hook-form';
 import { useLocation } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import { styled } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const TextFieldStyled = styled(TextField)({
   '& div': {
@@ -70,8 +71,51 @@ const TextFieldStyledExpInc = styled(TextField)({
   },
 });
 
+const TextFieldStyledExpIncTab = styled(TextField)({
+  width: '180px',
+
+  border: '2px solid var(--btn-color)',
+  borderTopLeftRadius: '30px',
+
+  background: 'var(--background-color)',
+
+  '& div input': {
+    padding: '10px 15px',
+
+    fontWeight: '700',
+    fontSize: '12px',
+    lineHeight: '1.17',
+    letterSpacing: '0.02em',
+    textTransform: 'initial',
+
+    color: 'var(--second-text-color)',
+  },
+  '& div input:placeholder': {
+    padding: '17px',
+
+    fontSize: '14px',
+    lineHeight: '1.14',
+    letterSpacing: '0.04em',
+    textTransform: 'initial',
+
+    color: 'var(--text-color-input)',
+  },
+  '& div fieldset': {
+    border: '1px solid transparent',
+    borderTopLeftRadius: '30px',
+  },
+  '& p': {
+    margin: '4px 0px',
+
+    textTransform: 'initial',
+  },
+});
+
 export default function FormInputText({ name, control, label, required }) {
   const { pathname } = useLocation();
+
+  const isMobile = useMediaQuery('(max-width: 767.98px)');
+  const isTablet = useMediaQuery('(min-width: 768px)');
 
   const styleFormLogReg = pathname === '/login' || pathname === '/signup' ? true : false;
   const styleFormAddExpInc =
@@ -98,15 +142,30 @@ export default function FormInputText({ name, control, label, required }) {
           )}
 
           {styleFormAddExpInc && (
-            <TextFieldStyledExpInc
-              type="text"
-              variant="outlined"
-              placeholder={label}
-              value={value}
-              onChange={onChange}
-              error={!!error}
-              helperText={error ? error.message : null}
-            />
+            <>
+              {isMobile && (
+                <TextFieldStyledExpInc
+                  type="text"
+                  variant="outlined"
+                  placeholder={label}
+                  value={value}
+                  onChange={onChange}
+                  error={!!error}
+                  helperText={error ? error.message : null}
+                />
+              )}
+              {isTablet && (
+                <TextFieldStyledExpIncTab
+                  type="text"
+                  variant="outlined"
+                  placeholder={label}
+                  value={value}
+                  onChange={onChange}
+                  error={!!error}
+                  helperText={error ? error.message : null}
+                />
+              )}
+            </>
           )}
         </>
       )}

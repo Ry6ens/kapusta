@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 
-import FormInputNumber from 'components/FormComponents/FormInputNumber';
+import FormInputNumber from './FormInputNumber';
 
 import Button from 'components/ui/Button/Button';
 import Text from 'components/ui/Text/Text';
@@ -21,7 +21,12 @@ export default function FormAddBalance() {
   return (
     <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
       <Text text="Balance" textClass="textHomeBalance" />
-      <FormInputNumber name="balance" control={control} label="00.00 UAH" />
+      <FormInputNumber
+        name="balance"
+        control={control}
+        label="00.00 UAH"
+        required={true}
+      />
       <Button text="Confirm" btnClass="btnConfirm" />
     </form>
   );

@@ -1,0 +1,56 @@
+@use 'styles/mixins';
+
+.btnAddExp {
+    width: 150px;
+    height: 44px;
+
+    margin-top: 45px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 700;
+    letter-spacing: var(--letter-spacing);
+
+    color: var(--text-color);
+    text-transform: var(--text-transform);
+
+    background-color: var(--btn-color);
+
+    border: 2px solid var(--background-color);
+    border-radius: 30px;
+
+    @include mixins.mq(tablet) {}
+}
+
+.menu_nav {
+    position: fixed;
+    top: 60px;
+    left: 0px;
+    transform: translateX(-100%);
+
+    height: calc(100% - 50px);
+    width: 100vw;
+
+    z-index: 20;
+
+    background-color: var(--background-color);
+    overflow-y: auto;
+    transition: 0.8s;
+
+    @include mixins.mq(tablet) {
+        top: 60px;
+    }
+}
+
+.is-active .menu_nav {
+    transform: translateX(0);
+    transition: 0.4s;
+}
+
+.btnBack {
+    margin-top: 20px;
+
+    text-align: left;
+}

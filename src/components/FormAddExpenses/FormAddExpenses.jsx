@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 import FormInputText from 'components/FormComponents/FormInputText';
 import FormInputNumber from 'components/FormComponents/FormInputNumber';
@@ -8,11 +9,16 @@ import Button from 'components/ui/Button/Button';
 
 import CalculatorIcon from 'components/icons/Calculator/Calculator';
 
+import CalendarHome from 'components/CalendarHome/CalendarHome';
+
 import s from './FormAddExpInc.module.scss';
 
 export default function FormAddExpInc() {
+  const isTablet = useMediaQuery('(min-width: 768px)');
+
   const { control, handleSubmit, reset } = useForm({
     defaultValues: {
+      date: '',
       product: '',
       category: '',
       balance: '',
@@ -25,6 +31,7 @@ export default function FormAddExpInc() {
 
   return (
     <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
+      {isTablet && <CalendarHome />}
       <FormInputText
         name="product"
         control={control}

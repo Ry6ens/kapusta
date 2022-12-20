@@ -1,9 +1,20 @@
+@use 'styles/mixins';
+
+
 .form {
     margin: 20px 0px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @include mixins.mq(tablet) {
+        margin: 0px;
+
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }
 
 .overlayBtn {
@@ -11,6 +22,10 @@
 
     display: flex;
     gap: 20px;
+
+    @include mixins.mq(tablet) {
+        margin-top: 30px;
+    }
 }
 
 .overlayCalc {
@@ -18,4 +33,9 @@
 
     display: flex;
     justify-content: center;
+    align-items: center;
+
+    @include mixins.mq(tablet) {
+        margin: 0px;
+    }
 }

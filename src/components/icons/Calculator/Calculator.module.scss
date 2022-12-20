@@ -1,12 +1,26 @@
+@use 'styles/mixins';
+
+
 .overlay {
+    width: 45px;
+    height: 44px;
+
     display: flex;
     align-items: center;
     justify-content: center;
 
-    width: 45px;
-    height: 44px;
-
     border: 2px solid var(--background-color);
     border-radius: 22px 0px 0px 22px;
     transform: matrix(-1, 0, 0, 1, 0, 0);
+
+    @include mixins.mq(tablet) {
+        width: 50px;
+        height: 41px;
+
+        justify-content: flex-end;
+
+        border-top: 2px solid var(--btn-color);
+        border-bottom: 2px solid var(--btn-color);
+
+    }
 }

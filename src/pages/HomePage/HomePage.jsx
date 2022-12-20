@@ -29,7 +29,8 @@ export default function HomePage() {
         {isTablet && (
           <>
             <ButtonsExpenInc />
-            <ExpensesPage />
+            <div className={s.overlayExpInc}></div>
+            {/* <ExpensesPage /> */}
           </>
         )}
 

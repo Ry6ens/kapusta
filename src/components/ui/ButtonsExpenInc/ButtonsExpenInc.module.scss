@@ -4,7 +4,9 @@
     position: fixed;
     bottom: 0;
 
-    width: 100vw;
+    margin: 0 auto;
+
+    width: 100%;
 
     display: flex;
     gap: 5px;
@@ -13,10 +15,12 @@
     @include mixins.mq(tablet) {
         position: relative;
 
+        width: 725px;
+
+
         justify-content: flex-start;
 
         gap: 0px;
-
     }
 }
 
@@ -43,11 +47,13 @@
     }
 
     @include mixins.mq(tablet) {
+        margin-top: 60px;
+
         width: 140px;
         height: 40px;
 
 
-        background: #FEFEFE;
+        background: var(--background-color);
         border-radius: 16px 16px 0px 0px;
     }
 }

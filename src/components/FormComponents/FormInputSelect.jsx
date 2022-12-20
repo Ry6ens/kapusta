@@ -1,12 +1,11 @@
 import { useLocation } from 'react-router-dom';
 import { Controller } from 'react-hook-form';
-// import InputLabel from '@mui/material/InputLabel';
-// import FormHelperText from '@mui/material/FormHelperText';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { styled } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const CssFormControl = styled(FormControl)({
   width: '100%',
@@ -46,16 +45,45 @@ const CssFormControl = styled(FormControl)({
   },
 });
 
-// const InputLabelStyled = styled(InputLabel)({
-//   fontSize: '14px',
-//   lineHeight: '1.14',
-//   letterSpacing: '0.04em',
-//   textTransform: 'initial',
+const CssFormControlTab = styled(FormControl)({
+  width: '180px',
 
-//   color: 'var(--text-color-input)',
+  border: '2px solid var(--btn-color)',
+  borderRight: 'none',
+  borderLeft: 'none',
 
-//   '&.Mui-focused': { display: 'none' },
-// });
+  background: 'var(--background-color)',
+
+  '& div div': {
+    padding: '10px 15px',
+
+    fontWeight: '700',
+    fontSize: '12px',
+    lineHeight: '1.17',
+    letterSpacing: '0.02em',
+
+    textAlign: 'left',
+    textTransform: 'initial',
+
+    color: 'var(--second-text-color)',
+  },
+  '& div svg': {
+    fill: 'var(--text-color-input)',
+  },
+  '&.Mui-focused': { borderColor: 'transparent' },
+  '& div fieldset': {
+    border: '1px solid transparent',
+  },
+  '& .MuiFormLabel-root ': {
+    fontSize: '14px',
+    lineHeight: '1.14',
+    letterSpacing: '0.04em',
+    textAlign: 'left',
+    textTransform: 'initial',
+
+    color: 'var(--text-color-input)',
+  },
+});
 
 const MenuItemStyled = styled(MenuItem)({
   padding: '0px 20px',
@@ -96,6 +124,9 @@ const optionsInc = ['Salary', 'Add.Income'];
 export default function FormInputSelect({ name, control, label, required }) {
   const { pathname } = useLocation();
 
+  const isMobile = useMediaQuery('(max-width: 767.98px)');
+  const isTablet = useMediaQuery('(min-width: 768px)');
+
   const options = pathname === '/expenses' ? optionsExp : optionsInc;
 
   return (
@@ -106,28 +137,54 @@ export default function FormInputSelect({ name, control, label, required }) {
         required: required,
       }}
       render={({ field: { onChange, value }, fieldState: { error } }) => (
-        <CssFormControl>
-          {/* <InputLabelStyled>{label}</InputLabelStyled> */}
-          <Select
-            displayEmpty
-            labelId="select-standard-label"
-            variant="outlined"
-            value={value}
-            onChange={onChange}
-            label={label}
-            input={<OutlinedInput />}
-            error={!!error}
-          >
-            <MenuItemStyled disabled value="">
-              {label}
-            </MenuItemStyled>
-            {options.map(option => (
-              <MenuItemStyled key={option} value={option}>
-                {option}
-              </MenuItemStyled>
-            ))}
-          </Select>
-        </CssFormControl>
+        <>
+          {isMobile && (
+            <CssFormControl>
+              <Select
+                displayEmpty
+                labelId="select-standard-label"
+                variant="outlined"
+                value={value}
+                onChange={onChange}
+                label={label}
+                input={<OutlinedInput />}
+                error={!!error}
+              >
+                <MenuItemStyled disabled value="">
+                  {label}
+                </MenuItemStyled>
+                {options.map(option => (
+                  <MenuItemStyled key={option} value={option}>
+                    {option}
+                  </MenuItemStyled>
+                ))}
+              </Select>
+            </CssFormControl>
+          )}
+          {isTablet && (
+            <CssFormControlTab>
+              <Select
+                displayEmpty
+                labelId="select-standard-label"
+                variant="outlined"
+                value={value}
+                onChange={onChange}
+                label={label}
+                input={<OutlinedInput />}
+                error={!!error}
+              >
+                <MenuItemStyled disabled value="">
+                  {label}
+                </MenuItemStyled>
+                {options.map(option => (
+                  <MenuItemStyled key={option} value={option}>
+                    {option}
+                  </MenuItemStyled>
+                ))}
+              </Select>
+            </CssFormControlTab>
+          )}
+        </>
       )}
     />
   );

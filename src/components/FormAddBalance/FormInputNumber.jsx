@@ -13,10 +13,6 @@ const TextFieldStyledMob = styled(TextField)({
     border: '2px solid #FFFFFF',
     borderRadius: '22px 0px 0px 22px',
   },
-  '& div fieldset': {
-    border: '1px solid transparent',
-    borderRadius: '22px 0px 0px 22px',
-  },
   '& input': {
     padding: '12px 14px 12px 60px',
 
@@ -44,18 +40,15 @@ const TextFieldStyledMob = styled(TextField)({
 
 const TextFieldStyledTab = styled(TextField)({
   '& div': {
-    width: '95px',
+    width: '125px',
 
-    border: '2px solid var(--btn-color)',
-    borderRight: 'none',
+    background: '#F6F7FB',
 
-    background: 'var(--background-color)',
-  },
-  '& div fieldset': {
-    border: '1px solid transparent',
+    border: '2px solid #FFFFFF',
+    borderRadius: '16px',
   },
   '& input': {
-    padding: '10px 20px 10px 40px',
+    padding: '12px 20px 12px 40px',
 
     fontWeight: '700',
     fontSize: '12px',
