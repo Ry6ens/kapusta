@@ -13,6 +13,10 @@ const TextFieldStyledMob = styled(TextField)({
     border: '2px solid #FFFFFF',
     borderRadius: '22px 0px 0px 22px',
   },
+  '& div fieldset': {
+    border: '1px solid transparent',
+    borderRadius: '22px 0px 0px 22px',
+  },
   '& input': {
     padding: '12px 14px 12px 60px',
 
@@ -40,15 +44,18 @@ const TextFieldStyledMob = styled(TextField)({
 
 const TextFieldStyledTab = styled(TextField)({
   '& div': {
-    width: '125px',
+    width: '95px',
 
-    background: '#F6F7FB',
+    border: '2px solid var(--btn-color)',
+    borderRight: 'none',
 
-    border: '2px solid #FFFFFF',
-    borderRadius: '16px',
+    background: 'var(--background-color)',
+  },
+  '& div fieldset': {
+    border: '1px solid transparent',
   },
   '& input': {
-    padding: '12px 20px 12px 40px',
+    padding: '10px 20px 10px 40px',
 
     fontWeight: '700',
     fontSize: '12px',
@@ -72,45 +79,89 @@ const TextFieldStyledTab = styled(TextField)({
   },
 });
 
-export default function FormInputText({ name, control, label }) {
-  const isMobile = useMediaQuery('(max-width:767.98px)');
-  const isTablet = useMediaQuery('(min-width:768px)');
+const TextFieldStyledDesk = styled(TextField)({
+  '& div': {
+    width: '60px',
+
+    border: '2px solid var(--btn-color)',
+    borderRight: 'none',
+
+    background: 'var(--background-color)',
+  },
+  '& div fieldset': {
+    border: '1px solid transparent',
+  },
+  '& input': {
+    padding: '10px 15px',
+
+    fontWeight: '700',
+    fontSize: '12px',
+    lineHeight: '1.14',
+    letterSpacing: '0.02em',
+    textTransform: 'initial',
+
+    color: 'var(--second-text-color)',
+    background: 'transparent',
+
+    borderRadius: '30px',
+  },
+  '& input::placeholder': {
+    color: 'var(--second-text-color)',
+    opacity: 1,
+  },
+  '& p': {
+    margin: '4px 0px',
+
+    textTransform: 'initial',
+  },
+});
+
+export default function FormInputNumber({ name, control, label, required }) {
+  const isMobile = useMediaQuery('(max-width: 767.98px)');
+  const isTabletMin = useMediaQuery('(min-width: 768px)');
+  const isTabletMax = useMediaQuery('(max-width: 1279.98px)');
+  const isDesktop = useMediaQuery('(min-width: 1280px)');
 
   return (
     <Controller
       name={name}
       control={control}
       rules={{
-        required: 'This is a required field',
+        required: required,
       }}
       render={({ field: { onChange, value }, fieldState: { error } }) => (
         <>
           {isMobile && (
             <TextFieldStyledMob
               type="number"
-              variant="standard"
+              variant="outlined"
               placeholder={label}
               value={value}
               onChange={onChange}
               error={!!error}
               helperText={error ? error.message : null}
-              InputProps={{
-                disableUnderline: true,
-              }}
             />
           )}
-          {isTablet && (
+          {isTabletMin && isTabletMax && (
             <TextFieldStyledTab
               type="number"
-              variant="standard"
+              variant="outlined"
               placeholder={label}
               value={value}
               onChange={onChange}
               error={!!error}
               helperText={error ? error.message : null}
-              InputProps={{
-                disableUnderline: true,
-              }}
+            />
+          )}
+          {isDesktop && (
+            <TextFieldStyledDesk
+              type="number"
+              variant="outlined"
+              placeholder={label}
+              value={value}
+              onChange={onChange}
+              error={!!error}
+              helperText={error ? error.message : null}
             />
           )}
         </>

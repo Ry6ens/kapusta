@@ -1,17 +1,7 @@
-export default function ArrowLeftIcon() {
+export default function ArrowLeftIcon({ width, height }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <g clipPath="url(#a)">
-        <path
-          d="M21 11H6.83l3.58-3.59L9 6l-6 6 6 6 1.41-1.41L6.83 13H21v-2Z"
-          fill="#FF751D"
-        />
-      </g>
-      <defs>
-        <clipPath id="a">
-          <path fill="#fff" d="M0 0h24v24H0z" />
-        </clipPath>
-      </defs>
+    <svg viewBox="0 0 32 32" width={width} height={height} fill="#FF751D">
+      <path d="M12.586 27.414l-10-10c-0.781-0.781-0.781-2.047 0-2.828l10-10c0.781-0.781 2.047-0.781 2.828 0s0.781 2.047 0 2.828l-6.586 6.586h19.172c1.105 0 2 0.895 2 2s-0.895 2-2 2h-19.172l6.586 6.586c0.39 0.39 0.586 0.902 0.586 1.414s-0.195 1.024-0.586 1.414c-0.781 0.781-2.047 0.781-2.828 0z" />
     </svg>
   );
 }

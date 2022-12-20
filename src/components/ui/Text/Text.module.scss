@@ -52,6 +52,10 @@
   text-transform: initial;
 
   color: var(--third-text-color);
+
+  @include mixins.mq(tablet) {
+    margin: 0px;
+  }
 }
 
 .textModal {
@@ -62,4 +66,26 @@
   line-height: 1.14;
   letter-spacing: 0.02em;
   text-align: center;
+}
+
+.btnLink {
+  width: 150px;
+  height: 44px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-weight: 700;
+
+  background-color: var(--btn-color);
+
+  border: 2px solid var(--background-color);
+  border-radius: 30px;
+
+  &:hover,
+  :focus {
+    background-color: var(--btn-hover);
+    color: var(--text-color-invert);
+  }
 }

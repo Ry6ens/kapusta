@@ -1,3 +1,5 @@
+@use 'styles/mixins';
+
 .react-datepicker {
     font-family: var(--font-family);
     font-size: var(--text-size);
@@ -5,6 +7,17 @@
     letter-spacing: var(--letter-spacing);
 
     border: 1px solid var(--border-color);
+
+
+}
+
+.react-datepicker-wrapper {
+    @include mixins.mq(tablet) {
+        width: 100px;
+
+        margin-right: 40px;
+
+    }
 }
 
 .react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle {

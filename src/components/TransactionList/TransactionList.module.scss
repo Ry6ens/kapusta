@@ -1,8 +1,27 @@
+@use 'styles/mixins';
+
+
 .list {
     max-width: 425px;
     min-height: 220px;
 
     margin: 75px auto 0 auto;
+}
+
+.listIncome {
+    max-width: 425px;
+    min-height: 220px;
+
+    margin: 25px auto 0 auto;
+    padding-bottom: 50px;
+}
+
+.listExpenses {
+    max-width: 425px;
+    min-height: 220px;
+
+    margin: 25px auto 0 auto;
+    padding-bottom: 50px;
 }
 
 .item {

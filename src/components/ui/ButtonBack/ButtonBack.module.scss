@@ -1,0 +1,16 @@
+@use 'styles/mixins';
+
+.btnExp {
+  margin-top: 20px;
+
+  display: flex;
+  gap: 10px;
+
+  text-transform: initial;
+
+  background-color: transparent;
+
+  cursor: pointer;
+}
+
+.btnAddExp {}

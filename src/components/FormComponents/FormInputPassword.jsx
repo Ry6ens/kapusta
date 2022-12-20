@@ -32,13 +32,13 @@ const TextFieldStyled = styled(TextField)({
   },
 });
 
-export default function FormInputPassword({ name, control, label, type }) {
+export default function FormInputPassword({ name, control, label, type, required }) {
   return (
     <Controller
       name={name}
       control={control}
       rules={{
-        required: 'This is a required field',
+        required: required,
         minLength: 3,
         maxLength: 30,
       }}

@@ -72,6 +72,7 @@ after registering:"
         control={control}
         label="your@email.com"
         type="email"
+        required="This is a required field"
       />
       <Text text="Password:" textClass="textFormPassword" />
       <FormInputPassword
@@ -79,6 +80,7 @@ after registering:"
         control={control}
         label="Password"
         type="password"
+        required="This is a required field"
       />
       <div className={s.buttonsLay}>
         <Button text="Log in" btnClass="btnLogin" />
