@@ -90,21 +90,19 @@ export default function ExpAndInc() {
       {isExpenses && (
         <ul className={s.list}>
           {arr.map(({ price, name }, i) => (
-            <>
-              <li className={s.item}>
-                <p>{price}</p>
-                <div className={s.iconWrap}>
-                  {FilterIcon(name)}
-                  <div className={s.Rectangle}>
-                    <Rectangle />
-                  </div>
+            <li className={s.item} key={name + i}>
+              <p>{price}</p>
+              <div className={s.iconWrap}>
+                {FilterIcon(name)}
+                <div className={s.Rectangle}>
+                  <Rectangle />
                 </div>
-                <p>{name}</p>
-              </li>
-              {isMobile && (i === 2 || i === 5 || i === 8 || i === 9) && (
-                <li className={s.line}></li>
-              )}
-            </>
+              </div>
+              <p>{name}</p>
+            </li>
+            /* {isMobile && (i === 2 || i === 5 || i === 8 || i === 9) && (
+                <li className={s.line} key={i + name}></li>
+              )} */
           ))}
         </ul>
       )}

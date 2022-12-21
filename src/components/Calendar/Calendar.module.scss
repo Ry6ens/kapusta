@@ -1,13 +1,25 @@
 @use 'styles/mixins';
 
+.calWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center;
+  position: relative;
+  width: 280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .wrap {
   display: flex;
   align-items: center;
   justify-self: center;
+  max-width: 132px;
   @include mixins.mq(mobile-only) {
     margin-bottom: 32px;
   }
-  & input {
+  & .btn {
     font-weight: 700;
     font-size: 14px;
     border: none;
@@ -26,5 +38,29 @@
   opacity: 0.7;
   &::first-letter {
     text-transform: uppercase;
+  }
+}
+
+.arrowLeft {
+  background-color: inherit;
+  position: absolute;
+  top: 14px;
+  left: 50px;
+  width: 30px;
+  height: 30px;
+  @include mixins.mq(tablet) {
+    top: 25px;
+  }
+}
+
+.arrowRight {
+  background-color: inherit;
+  position: absolute;
+  top: 13px;
+  left: 199px;
+  width: 30px;
+  height: 30px;
+  @include mixins.mq(tablet) {
+    top: 25px;
   }
 }

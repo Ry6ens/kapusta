@@ -7,7 +7,7 @@ export default function Right({ height }) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path d="M1 1L5 6L1 11" stroke="#FF751D" stroke-width="2" />
+      <path d="M1 1L5 6L1 11" stroke="#FF751D" strokeWidth="2" />
     </svg>
   );
 }
