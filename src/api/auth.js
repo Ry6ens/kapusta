@@ -5,6 +5,7 @@ export const instance = axios.create({
 });
 
 export const axiosSignUp = async userData => {
+  console.log(userData);
   const { data } = await instance.post('api/users/signup', userData);
   console.log(data);
   instance.defaults.headers.Authorization = `Bearer ${data.accessToken}`;
