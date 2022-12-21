@@ -15,7 +15,7 @@ export default function ReportPage() {
   const isMobile = useMediaQuery('(max-width: 767px)');
   const isTablet = useMediaQuery('(min-width: 768px)');
   return (
-    <Section sectionClass="section">
+    <Section sectionClass="sectionMarg">
       <div className={s.wrappTop}>
         <Link to="/">
           <div className={s.arrowWrap}>

@@ -13,6 +13,9 @@ const TextFieldStyledMob = styled(TextField)({
     border: '2px solid #FFFFFF',
     borderRadius: '22px 0px 0px 22px',
   },
+  '& div fieldset': {
+    border: '1px solid transparent',
+  },
   '& input': {
     padding: '12px 14px 12px 60px',
 
@@ -46,6 +49,9 @@ const TextFieldStyledTab = styled(TextField)({
 
     border: '2px solid #FFFFFF',
     borderRadius: '16px',
+  },
+  '& div fieldset': {
+    border: '1px solid transparent',
   },
   '& input': {
     padding: '12px 20px 12px 40px',

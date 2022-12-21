@@ -49,7 +49,6 @@ const CssFormControlTab = styled(FormControl)({
   width: '180px',
 
   border: '2px solid var(--btn-color)',
-  borderRight: 'none',
   borderLeft: 'none',
 
   background: 'var(--background-color)',
@@ -87,7 +86,7 @@ const CssFormControlTab = styled(FormControl)({
 
 const MenuItemStyled = styled(MenuItem)({
   padding: '0px 20px',
-  minHeight: '30px',
+  height: '30px',
 
   fontSize: 'var(--text-size)',
   lineHeight: 'var(--line-height)',

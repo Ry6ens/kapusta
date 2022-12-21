@@ -30,6 +30,10 @@
     display: block;
 }
 
+.tbodyHome {
+    display: block;
+}
+
 .tbody {
     height: 343px;
 
@@ -39,8 +43,30 @@
     overflow-x: hidden;
 }
 
+.tbodyHome {
+    height: 440px;
+
+    border: 2px solid var(--second-background-color);
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    @include mixins.mq(desktop) {
+        height: 343px;
+    }
+}
+
 .tbody .td,
 .thead .th {
+    height: 40px;
+    width: 165px;
+
+    @include mixins.mq(desktop) {
+        width: 185px;
+    }
+}
+
+.tbodyHome .td {
     height: 40px;
     width: 165px;
 
@@ -68,7 +94,17 @@
     height: 130px;
 }
 
+.tbodyHome::-webkit-scrollbar {
+    width: 5px;
+    height: 130px;
+}
+
 .tbody::-webkit-scrollbar-thumb {
+    background-color: var(--accent-color);
+    border-radius: 5px;
+}
+
+.tbodyHome::-webkit-scrollbar-thumb {
     background-color: var(--accent-color);
     border-radius: 5px;
 }

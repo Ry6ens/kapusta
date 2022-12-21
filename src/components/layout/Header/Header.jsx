@@ -9,7 +9,8 @@ import s from './Header.module.scss';
 export default function Header() {
   const { pathname } = useLocation();
 
-  const style = pathname === '/' ? s.headerFixed : s.header;
+  const style =
+    pathname === '/login' || pathname === '/singup' ? s.header : s.headerFixed;
 
   const isLogin = true;
 

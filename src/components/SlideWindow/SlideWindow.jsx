@@ -1,4 +1,4 @@
-import FormAddExpInc from 'components/FormAddExpenses/FormAddExpenses';
+import FormAddExpInc from 'components/FormAddTransaction/FormAddTransaction';
 
 import Text from 'components/ui/Text/Text';
 

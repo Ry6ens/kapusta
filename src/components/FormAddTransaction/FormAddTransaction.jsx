@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 import FormInputText from 'components/FormComponents/FormInputText';
 import FormInputNumber from 'components/FormComponents/FormInputNumber';
@@ -8,11 +9,16 @@ import Button from 'components/ui/Button/Button';
 
 import CalculatorIcon from 'components/icons/Calculator/Calculator';
 
-import s from './FormAddExpInc.module.scss';
+import CalendarHome from 'components/CalendarHome/CalendarHome';
 
-export default function FormAddIncome() {
+import s from './FormAddTransaction.module.scss';
+
+export default function FormAddTransaction() {
+  const isTablet = useMediaQuery('(min-width: 768px)');
+
   const { control, handleSubmit, reset } = useForm({
     defaultValues: {
+      date: '',
       product: '',
       category: '',
       balance: '',
@@ -25,6 +31,7 @@ export default function FormAddIncome() {
 
   return (
     <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
+      {isTablet && <CalendarHome />}
       <FormInputText
         name="product"
         control={control}
@@ -38,12 +45,7 @@ export default function FormAddIncome() {
         required={true}
       />
       <div className={s.overlayCalc}>
-        <FormInputNumber
-          name="balance"
-          control={control}
-          label="00.00 UAH"
-          required={true}
-        />
+        <FormInputNumber name="balance" control={control} label="00.00" required={true} />
         <CalculatorIcon width="20" height="20" />
       </div>
       <div className={s.overlayBtn}>

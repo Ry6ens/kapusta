@@ -7,16 +7,17 @@
     letter-spacing: var(--letter-spacing);
 
     border: 1px solid var(--border-color);
-
-
 }
 
 .react-datepicker-wrapper {
     @include mixins.mq(tablet) {
         width: 100px;
+        height: 40px;
+
+        display: flex;
+        align-items: center;
 
         margin-right: 40px;
-
     }
 }
 

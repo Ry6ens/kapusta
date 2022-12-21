@@ -2,7 +2,7 @@ import DeleteIcon from 'components/icons/Delete/Delete';
 
 import s from './TransactionTable.module.scss';
 
-export default function TransactionTable({ products }) {
+export default function TransactionTable({ sectionClass = 'tbody', products }) {
   return (
     <table className={s.table}>
       <thead className={s.thead}>
@@ -14,7 +14,7 @@ export default function TransactionTable({ products }) {
           <th className={s.th}></th>
         </tr>
       </thead>
-      <tbody className={s.tbody}>
+      <tbody className={s[sectionClass]}>
         {products?.map(({ id, title, price, date, category }) => (
           <tr key={id} className={s.item}>
             <td className={s.td}>{date}</td>

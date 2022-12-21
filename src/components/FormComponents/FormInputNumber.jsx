@@ -48,14 +48,16 @@ const TextFieldStyledTab = styled(TextField)({
 
     border: '2px solid var(--btn-color)',
     borderRight: 'none',
+    borderLeft: 'none',
 
     background: 'var(--background-color)',
+    borderRadius: '0px',
   },
   '& div fieldset': {
     border: '1px solid transparent',
   },
   '& input': {
-    padding: '10px 20px 10px 40px',
+    padding: '10px 0px 10px 20px',
 
     fontWeight: '700',
     fontSize: '12px',
@@ -65,10 +67,9 @@ const TextFieldStyledTab = styled(TextField)({
 
     color: 'var(--second-text-color)',
     background: 'transparent',
-
-    borderRadius: '30px',
   },
   '& input::placeholder': {
+    paddingLeft: '30px',
     color: 'var(--second-text-color)',
     opacity: 1,
   },
@@ -81,18 +82,20 @@ const TextFieldStyledTab = styled(TextField)({
 
 const TextFieldStyledDesk = styled(TextField)({
   '& div': {
-    width: '60px',
+    width: '70px',
 
     border: '2px solid var(--btn-color)',
     borderRight: 'none',
+    borderLeft: 'none',
 
     background: 'var(--background-color)',
+    borderRadius: '0px',
   },
   '& div fieldset': {
     border: '1px solid transparent',
   },
   '& input': {
-    padding: '10px 15px',
+    padding: '10px 0px 10px 10px',
 
     fontWeight: '700',
     fontSize: '12px',
@@ -106,6 +109,7 @@ const TextFieldStyledDesk = styled(TextField)({
     borderRadius: '30px',
   },
   '& input::placeholder': {
+    paddingLeft: '20px',
     color: 'var(--second-text-color)',
     opacity: 1,
   },

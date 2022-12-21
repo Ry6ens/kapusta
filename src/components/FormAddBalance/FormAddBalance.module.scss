@@ -2,14 +2,12 @@
 
 .form {
     @include mixins.mq(tablet) {
-        padding-left: 35px;
-
         display: flex;
         align-items: center;
         gap: 15px;
     }
 
     @include mixins.mq(desktop) {
-        padding: 0px;
+        padding-left: 380px;
     }
 }

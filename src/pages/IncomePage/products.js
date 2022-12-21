@@ -69,6 +69,20 @@ const products = [
     date: '05.09.2019',
     category: 'Transport',
   },
+  {
+    id: 11,
+    title: 'My salary',
+    price: '3000.00 UAH',
+    date: '05.09.2019',
+    category: 'Transport',
+  },
+  {
+    id: 12,
+    title: 'My salary',
+    price: '3000.00 UAH',
+    date: '05.09.2019',
+    category: 'Transport',
+  },
 ];
 
 export default products;
