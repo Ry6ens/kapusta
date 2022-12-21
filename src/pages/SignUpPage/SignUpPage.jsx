@@ -5,8 +5,6 @@ import { getErrorSignUp, getNewUserEmail } from 'redux/auth/auth-selectors';
 
 import FormSingup from 'components/FormSingup/FormSingup';
 import Section from 'components/layout/Section/Section';
-import Modal from 'components/layout/Modal/Modal';
-import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
 
 import KapustaManyIcon from 'components/icons/KapustaMany/KapustaMany';
 import KapustaOneIcon from 'components/icons/KapustaOne/KapustaOne';
@@ -21,6 +19,7 @@ export default function SignUpPage() {
   if (!errorSignUp && newUserEmail) {
     return <Navigate to="/login" />;
   }
+
   return (
     <>
       <Section sectionClass="section">
@@ -37,7 +36,6 @@ export default function SignUpPage() {
         <KapustaOneIcon iconClass="homeBottom" width="83" height="89" />
         <KapustaTwoIcon iconClass="homeBottom" width="183" height="142" />
       </Section>
-      {errorSignUp && <Modal children={<ErrorMessage status={errorSignUp} />} />}
     </>
   );
 }
