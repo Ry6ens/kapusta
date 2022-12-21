@@ -5,16 +5,22 @@ export const instance = axios.create({
 });
 
 export const axiosSignUp = async userData => {
-  console.log(userData);
   const { data } = await instance.post('api/users/signup', userData);
-  console.log(data);
   instance.defaults.headers.Authorization = `Bearer ${data.accessToken}`;
   return data;
 };
 
 export const axiosLogIn = async userData => {
   const { data } = await instance.post('api/users/login', userData);
-  console.log(data);
   instance.defaults.headers.Authorization = `Bearer ${data.accessToken}`;
+  return data;
+};
+
+export const axiosLogOut = async accessToken => {
+  console.log(accessToken);
+  instance.defaults.headers.Authorization = `Bearer ${accessToken}`;
+  console.log(instance.defaults.headers.Authorization);
+  const { data } = await instance.get('/auth/logout');
+  instance.defaults.headers.Authorization = null;
   return data;
 };

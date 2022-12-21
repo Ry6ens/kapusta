@@ -24,7 +24,7 @@ export default function FormLogin() {
       callback: handleCallbackResponse,
     });
 
-    // google.accounts.id.prompt();
+    // google.accounts.id.prompt();￼
 
     google.accounts.id.renderButton(document.getElementById('singInDiv'), {
       theme: 'outline',

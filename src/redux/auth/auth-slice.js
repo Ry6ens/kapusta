@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { signUp, login } from './auth-operations';
+import { signUp, login, logout } from './auth-operations';
 
 const initialState = {
   user: {},
@@ -14,21 +14,21 @@ const initialState = {
   newUser: {},
 };
 
-const accessAuth = (store, payload) => {
-  store.loading = false;
-  store.isLogin = true;
-  store.user = payload.user;
-  store.sid = payload.sid;
-  store.accessToken = payload.accessToken;
-  store.refreshToken = payload.refreshToken;
+const accessAuth = (state, payload) => {
+  state.loading = false;
+  state.isLogin = true;
+  state.user = payload.user;
+  state.sid = payload.sid;
+  state.accessToken = payload.accessToken;
+  state.refreshToken = payload.refreshToken;
 };
 
 const auth = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    clearNewUser: store => {
-      store.newUser = {};
+    clearNewUser: state => {
+      state.newUser = {};
     },
   },
   extraReducers: builder => {
@@ -62,6 +62,18 @@ const auth = createSlice({
         accessAuth(state, payload);
       })
       .addCase(login.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload.data.message;
+      });
+
+    // LogOut
+    builder
+      .addCase(logout.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(logout.fulfilled, () => ({ ...initialState }))
+      .addCase(logout.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload.data.message;
       });

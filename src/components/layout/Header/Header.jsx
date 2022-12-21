@@ -1,4 +1,7 @@
 import { useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+import { getLogin } from 'redux/auth/auth-selectors';
 
 import LogoKapusta from 'components/icons/LogoKapusta/LogoKapusta';
 
@@ -9,20 +12,20 @@ import s from './Header.module.scss';
 export default function Header() {
   const { pathname } = useLocation();
 
+  const isUserLogin = useSelector(getLogin);
+
   const style =
     pathname === '/login' || pathname === '/singup' ? s.header : s.headerFixed;
 
-  const isLogin = true;
-
   return (
     <>
-      {!isLogin && (
+      {!isUserLogin && (
         <header className={style}>
           <LogoKapusta width="90" height="31" />
         </header>
       )}
 
-      {isLogin && (
+      {isUserLogin && (
         <header className={style}>
           <LogoKapusta width="90" height="31" />
           <UserInfo />
