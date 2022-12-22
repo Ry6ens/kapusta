@@ -32,6 +32,11 @@
     background-color: transparent;
 
     border: none;
+
+    &:hover,
+    :focus {
+        color: var(--btn-hover);
+    }
 }
 
 .btnLogin {

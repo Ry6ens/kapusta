@@ -1,10 +1,12 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import jwt_decode from 'jwt-decode';
 
 import { login } from 'redux/auth/auth-operations';
+import { getErrorLogIn } from 'redux/auth/auth-selectors';
+import { clearError } from 'redux/auth/auth-slice';
 
 import Text from 'components/ui/Text/Text';
 import FormInputEmail from 'components/FormComponents/FormInputEmail';
@@ -16,6 +18,8 @@ import Button from 'components/ui/Button/Button';
 export default function FormLogin() {
   const dispatch = useDispatch();
 
+  const errorLogIn = useSelector(getErrorLogIn);
+
   useEffect(() => {
     /* global google */
     google.accounts.id.initialize({
@@ -23,8 +27,6 @@ export default function FormLogin() {
         '160834485099-gokn0fab6bj7qdmo42gdgp116u78c1dt.apps.googleusercontent.com',
       callback: handleCallbackResponse,
     });
-
-    // google.accounts.id.prompt();￼
 
     google.accounts.id.renderButton(document.getElementById('singInDiv'), {
       theme: 'outline',
@@ -36,6 +38,8 @@ export default function FormLogin() {
       const userObj = jwt_decode(response.credential);
       dispatch(login(userObj));
     }
+
+    dispatch(clearError());
   }, [dispatch]);
 
   const getClassName = ({ isActive }) => {
@@ -82,6 +86,7 @@ after registering:"
         type="password"
         required="This is a required field"
       />
+      {errorLogIn && <Text textClass="textError" text={errorLogIn} />}
       <div className={s.buttonsLay}>
         <Button text="Log in" btnClass="btnLogin" />
         <NavLink className={getClassName} to="/signup">

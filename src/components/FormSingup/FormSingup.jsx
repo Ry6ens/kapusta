@@ -1,9 +1,11 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 import { signUp } from 'redux/auth/auth-operations';
 import { getErrorSignUp } from 'redux/auth/auth-selectors';
+import { clearError } from 'redux/auth/auth-slice';
 
 import Button from 'components/ui/Button/Button';
 import Text from 'components/ui/Text/Text';
@@ -18,6 +20,10 @@ export default function FormLogin() {
   const dispatch = useDispatch();
 
   const errorSignUp = useSelector(getErrorSignUp);
+
+  useEffect(() => {
+    dispatch(clearError());
+  }, [dispatch]);
 
   const { control, handleSubmit, setError, reset } = useForm({
     defaultValues: {

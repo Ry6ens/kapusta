@@ -30,6 +30,9 @@ const auth = createSlice({
     clearNewUser: state => {
       state.newUser = {};
     },
+    clearError: state => {
+      state.error = null;
+    },
   },
   extraReducers: builder => {
     // SignUp by email
@@ -81,4 +84,4 @@ const auth = createSlice({
 });
 
 export default auth.reducer;
-export const { clearNewUser } = auth.actions;
+export const { clearNewUser, clearError } = auth.actions;
