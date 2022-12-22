@@ -16,6 +16,12 @@ export const axiosLogIn = async userData => {
   return data;
 };
 
+export const axiosGoogleLogIn = async userData => {
+  const { data } = await instance.post('api/users/google/signup', userData);
+  instance.defaults.headers.Authorization = `Bearer ${data.accessToken}`;
+  return data;
+};
+
 export const axiosLogOut = async accessToken => {
   instance.defaults.headers.Authorization = `Bearer ${accessToken}`;
   const { data } = await instance.get('api/users/logout');

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-import { logout } from 'redux/auth/auth-operations';
+import { logOut } from 'redux/auth/auth-operations';
 
 import Modal from 'components/layout/Modal/Modal';
 
@@ -33,7 +33,7 @@ export default function UserInfo() {
   };
 
   const handleLogout = () => {
-    dispatch(logout());
+    dispatch(logOut());
   };
 
   return (

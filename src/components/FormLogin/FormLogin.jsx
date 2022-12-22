@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import jwt_decode from 'jwt-decode';
 
-import { login } from 'redux/auth/auth-operations';
+import { logIn, googleLogIn } from 'redux/auth/auth-operations';
 import { getErrorLogIn } from 'redux/auth/auth-selectors';
 import { clearError } from 'redux/auth/auth-slice';
 
@@ -36,7 +36,7 @@ export default function FormLogin() {
 
     function handleCallbackResponse(response) {
       const userObj = jwt_decode(response.credential);
-      dispatch(login(userObj));
+      dispatch(googleLogIn(userObj));
     }
 
     dispatch(clearError());
@@ -54,7 +54,7 @@ export default function FormLogin() {
   });
 
   const onSubmit = data => {
-    dispatch(login(data));
+    dispatch(logIn(data));
     reset();
   };
 

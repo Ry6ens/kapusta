@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { signUp, login, logout } from './auth-operations';
+import { signUp, logIn, googleLogIn, logOut } from './auth-operations';
 
 const initialState = {
   user: {},
@@ -57,26 +57,40 @@ const auth = createSlice({
 
     // LogIn
     builder
-      .addCase(login.pending, state => {
+      .addCase(logIn.pending, state => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(login.fulfilled, (state, { payload }) => {
+      .addCase(logIn.fulfilled, (state, { payload }) => {
         accessAuth(state, payload);
       })
-      .addCase(login.rejected, (state, { payload }) => {
+      .addCase(logIn.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload.data.message;
+      });
+
+    // Google LogIn
+    builder
+      .addCase(googleLogIn.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(googleLogIn.fulfilled, (state, { payload }) => {
+        accessAuth(state, payload);
+      })
+      .addCase(googleLogIn.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload.data.message;
       });
 
     // LogOut
     builder
-      .addCase(logout.pending, state => {
+      .addCase(logOut.pending, state => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(logout.fulfilled, () => ({ ...initialState }))
-      .addCase(logout.rejected, (state, { payload }) => {
+      .addCase(logOut.fulfilled, () => ({ ...initialState }))
+      .addCase(logOut.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload.data.message;
       });
