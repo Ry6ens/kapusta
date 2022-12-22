@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 import { logOut } from 'redux/auth/auth-operations';
+import { getUser } from 'redux/auth/auth-selectors';
 
 import Modal from 'components/layout/Modal/Modal';
 
@@ -18,6 +19,8 @@ import s from './UserInfo.module.scss';
 export default function UserInfo() {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
+
+  const { name } = useSelector(getUser);
 
   const isMobile = useMediaQuery('(max-width:767.98px)');
   const isTablet = useMediaQuery('(min-width:768px)');
@@ -38,7 +41,7 @@ export default function UserInfo() {
 
   return (
     <div className={s.userinfo}>
-      <span className={s.userName}>U</span>
+      <span className={s.userName}>{name[0]}</span>
       {isMobile && (
         <LogoutIcon
           iconClass="iconUserInfo"
@@ -49,7 +52,7 @@ export default function UserInfo() {
       )}
       {isTablet && (
         <>
-          <p>User Name</p>
+          <p>{name}</p>
           <VerticalLineIcon height="36" />
           <Button text="Exit" btnClass="btnExit" type="button" onClick={handelClick} />
         </>
