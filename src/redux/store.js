@@ -14,9 +14,9 @@ import {
 import rootReducer from './rootReducer';
 
 const persistConfig = {
-  key: 'root',
+  key: 'auth',
   storage,
-  blacklist: [],
+  whitelist: ['refreshToken', 'sid'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
