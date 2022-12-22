@@ -15,3 +15,15 @@
 .iconProductList:focus svg {
     fill: var(--btn-hover)
 }
+
+.iconTransactionTable {
+    cursor: pointer;
+}
+
+.iconTransactionTable:hover svg {
+    fill: var(--btn-hover)
+}
+
+.iconTransactionTable:focus svg {
+    fill: var(--btn-hover)
+}

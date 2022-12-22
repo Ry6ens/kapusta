@@ -3,17 +3,17 @@ import { useState } from 'react';
 import Modal from 'components/layout/Modal/Modal';
 
 import Text from 'components/ui/Text/Text';
+import Button from 'components/ui/Button/Button';
 
 import DeleteIcon from 'components/icons/Delete/Delete';
 import CloseIcon from 'components/icons/Close/Close';
 
 import s from './TransactionList.module.scss';
-import Button from 'components/ui/Button/Button';
 
 export default function TransactionList({ listClass = 'list', products }) {
   const [showModal, setShowModal] = useState(false);
 
-  const handelClick = () => {
+  const handelDelete = () => {
     document.body.classList.add('no-scroll');
 
     setShowModal(true);
@@ -27,7 +27,7 @@ export default function TransactionList({ listClass = 'list', products }) {
         iconClass="iconProductList"
         width="20"
         height="20"
-        onClick={handelClick}
+        onClick={handelDelete}
       />
       <p className={s.date}>{date}</p>
       <p className={s.category}>{category}</p>
