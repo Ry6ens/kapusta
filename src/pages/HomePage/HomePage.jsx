@@ -1,4 +1,7 @@
+import { useSelector } from 'react-redux';
 import useMediaQuery from '@mui/material/useMediaQuery';
+
+import { getNewUser } from 'redux/auth/auth-selectors';
 
 import Section from 'components/layout/Section/Section';
 
@@ -10,6 +13,7 @@ import CalendarHome from 'components/CalendarHome/CalendarHome';
 import TransactionList from 'components/TransactionList/TransactionList';
 import TransactionTable from 'components/TransactionTable/TransactionTable';
 import SummaryTable from 'components/SummaryTable/SummaryTable';
+import NotificationBalance from 'components/NotificationBalance/NotificationBalance';
 
 import KapustaTwoIcon from 'components/icons/KapustaTwo/KapustaTwo';
 import KapustaManyIcon from 'components/icons/KapustaMany/KapustaMany';
@@ -24,6 +28,8 @@ export default function HomePage() {
   const isTabletMax = useMediaQuery('(max-width: 1279.98px)');
   const isDesktop = useMediaQuery('(min-width: 1280px)');
 
+  const newUser = useSelector(getNewUser).hasOwnProperty('user');
+
   return (
     <>
       {isMobile && (
@@ -32,9 +38,10 @@ export default function HomePage() {
             <div className={s.overleyTab}>
               <LinkReport />
               <FormAddBalance />
+              {newUser && <NotificationBalance />}
             </div>
 
-            <CalendarHome />
+            <CalendarHome dateFormat="MMMM yyyy" showMonthYearPicker={true} />
             <TransactionList products={products} />
           </Section>
           <ButtonsExpenInc />
@@ -49,7 +56,7 @@ export default function HomePage() {
           </div>
           <ButtonsExpenInc />
           <div className={s.overlayExpInc}>
-            <CalendarHome />
+            <CalendarHome dateFormat="MMMM yyyy" showMonthYearPicker={true} />
             <TransactionTable products={products} sectionClass="tbodyHome" />
           </div>
           <div className={s.overlaySum}>
@@ -67,7 +74,7 @@ export default function HomePage() {
           </div>
           <ButtonsExpenInc />
           <div className={s.overlayExpInc}>
-            <CalendarHome />
+            <CalendarHome dateFormat="MMMM yyyy" showMonthYearPicker={true} />
             <div className={s.overlayTablSum}>
               <TransactionTable products={products} sectionClass="tbodyHome" />
               <SummaryTable />

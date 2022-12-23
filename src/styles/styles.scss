@@ -8,12 +8,6 @@
 :root {
     --font-family: 'Roboto', Sans-serif;
 
-    --background-color: #ffffff;
-    --second-background-color: #f5f6fb;
-
-    --accent-color: #ff751d;
-    --second-accent-color: #fed9bf;
-
     --text-color: #52555f;
     --text-color-invert: #ffffff;
     --text-color-input: #C7CCDC;
@@ -28,11 +22,17 @@
     --text-transform: uppercase;
 
     --border-color: #e0e5eb;
+    --second-border-color: #ffffff;
 
     --btn-color: #f5f6fb;
     --btn-hover: #ff751d;
     --second-btn-hover: #de6418;
 
+    --background-color: #ffffff;
+    --second-background-color: #f5f6fb;
+
+    --accent-color: #ff751d;
+    --second-accent-color: #fed9bf;
     --expenses-color: #e53935;
     --income-color: #407946;
 }

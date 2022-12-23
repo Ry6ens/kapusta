@@ -5,25 +5,27 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 const TextFieldStyledMob = styled(TextField)({
   '& div': {
-    width: '140px',
+    width: '100px',
     height: '44px',
 
     background: '#F6F7FB',
 
-    border: '2px solid #FFFFFF',
+    border: '2px solid var(--second-border-color)',
     borderRadius: '22px 0px 0px 22px',
+    borderRight: 'none',
   },
   '& div fieldset': {
     border: '1px solid transparent',
   },
   '& input': {
-    padding: '12px 14px 12px 60px',
+    padding: '10px 12px 12px 12px',
 
     fontWeight: '700',
     fontSize: '12px',
     lineHeight: '1.17',
     letterSpacing: '0.02em',
     textTransform: 'initial',
+    textAlign: 'right',
 
     color: 'var(--second-text-color)',
     background: 'transparent',

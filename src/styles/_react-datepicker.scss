@@ -41,5 +41,21 @@
 
 .react-datepicker__day--selected {
     background-color: var(--accent-color);
+}
+
+.react-datepicker__month-wrapper {
+    padding: 10px 0px;
+
+    & div {
+        padding: 5px 0px;
+    }
+}
+
+.react-datepicker__month--selected {
+    background-color: var(--accent-color);
+}
+
+.react-datepicker__month-text--keyboard-selected {
+    background-color: var(--accent-color);
 
 }

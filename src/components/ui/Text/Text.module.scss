@@ -96,3 +96,19 @@
 
   color: red;
 }
+
+.textFormAddBalance {
+  width: 40px;
+  height: 44px;
+
+  padding: 12px 12px 12px 0px;
+
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--second-text-color);
+
+  border: 2px solid var(--second-border-color);
+  border-left: none;
+  border-right: none;
+
+}

@@ -132,6 +132,7 @@ export default function FormInputNumber({ name, control, label, required }) {
       control={control}
       rules={{
         required: required,
+        pattern: [0 - 9],
       }}
       render={({ field: { onChange, value }, fieldState: { error } }) => (
         <>

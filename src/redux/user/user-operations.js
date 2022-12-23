@@ -17,9 +17,9 @@ export const userAddBalance = createAsyncThunk(
 
 export const userBalance = createAsyncThunk(
   'user/balance',
-  async (userData, { rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
-      const data = await axiosUserBalance(userData);
+      const data = await axiosUserBalance();
       return data;
     } catch (error) {
       const { data, status } = error.response;

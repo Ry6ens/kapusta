@@ -1,6 +1,7 @@
 @use 'styles/mixins';
 
 .overleyTab {
+    position: relative;
 
     @include mixins.mq(tablet) {
         margin: 40px auto 0px auto;

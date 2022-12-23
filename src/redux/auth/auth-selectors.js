@@ -4,4 +4,5 @@ export const getErrorLogIn = ({ auth }) => auth.error;
 export const getUser = ({ auth }) => auth.user;
 export const getAccessToken = ({ auth }) => auth.accessToken;
 
+export const getNewUser = ({ auth }) => auth.newUser;
 export const getNewUserEmail = ({ auth }) => auth.newUser.user?.email;

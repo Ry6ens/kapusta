@@ -1,7 +1,8 @@
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
 
 import { userAddBalance } from 'redux/user/user-operations';
+import { getUserBalance } from 'redux/user/user-selectors';
 
 import FormInputNumber from './FormInputNumber';
 
@@ -12,6 +13,7 @@ import s from './FormAddBalance.module.scss';
 
 export default function FormAddBalance() {
   const dispatch = useDispatch();
+  const balance = useSelector(getUserBalance);
 
   const { control, handleSubmit, reset } = useForm({
     defaultValues: {
@@ -27,13 +29,16 @@ export default function FormAddBalance() {
   return (
     <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
       <Text text="Balance" textClass="textHomeBalance" />
-      <FormInputNumber
-        name="newBalance"
-        control={control}
-        label="00.00 UAH"
-        required={true}
-      />
-      <Button text="Confirm" btnClass="btnConfirm" />
+      <div className={s.overlay}>
+        <FormInputNumber
+          name="newBalance"
+          control={control}
+          label={balance}
+          required={true}
+        />
+        <Text text="UAH" textClass="textFormAddBalance" />
+        <Button text="Confirm" btnClass="btnConfirm" />
+      </div>
     </form>
   );
 }

@@ -21,6 +21,10 @@
     @include mixins.mq(tablet) {
         margin: 0px;
 
+        width: 200px;
+
+        justify-content: flex-start;
+
         background: var(--background-color);
 
     }

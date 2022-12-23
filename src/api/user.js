@@ -5,7 +5,7 @@ export const axiosUserAddBalance = async userData => {
   return data;
 };
 
-export const axiosUserBalance = async userData => {
-  const { data } = await instance.post('api/balances/', userData);
+export const axiosUserBalance = async () => {
+  const { data } = await instance.get('api/balances/');
   return data;
 };

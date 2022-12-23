@@ -1,6 +1,7 @@
 @use 'styles/mixins';
 
 .form {
+
     @include mixins.mq(tablet) {
         display: flex;
         align-items: center;
@@ -10,4 +11,9 @@
     @include mixins.mq(desktop) {
         padding-left: 380px;
     }
+}
+
+.overlay {
+    display: flex;
+    justify-content: center;
 }

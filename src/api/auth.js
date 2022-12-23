@@ -4,7 +4,7 @@ const instance = axios.create({
   baseURL: 'https://kapusta-server.herokuapp.com/',
 });
 
-export const token = {
+const token = {
   set(accessToken) {
     instance.defaults.headers.Authorization = `Bearer ${accessToken}`;
   },
