@@ -3,7 +3,7 @@ import { useState, useEffect, forwardRef } from 'react';
 import { useDispatch } from 'react-redux';
 import moment from 'moment';
 
-import { getTransactionsByMonth } from 'redux/transaction/transaction-operations';
+import { addDate, addMonth } from 'redux/transaction/transaction-slice';
 
 import CalendarIcon from 'components/icons/Calendar/Calendar';
 
@@ -14,14 +14,17 @@ export default function CalendarHome({ dateFormat = 'dd.MM.yyyy', showMonthYearP
 
   const [startDate, setStartDate] = useState(new Date());
 
-  // useEffect(() => {
-  //   dispatch(getTransactionsAllByMonth());
-  // }, [dispatch]);
+  useEffect(() => {
+    const setDate = moment(startDate).format('MM/DD/yyyy');
+    dispatch(addDate(setDate));
+    dispatch(addMonth(setDate));
+  }, [dispatch, startDate]);
 
   const handleChange = data => {
-    const setData = { reqDate: moment(data).format('MM/DD/yyyy') };
+    const setDate = moment(data).format('MM/DD/yyyy');
     setStartDate(data);
-    dispatch(getTransactionsByMonth(setData));
+    dispatch(addDate(setDate));
+    dispatch(addMonth(setDate));
   };
 
   const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (

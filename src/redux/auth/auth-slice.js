@@ -12,7 +12,6 @@ const initialState = {
   loading: false,
   isRefreshing: false,
   error: null,
-  newUser: {},
 };
 
 const accessAuth = (state, payload) => {

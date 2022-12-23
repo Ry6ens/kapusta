@@ -1,7 +1,10 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 import { getNewUser } from 'redux/auth/auth-selectors';
+import { geCurrentDate } from 'redux/transaction/transaction-selectors';
+import { getTransactionsByMonth } from 'redux/transaction/transaction-operations';
 
 import Section from 'components/layout/Section/Section';
 
@@ -23,12 +26,19 @@ import s from './HomePage.module.scss';
 import products from './products.js';
 
 export default function HomePage() {
+  const dispatch = useDispatch();
+
   const isMobile = useMediaQuery('(max-width: 767.98px)');
   const isTabletMin = useMediaQuery('(min-width: 768px)');
   const isTabletMax = useMediaQuery('(max-width: 1279.98px)');
   const isDesktop = useMediaQuery('(min-width: 1280px)');
 
-  const newUser = useSelector(getNewUser).hasOwnProperty('user');
+  const newUser = useSelector(getNewUser);
+  const currentDate = useSelector(geCurrentDate);
+
+  useEffect(() => {
+    dispatch(getTransactionsByMonth({ reqDate: currentDate }));
+  }, [dispatch, currentDate]);
 
   return (
     <>

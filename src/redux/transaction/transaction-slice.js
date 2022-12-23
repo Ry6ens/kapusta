@@ -3,10 +3,13 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   getTransactionsAllByDate,
   getTransactionsByMonth,
+  addTransaction,
 } from './transaction-operations';
 
 const initialState = {
   user: {},
+  currentDate: '',
+  currentMonth: '',
   loading: false,
   error: null,
 };
@@ -14,9 +17,16 @@ const initialState = {
 const transactions = createSlice({
   name: 'transactions',
   initialState,
-  reducers: {},
+  reducers: {
+    addDate: (state, { payload }) => {
+      state.currentDate = payload;
+    },
+    addMonth: (state, { payload }) => {
+      state.currentMonth = payload;
+    },
+  },
   extraReducers: builder => {
-    // Transactions all by date
+    // Get transactions by date
     builder
       .addCase(getTransactionsAllByDate.pending, state => {
         state.loading = true;
@@ -31,7 +41,7 @@ const transactions = createSlice({
         state.error = payload.data.message;
       });
 
-    // Transactions all by month
+    // Get transactions by month
     builder
       .addCase(getTransactionsByMonth.pending, state => {
         state.loading = true;
@@ -45,7 +55,23 @@ const transactions = createSlice({
         state.loading = false;
         state.error = payload.data.message;
       });
+
+    // Add transaction
+    builder
+      .addCase(addTransaction.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(addTransaction.fulfilled, (state, { payload }) => {
+        state.loading = false;
+      })
+      .addCase(addTransaction.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload.data.message;
+      });
   },
 });
 
 export default transactions.reducer;
+
+export const { addDate, addMonth } = transactions.actions;

@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { getErrorSignUp, getNewUserEmail } from 'redux/auth/auth-selectors';
+import { getErrorSignUp, getNewUser } from 'redux/auth/auth-selectors';
 
 import FormSingup from 'components/FormSingup/FormSingup';
 import Section from 'components/layout/Section/Section';
@@ -14,7 +14,7 @@ import LogoKapustaTabIcon from 'components/icons/LogoKapustaTab/LogoKapustaTab';
 
 export default function SignUpPage() {
   const errorSignUp = useSelector(getErrorSignUp);
-  const newUserEmail = useSelector(getNewUserEmail);
+  const newUserEmail = useSelector(getNewUser);
 
   if (!errorSignUp && newUserEmail) {
     return <Navigate to="/login" />;
