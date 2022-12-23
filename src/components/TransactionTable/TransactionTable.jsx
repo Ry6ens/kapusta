@@ -10,8 +10,26 @@ import CloseIcon from 'components/icons/Close/Close';
 
 import s from './TransactionTable.module.scss';
 
-export default function TransactionTable({ sectionClass = 'tbody', products }) {
+// import { useSelector } from 'react-redux';
+// import { getTransactions } from 'redux/transaction/transaction-selectors';
+
+export default function TransactionTable({ sectionClass = 'tbody', items }) {
   const [showModal, setShowModal] = useState(false);
+
+  // const items = useSelector(getTransactions);
+  // const items = [
+  //   {
+  //     owner: '63a58e84a79c31351b3843ae',
+  //     reportDate: '11/2022',
+  //     transitionCategory: 'Entertainment',
+  //     transitionDate: '12/23/2022',
+  //     transitionDescription: 'Cap',
+  //     transitionName: 'expenses',
+  //     transitionValue: 100,
+  //     _id: '63a5d1ac9de0e178f455be6e',
+  //   },
+  // ];
+  // console.log(items);
 
   const handelDelete = () => {
     document.body.classList.add('no-scroll');
@@ -40,18 +58,42 @@ export default function TransactionTable({ sectionClass = 'tbody', products }) {
           </tr>
         </thead>
         <tbody className={s[sectionClass]}>
-          {products?.map(({ id, title, price, date, category }) => (
+          {/* {items?.map(
+            ({
+              _id,
+              transitionDate,
+              transitionCategory,
+              transitionValue,
+              transitionDescription,
+            }) => (
+              <tr key={_id} className={s.item}>
+                <td className={s.td}>{transitionDate}</td>
+                <td className={s.td}>{transitionDescription}</td>
+                <td className={s.td}>{transitionCategory}</td>
+                <td className={s.td}>{transitionValue}</td>
+                <td className={s.td}>
+                  <DeleteIcon
+                    iconClass="iconTransactionTable"
+                    width="18"
+                    height="18"
+                    onClick={handelDelete(_id)}
+                  />
+                </td>
+              </tr>
+            )
+          )} */}
+          {items?.map(({ id, title, price, date, category }) => (
             <tr key={id} className={s.item}>
-              <td className={s.td}>{date}</td>
               <td className={s.td}>{title}</td>
-              <td className={s.td}>{category}</td>
               <td className={s.td}>{price}</td>
+              <td className={s.td}>{date}</td>
+              <td className={s.td}>{category}</td>
               <td className={s.td}>
                 <DeleteIcon
                   iconClass="iconTransactionTable"
                   width="18"
                   height="18"
-                  onClick={handelDelete}
+                  onClick={handelDelete(id)}
                 />
               </td>
             </tr>

@@ -1,9 +1,13 @@
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-import { addTransaction } from 'redux/transaction/transaction-operations';
-import { geCurrentDate } from 'redux/transaction/transaction-selectors';
+import {
+  addTransaction,
+  getExpensesTransaction,
+} from 'redux/transaction/transaction-operations';
+import { getCurrentDate } from 'redux/transaction/transaction-selectors';
 
 import FormInputText from 'components/FormComponents/FormInputText';
 import FormInputNumber from 'components/FormComponents/FormInputNumber';
@@ -19,9 +23,10 @@ import s from './FormAddTransaction.module.scss';
 
 export default function FormAddTransaction() {
   const dispatch = useDispatch();
+  const location = useLocation();
   const isTablet = useMediaQuery('(min-width: 768px)');
 
-  const currentDate = useSelector(geCurrentDate);
+  const currentDate = useSelector(getCurrentDate);
 
   const { control, handleSubmit, reset } = useForm({
     defaultValues: {
@@ -33,16 +38,35 @@ export default function FormAddTransaction() {
   });
 
   const onSubmit = data => {
-    const addTransactionData = {
-      transitionName: 'expenses',
-      transitionDate: currentDate,
-      transitionCategory: data.category,
-      transitionValue: +data.balance,
-      transitionDescription: data.description,
-    };
-    console.log(addTransactionData);
+    if (location.pathname === '/income') {
+      const addTransactionData = {
+        transitionName: 'income',
+        transitionDate: currentDate,
+        transitionCategory: data.category,
+        transitionValue: +data.balance,
+        transitionDescription: data.description,
+      };
 
-    dispatch(addTransaction(addTransactionData));
+      dispatch(addTransaction(addTransactionData));
+    }
+
+    if (location.pathname === '/expenses') {
+      const addTransactionData = {
+        transitionName: 'expenses',
+        transitionDate: currentDate,
+        transitionCategory: data.category,
+        transitionValue: +data.balance,
+        transitionDescription: data.description,
+      };
+
+      dispatch(addTransaction(addTransactionData));
+      dispatch(getExpensesTransaction());
+    }
+
+    reset();
+  };
+
+  const resetForm = () => {
     reset();
   };
 
@@ -67,7 +91,7 @@ export default function FormAddTransaction() {
       </div>
       <div className={s.overlayBtn}>
         <Button text="Input" btnClass="btnFormAddExpInc" />
-        <Button text="Clear" btnClass="btnFormAddExpInc" />
+        <Button text="Clear" btnClass="btnFormAddExpInc" onClick={resetForm} />
       </div>
     </form>
   );

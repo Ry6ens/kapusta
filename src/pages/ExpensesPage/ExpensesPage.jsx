@@ -1,4 +1,9 @@
+// import { useEffect } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
 import useMediaQuery from '@mui/material/useMediaQuery';
+
+// import { getExpensesTransaction } from 'redux/transaction/transaction-operations';
+// import { getExpensesTrans } from 'redux/transaction/transaction-selectors';
 
 import Section from 'components/layout/Section/Section';
 
@@ -22,10 +27,18 @@ import s from './ExpensesPage.module.scss';
 import products from './products.js';
 
 export default function ExpensesPage() {
+  // const dispatch = useDispatch();
+
   const isMobile = useMediaQuery('(max-width: 767.98px)');
   const isTabletMin = useMediaQuery('(min-width: 768px)');
   const isTabletMax = useMediaQuery('(max-width: 1279.98px)');
   const isDesktop = useMediaQuery('(min-width: 1280px)');
+
+  // useEffect(() => {
+  //   dispatch(getExpensesTransaction());
+  // }, [dispatch]);
+
+  // const transactions = useSelector(getExpensesTrans);
 
   return (
     <>
@@ -46,7 +59,7 @@ export default function ExpensesPage() {
 
             <CalendarHome />
             <SlideWindow text="Add expenses" />
-            <TransactionList listClass="listExpenses" products={products} />
+            <TransactionList listClass="listExpenses" />
           </Section>
           <ButtonsExpenInc />
         </>
@@ -61,7 +74,7 @@ export default function ExpensesPage() {
           <ButtonsExpenInc />
           <div className={s.overlayExpInc}>
             <FormAddTransaction />
-            <TransactionTable products={products} />
+            <TransactionTable />
           </div>
           <div className={s.overlaySum}>
             <SummaryTable />
