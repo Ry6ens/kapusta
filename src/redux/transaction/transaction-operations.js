@@ -1,24 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import {
-  axiosGetTransactionsAllByDate,
-  axiosGetTransactionsByMonth,
-  axiosAddTransaction,
-} from 'api/transactions';
-
-export const getTransactionsAllByDate = createAsyncThunk(
-  'transactions/allByDate',
-  async (userData, { rejectWithValue }) => {
-    try {
-      const data = await axiosGetTransactionsAllByDate(userData);
-      return data;
-    } catch (error) {
-      const { data, status } = error.response;
-
-      return rejectWithValue({ data, status });
-    }
-  }
-);
+import { axiosGetTransactionsByMonth, axiosAddTransaction } from 'api/transactions';
 
 export const getTransactionsByMonth = createAsyncThunk(
   'transactions/byMonth',
