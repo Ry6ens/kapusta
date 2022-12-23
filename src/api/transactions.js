@@ -14,7 +14,7 @@ export const axiosAddTransaction = async userData => {
 
 // Delete transaction
 export const axiosDeleteTransaction = async userData => {
-  const { data } = await instance.post('api/transitions/delete/:transitionId', userData);
+  const { data } = await instance.delete(`api/transitions/delete/${userData}`);
   return data;
 };
 

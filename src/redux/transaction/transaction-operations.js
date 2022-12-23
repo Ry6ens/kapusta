@@ -3,6 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
   axiosGetTransactionsByMonth,
   axiosAddTransaction,
+  axiosDeleteTransaction,
   axiosGetExpensesTransaction,
 } from 'api/transactions';
 
@@ -38,7 +39,7 @@ export const deleteTransaction = createAsyncThunk(
   'transactions/deleteTransaction',
   async (userData, { rejectWithValue }) => {
     try {
-      const data = await axiosAddTransaction(userData);
+      const data = await axiosDeleteTransaction(userData);
       return data;
     } catch (error) {
       const { data, status } = error.response;

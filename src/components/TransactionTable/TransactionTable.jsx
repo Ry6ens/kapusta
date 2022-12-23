@@ -1,4 +1,10 @@
 import { useState } from 'react';
+import moment from 'moment/moment';
+
+import {
+  deleteTransaction,
+  getTransactionsByMonth,
+} from 'redux/transaction/transaction-operations';
 
 import Modal from 'components/layout/Modal/Modal';
 
@@ -9,32 +15,19 @@ import DeleteIcon from 'components/icons/Delete/Delete';
 import CloseIcon from 'components/icons/Close/Close';
 
 import s from './TransactionTable.module.scss';
-
-// import { useSelector } from 'react-redux';
-// import { getTransactions } from 'redux/transaction/transaction-selectors';
+import { useDispatch } from 'react-redux';
 
 export default function TransactionTable({ sectionClass = 'tbody', items }) {
+  const dispatch = useDispatch();
+
   const [showModal, setShowModal] = useState(false);
+  const [id, setId] = useState('');
 
-  // const items = useSelector(getTransactions);
-  // const items = [
-  //   {
-  //     owner: '63a58e84a79c31351b3843ae',
-  //     reportDate: '11/2022',
-  //     transitionCategory: 'Entertainment',
-  //     transitionDate: '12/23/2022',
-  //     transitionDescription: 'Cap',
-  //     transitionName: 'expenses',
-  //     transitionValue: 100,
-  //     _id: '63a5d1ac9de0e178f455be6e',
-  //   },
-  // ];
-  // console.log(items);
-
-  const handelDelete = () => {
+  const handelDelete = ({ currentTarget: { id } }) => {
     document.body.classList.add('no-scroll');
 
     setShowModal(true);
+    setId(id);
   };
 
   const handelClose = () => {
@@ -42,8 +35,38 @@ export default function TransactionTable({ sectionClass = 'tbody', items }) {
   };
 
   const handleDeleteItem = () => {
+    dispatch(deleteTransaction(id));
+    dispatch(
+      getTransactionsByMonth({ reqDate: moment(new Date()).format('MM/DD/yyyy') })
+    );
     setShowModal(false);
   };
+
+  const elements = items?.map(
+    ({
+      _id,
+      transitionDescription,
+      transitionValue,
+      transitionDate,
+      transitionCategory,
+    }) => (
+      <tr key={_id} className={s.item}>
+        <td className={s.td}>{transitionDate}</td>
+        <td className={s.td}>{transitionDescription}</td>
+        <td className={s.td}>{transitionCategory}</td>
+        <td className={s.td}>{transitionValue}</td>
+        <td className={s.td}>
+          <DeleteIcon
+            iconClass="iconTransactionTable"
+            width="18"
+            height="18"
+            id={_id}
+            onClick={handelDelete}
+          />
+        </td>
+      </tr>
+    )
+  );
 
   return (
     <>
@@ -57,48 +80,7 @@ export default function TransactionTable({ sectionClass = 'tbody', items }) {
             <th className={s.th}></th>
           </tr>
         </thead>
-        <tbody className={s[sectionClass]}>
-          {/* {items?.map(
-            ({
-              _id,
-              transitionDate,
-              transitionCategory,
-              transitionValue,
-              transitionDescription,
-            }) => (
-              <tr key={_id} className={s.item}>
-                <td className={s.td}>{transitionDate}</td>
-                <td className={s.td}>{transitionDescription}</td>
-                <td className={s.td}>{transitionCategory}</td>
-                <td className={s.td}>{transitionValue}</td>
-                <td className={s.td}>
-                  <DeleteIcon
-                    iconClass="iconTransactionTable"
-                    width="18"
-                    height="18"
-                    onClick={handelDelete(_id)}
-                  />
-                </td>
-              </tr>
-            )
-          )} */}
-          {items?.map(({ id, title, price, date, category }) => (
-            <tr key={id} className={s.item}>
-              <td className={s.td}>{title}</td>
-              <td className={s.td}>{price}</td>
-              <td className={s.td}>{date}</td>
-              <td className={s.td}>{category}</td>
-              <td className={s.td}>
-                <DeleteIcon
-                  iconClass="iconTransactionTable"
-                  width="18"
-                  height="18"
-                  onClick={handelDelete(id)}
-                />
-              </td>
-            </tr>
-          ))}
-        </tbody>
+        <tbody className={s[sectionClass]}>{elements}</tbody>
       </table>
       {showModal && (
         <Modal onClose={handelClose}>

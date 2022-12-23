@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import moment from 'moment';
 
 import { addDate } from 'redux/transaction/transaction-slice';
-import { getTransactionsByMonth } from 'redux/transaction/transaction-operations';
 
 import CalendarIcon from 'components/icons/Calendar/Calendar';
 
@@ -18,7 +17,6 @@ export default function CalendarHome({ dateFormat = 'dd.MM.yyyy', showMonthYearP
   useEffect(() => {
     const setDate = moment(startDate).format('MM/DD/yyyy');
     dispatch(addDate(setDate));
-    dispatch(getTransactionsByMonth({ reqDate: setDate }));
   }, [dispatch, startDate]);
 
   const handleChange = data => {
