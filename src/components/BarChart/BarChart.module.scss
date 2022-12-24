@@ -1,0 +1,18 @@
+.wrap {
+  padding-top: 50px;
+}
+
+.name {
+  letter-spacing: 0.02em;
+  fill: var(--text-color);
+  // text-transform: lowercase;
+  &::first-letter {
+    color: red;
+    text-transform: uppercase !important;
+  }
+}
+
+.price {
+  letter-spacing: 0.02em;
+  fill: var(--text-color);
+}
