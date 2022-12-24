@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import moment from 'moment/moment';
 
 import {
@@ -15,7 +16,6 @@ import DeleteIcon from 'components/icons/Delete/Delete';
 import CloseIcon from 'components/icons/Close/Close';
 
 import s from './TransactionTable.module.scss';
-import { useDispatch } from 'react-redux';
 
 export default function TransactionTable({ sectionClass = 'tbody', items }) {
   const dispatch = useDispatch();

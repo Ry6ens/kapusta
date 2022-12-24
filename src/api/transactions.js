@@ -23,3 +23,9 @@ export const axiosGetExpensesTransaction = async () => {
   const { data } = await instance.get('api/transitions/expenses/monthly');
   return data;
 };
+
+// Get income transaction
+export const axiosGetIncomeTransaction = async () => {
+  const { data } = await instance.get('api/transitions/income/monthly');
+  return data;
+};

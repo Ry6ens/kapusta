@@ -1,4 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import moment from 'moment/moment';
+
+import {
+  deleteTransaction,
+  getTransactionsByMonth,
+} from 'redux/transaction/transaction-operations';
+import { getCurrentDate } from 'redux/transaction/transaction-selectors';
 
 import Modal from 'components/layout/Modal/Modal';
 
@@ -10,37 +18,57 @@ import CloseIcon from 'components/icons/Close/Close';
 
 import s from './TransactionList.module.scss';
 
-export default function TransactionList({ listClass = 'list', products }) {
-  const [showModal, setShowModal] = useState(false);
+export default function TransactionList({ listClass = 'list', items }) {
+  const dispatch = useDispatch();
+  const currentDate = useSelector(getCurrentDate);
 
-  const handelDelete = () => {
+  useEffect(() => {}, [currentDate]);
+
+  const [showModal, setShowModal] = useState(false);
+  const [id, setId] = useState('');
+
+  const handelDelete = ({ currentTarget: { id } }) => {
     document.body.classList.add('no-scroll');
 
     setShowModal(true);
+    setId(id);
   };
-
-  const elements = products?.map(({ id, title, price, date, category }) => (
-    <li key={id} className={s.item}>
-      <p className={s.title}>{title}</p>
-      <p className={s.price}>{price}</p>
-      <DeleteIcon
-        iconClass="iconProductList"
-        width="20"
-        height="20"
-        onClick={handelDelete}
-      />
-      <p className={s.date}>{date}</p>
-      <p className={s.category}>{category}</p>
-    </li>
-  ));
 
   const handelClose = () => {
     setShowModal(false);
   };
 
   const handleDeleteItem = () => {
+    dispatch(deleteTransaction(id));
+    dispatch(
+      getTransactionsByMonth({ reqDate: moment(new Date()).format('MM/DD/yyyy') })
+    );
     setShowModal(false);
   };
+
+  const elements = items?.map(
+    ({
+      _id,
+      transitionDescription,
+      transitionValue,
+      transitionDate,
+      transitionCategory,
+    }) => (
+      <li key={_id} className={s.item}>
+        <p className={s.title}>{transitionDescription}</p>
+        <p className={s.price}>{transitionValue}</p>
+        <DeleteIcon
+          iconClass="iconProductList"
+          width="20"
+          height="20"
+          id={_id}
+          onClick={handelDelete}
+        />
+        <p className={s.date}>{transitionDate}</p>
+        <p className={s.category}>{transitionCategory}</p>
+      </li>
+    )
+  );
 
   return (
     <>

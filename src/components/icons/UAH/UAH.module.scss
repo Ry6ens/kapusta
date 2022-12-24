@@ -1,0 +1,11 @@
+@use 'styles/mixins';
+
+.overlay {
+    position: absolute;
+    bottom: 8px;
+    right: 15px;
+
+    @include mixins.mq(tablet) {
+        bottom: 7px;
+    }
+}

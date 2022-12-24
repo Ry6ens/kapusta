@@ -16,14 +16,14 @@ const container = document.getElementById('root');
 const root = createRoot(container);
 
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistedStore}>
-          <ScrollToTop />
-          <App />
-        </PersistGate>
-      </Provider>
-    </BrowserRouter>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <BrowserRouter>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistedStore}>
+        <ScrollToTop />
+        <App />
+      </PersistGate>
+    </Provider>
+  </BrowserRouter>
+  // </React.StrictMode>
 );

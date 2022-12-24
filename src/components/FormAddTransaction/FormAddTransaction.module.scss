@@ -49,6 +49,8 @@
     align-items: center;
 
     @include mixins.mq(tablet) {
+        position: relative;
+
         margin: 0px;
     }
 }

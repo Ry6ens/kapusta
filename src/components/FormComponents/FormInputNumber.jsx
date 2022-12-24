@@ -44,26 +44,26 @@ const TextFieldStyledMob = styled(TextField)({
 
 const TextFieldStyledTab = styled(TextField)({
   '& div': {
-    width: '95px',
+    width: '110px',
 
     border: '2px solid var(--btn-color)',
-    borderRight: 'none',
     borderLeft: 'none',
 
     background: 'var(--background-color)',
-    borderRadius: '0px',
+    borderRadius: '0px 16px 16px 0px',
   },
   '& div fieldset': {
     border: '1px solid transparent',
   },
   '& input': {
-    padding: '10px 0px 10px 20px',
+    padding: '10px 40px 10px 0px',
 
     fontWeight: '700',
     fontSize: '12px',
     lineHeight: '1.14',
     letterSpacing: '0.02em',
     textTransform: 'initial',
+    textAlign: 'right',
 
     color: 'var(--second-text-color)',
     background: 'transparent',

@@ -1,11 +1,13 @@
 import { useEffect } from 'react';
-import moment from 'moment/moment';
 import { useSelector, useDispatch } from 'react-redux';
+import moment from 'moment/moment';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 import { getNewUser } from 'redux/auth/auth-selectors';
-import { transactionsByMonth } from 'redux/transaction/transaction-selectors';
-// import { getCurrentDate } from 'redux/transaction/transaction-selectors';
+import {
+  transactionsByMonth,
+  // summaryBalaceByMonth,
+} from 'redux/transaction/transaction-selectors';
 import { getTransactionsByMonth } from 'redux/transaction/transaction-operations';
 
 import Section from 'components/layout/Section/Section';
@@ -25,8 +27,6 @@ import KapustaManyIcon from 'components/icons/KapustaMany/KapustaMany';
 
 import s from './HomePage.module.scss';
 
-import products from './products.js';
-
 export default function HomePage() {
   const dispatch = useDispatch();
 
@@ -42,8 +42,8 @@ export default function HomePage() {
   }, [dispatch]);
 
   const newUser = useSelector(getNewUser);
-  // const currentDate = useSelector(getCurrentDate);
   const transactions = useSelector(transactionsByMonth);
+  // const summary = useSelector(summaryBalaceByMonth);
 
   return (
     <>
@@ -57,7 +57,7 @@ export default function HomePage() {
             </div>
 
             <CalendarHome dateFormat="MMMM yyyy" showMonthYearPicker={true} />
-            <TransactionList products={products} />
+            <TransactionList items={transactions} />
           </Section>
           <ButtonsExpenInc />
         </>

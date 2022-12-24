@@ -1,4 +1,13 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import useMediaQuery from '@mui/material/useMediaQuery';
+
+import { getIncomeTransaction } from 'redux/transaction/transaction-operations';
+import {
+  getCurrentDate,
+  transactionsIncome,
+} from 'redux/transaction/transaction-selectors';
 
 import Section from 'components/layout/Section/Section';
 
@@ -19,13 +28,21 @@ import KapustaManyIcon from 'components/icons/KapustaMany/KapustaMany';
 
 import s from './IncomePage.module.scss';
 
-import products from './products.js';
-
 export default function IncomePage() {
+  const dispatch = useDispatch();
+
   const isMobile = useMediaQuery('(max-width: 767.98px)');
   const isTabletMin = useMediaQuery('(min-width: 768px)');
   const isTabletMax = useMediaQuery('(max-width: 1279.98px)');
   const isDesktop = useMediaQuery('(min-width: 1280px)');
+
+  const currentDate = useSelector(getCurrentDate);
+
+  useEffect(() => {
+    dispatch(getIncomeTransaction());
+  }, [dispatch, currentDate]);
+
+  const transactions = useSelector(transactionsIncome);
 
   return (
     <>
@@ -46,7 +63,7 @@ export default function IncomePage() {
 
             <CalendarHome />
             <SlideWindow text="Add income" />
-            <TransactionList listClass="listIncome" products={products} />
+            <TransactionList listClass="listIncome" items={transactions} />
           </Section>
           <ButtonsExpenInc />
         </>
@@ -61,7 +78,7 @@ export default function IncomePage() {
           <ButtonsExpenInc />
           <div className={s.overlayExpInc}>
             <FormAddTransaction />
-            <TransactionTable products={products} />
+            <TransactionTable items={transactions} />
           </div>
           <div className={s.overlaySum}>
             <SummaryTable />
@@ -80,7 +97,7 @@ export default function IncomePage() {
           <div className={s.overlayExpInc}>
             <FormAddTransaction />
             <div className={s.overlayTablSum}>
-              <TransactionTable products={products} />
+              <TransactionTable items={transactions} />
               <SummaryTable />
             </div>
           </div>

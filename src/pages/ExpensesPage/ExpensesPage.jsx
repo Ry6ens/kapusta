@@ -1,9 +1,12 @@
-// import { useEffect } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-// import { getExpensesTransaction } from 'redux/transaction/transaction-operations';
-// import { getExpensesTrans } from 'redux/transaction/transaction-selectors';
+import { getExpensesTransaction } from 'redux/transaction/transaction-operations';
+import {
+  transactionsExpenses,
+  getCurrentDate,
+} from 'redux/transaction/transaction-selectors';
 
 import Section from 'components/layout/Section/Section';
 
@@ -24,21 +27,21 @@ import KapustaManyIcon from 'components/icons/KapustaMany/KapustaMany';
 
 import s from './ExpensesPage.module.scss';
 
-import products from './products.js';
-
 export default function ExpensesPage() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const isMobile = useMediaQuery('(max-width: 767.98px)');
   const isTabletMin = useMediaQuery('(min-width: 768px)');
   const isTabletMax = useMediaQuery('(max-width: 1279.98px)');
   const isDesktop = useMediaQuery('(min-width: 1280px)');
 
-  // useEffect(() => {
-  //   dispatch(getExpensesTransaction());
-  // }, [dispatch]);
+  const currentDate = useSelector(getCurrentDate);
 
-  // const transactions = useSelector(getExpensesTrans);
+  useEffect(() => {
+    dispatch(getExpensesTransaction());
+  }, [dispatch, currentDate]);
+
+  const transactions = useSelector(transactionsExpenses);
 
   return (
     <>
@@ -59,7 +62,7 @@ export default function ExpensesPage() {
 
             <CalendarHome />
             <SlideWindow text="Add expenses" />
-            <TransactionList listClass="listExpenses" />
+            <TransactionList listClass="listExpenses" items={transactions} />
           </Section>
           <ButtonsExpenInc />
         </>
@@ -74,7 +77,7 @@ export default function ExpensesPage() {
           <ButtonsExpenInc />
           <div className={s.overlayExpInc}>
             <FormAddTransaction />
-            <TransactionTable />
+            <TransactionTable items={transactions} />
           </div>
           <div className={s.overlaySum}>
             <SummaryTable />
@@ -93,7 +96,7 @@ export default function ExpensesPage() {
           <div className={s.overlayExpInc}>
             <FormAddTransaction />
             <div className={s.overlayTablSum}>
-              <TransactionTable products={products} />
+              <TransactionTable items={transactions} />
               <SummaryTable />
             </div>
           </div>

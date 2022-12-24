@@ -5,6 +5,7 @@ import {
   addTransaction,
   deleteTransaction,
   getExpensesTransaction,
+  getIncomeTransaction,
 } from './transaction-operations';
 
 const initialState = {
@@ -77,6 +78,21 @@ const transactions = createSlice({
         state.loading = false;
       })
       .addCase(getExpensesTransaction.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload.data.message;
+      });
+
+    // Get income transaction
+    builder
+      .addCase(getIncomeTransaction.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getIncomeTransaction.fulfilled, (state, { payload }) => {
+        state.user = payload;
+        state.loading = false;
+      })
+      .addCase(getIncomeTransaction.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload.data.message;
       });

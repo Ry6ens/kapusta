@@ -1,5 +1,5 @@
 import DatePicker from 'react-datepicker';
-import { useState, useEffect, forwardRef } from 'react';
+import { useState, forwardRef, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import moment from 'moment';
 
@@ -15,9 +15,8 @@ export default function CalendarHome({ dateFormat = 'dd.MM.yyyy', showMonthYearP
   const [startDate, setStartDate] = useState(new Date());
 
   useEffect(() => {
-    const setDate = moment(startDate).format('MM/DD/yyyy');
-    dispatch(addDate(setDate));
-  }, [dispatch, startDate]);
+    dispatch(addDate(moment(new Date()).format('MM/DD/yyyy')));
+  }, [dispatch]);
 
   const handleChange = data => {
     const setDate = moment(data).format('MM/DD/yyyy');

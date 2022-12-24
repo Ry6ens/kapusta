@@ -11,6 +11,7 @@ export default function Modal({ onClose, children }) {
       target === currentTarget ||
       code === 'Escape' ||
       target.nodeName === 'svg' ||
+      target.nodeName === 'path' ||
       target.nodeName === 'BUTTON'
     ) {
       onClose(false);

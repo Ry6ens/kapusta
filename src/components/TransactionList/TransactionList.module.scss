@@ -5,23 +5,21 @@
     max-width: 425px;
     min-height: 220px;
 
-    margin: 75px auto 0 auto;
+    margin: 75px auto 0px auto;
 }
 
 .listIncome {
     max-width: 425px;
     min-height: 220px;
 
-    margin: 25px auto 0 auto;
-    padding-bottom: 50px;
+    margin: 75px auto 0 auto;
 }
 
 .listExpenses {
     max-width: 425px;
     min-height: 220px;
 
-    margin: 25px auto 0 auto;
-    padding-bottom: 50px;
+    margin: 75px auto 0 auto;
 }
 
 .item {
@@ -42,6 +40,8 @@
 .title {
     grid-area: title;
 
+    width: 200px;
+
     font-weight: 700;
 }
 
@@ -49,8 +49,10 @@
     grid-area: price;
 
     display: grid;
-    justify-items: center;
+    justify-items: end;
     align-items: center;
+
+    width: 50px;
 
     font-weight: 700;
 }
@@ -58,12 +60,16 @@
 .date {
     grid-area: date;
 
+    width: 50px;
+
     font-size: 8px;
     line-height: 1.13;
 }
 
 .category {
     grid-area: category;
+
+    width: 120px;
 
     font-size: 8px;
     line-height: 1.13;

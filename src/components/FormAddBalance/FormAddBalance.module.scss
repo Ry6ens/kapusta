@@ -16,4 +16,12 @@
 .overlay {
     display: flex;
     justify-content: center;
+
+    @include mixins.mq(tablet) {
+        gap: 15px;
+    }
+}
+
+.inpOverlay {
+    position: relative;
 }

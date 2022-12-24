@@ -5,6 +5,7 @@ import {
   axiosAddTransaction,
   axiosDeleteTransaction,
   axiosGetExpensesTransaction,
+  axiosGetIncomeTransaction,
 } from 'api/transactions';
 
 export const getTransactionsByMonth = createAsyncThunk(
@@ -54,6 +55,20 @@ export const getExpensesTransaction = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const data = await axiosGetExpensesTransaction();
+      return data;
+    } catch (error) {
+      const { data, status } = error.response;
+
+      return rejectWithValue({ data, status });
+    }
+  }
+);
+
+export const getIncomeTransaction = createAsyncThunk(
+  'transactions/getIncomeTransaction',
+  async (_, { rejectWithValue }) => {
+    try {
+      const data = await axiosGetIncomeTransaction();
       return data;
     } catch (error) {
       const { data, status } = error.response;

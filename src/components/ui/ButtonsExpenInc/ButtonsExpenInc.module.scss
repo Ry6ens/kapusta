@@ -12,15 +12,18 @@
     gap: 5px;
     justify-content: center;
 
+    background: var(--background-color);
+
     @include mixins.mq(tablet) {
         position: relative;
 
         width: 725px;
 
-
         justify-content: flex-start;
 
         gap: 0px;
+
+        background: none;
     }
 
     @include mixins.mq(desktop) {

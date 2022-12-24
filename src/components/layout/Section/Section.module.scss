@@ -29,10 +29,9 @@
   position: relative;
 
   margin-top: 60px;
-  margin-bottom: 60px;
-
-
   padding: 0px 20px;
+  padding-bottom: 55px;
+
 
   background-image: url('../../../images/background/backg.png');
   background-size: 1280px 286px;
@@ -44,7 +43,8 @@
   overflow: hidden;
 
   @include mixins.mq(tablet) {
-    margin-bottom: 0px;
+    padding-bottom: 0px;
+
 
     background-size: 1440px 526px;
   }
