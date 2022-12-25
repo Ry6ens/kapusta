@@ -1,75 +1,152 @@
-import s from './BarChart.scss';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
-import { BarChart, Bar, XAxis, LabelList, ResponsiveContainer, Cell } from 'recharts';
+import s from './BarChart.module.scss';
 
-const data = [
-  {
-    name: 'Page A',
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: 'Page B',
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: 'Page C',
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: 'Page D',
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: 'Page E',
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: 'Page F',
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: 'name G',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-];
+import {
+  BarChart,
+  Bar,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  Label,
+  LabelList,
+} from 'recharts';
 
 function Chart({ data }) {
-  const sorteredData = data.sort((a, b) => b.pv - a.pv);
+  const isMobile = useMediaQuery('(max-width: 767px)');
+  const sorteredData = data.sort((a, b) => b.price - a.price);
+
+  const renderCustomizedLabelName = ({ x, y, value }) => {
+    return (
+      <g className={s.name}>
+        <text x={x} y={y - 10} dominantBaseline="middle">
+          {value}
+        </text>
+      </g>
+    );
+  };
+
+  const renderCustomizedLabel = ({ x, y, width, value }) => {
+    if (isMobile) {
+      return (
+        <g className={s.price}>
+          <text x={x + 60 + width / 2} y={y - 10} dominantBaseline="middle">
+            {`${value} UAH`}
+          </text>
+        </g>
+      );
+    }
+
+    return (
+      <g className={s.text}>
+        <text
+          x={x + width / 1.5}
+          y={y - 20}
+          textAnchor="middle"
+          dominantBaseline="middle"
+        >
+          {`${value} UAH`}
+        </text>
+      </g>
+    );
+  };
+
+  const renderCustomizedAxisTick = ({ x, y, payload }) => {
+    if (isMobile) {
+      return (
+        <g transform={`translate(${x},${y})`} className={s.text}>
+          <text x={7} y={0} dy={-20} dominantBaseline="middle">
+            {payload.value}
+          </text>
+        </g>
+      );
+    }
+
+    return (
+      <g transform={`translate(${x},${y})`} className={s.text}>
+        <text x={0} y={0} dy={16} textAnchor="middle">
+          {payload.value}
+        </text>
+      </g>
+    );
+  };
+
+  const dinamicHight = data?.length * 55;
+
+  if (isMobile) {
+    return (
+      <ResponsiveContainer maxWidth="100%" height={dinamicHight}>
+        <BarChart data={sorteredData} layout="vertical" maxBarSize={18}>
+          <XAxis type="number" hide axisLine={false} tickLine={false} />
+          <YAxis
+            hide
+            type="category"
+            dataKey="name"
+            tick={renderCustomizedAxisTick}
+            axisLine={false}
+            tickLine={false}
+          />
+          <Tooltip cursor={{ fill: 'transparent' }} />
+          <Bar dataKey="price">
+            {sorteredData.map((_, i) => (
+              <Cell
+                key={`${i}`}
+                fill={i % 3 ? 'var(--second-accent-color)' : 'var(--accent-color)'}
+                radius={[0, 10, 10, 0]}
+              />
+            ))}
+
+            <LabelList
+              dataKey="name"
+              fill="var(--text-color)"
+              content={renderCustomizedLabelName}
+            />
+            <LabelList
+              dataKey="price"
+              fill="var(--text-color)"
+              content={renderCustomizedLabel}
+            />
+          </Bar>
+        </BarChart>
+      </ResponsiveContainer>
+    );
+  }
 
   return (
-    <ResponsiveContainer maxWidth="100%" height={100}>
-      <BarChart
-        layout={'vertical'}
-        maxBarSize={18}
-        // width={200}
-        // height={200}
-        data={sorteredData}
-        // margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
-      >
-        <XAxis dataKey="amt" type="category" />
-        <Bar dataKey="pv" fill="#FF751D">
-          {sorteredData.map(i => (
-            <Cell key={i} radius={[0, 10, 10, 0]} fill={i % 3 ? '#FFDAC0' : '#FF751D'} />
-          ))}
-
-          {/* <LabelList dataKey="pv" position="top" type="category" /> */}
-        </Bar>
-      </BarChart>
-    </ResponsiveContainer>
+    <div className={s.wrap}>
+      <ResponsiveContainer width="100%" height={dinamicHight}>
+        <BarChart data={sorteredData}>
+          <CartesianGrid vertical={false} stroke="#F5F6FB" horizontalPoints={[]} y={38} />
+          <XAxis
+            tick={renderCustomizedAxisTick}
+            axisLine={false}
+            tickLine={false}
+            dataKey="name"
+          >
+            <Label />
+          </XAxis>
+          <Tooltip cursor={{ fill: 'transparent' }} />
+          <Bar dataKey="price" maxBarSize={38}>
+            {data.map((_, i) => (
+              <Cell
+                key={i}
+                fill={i % 3 ? 'var(--second-accent-color)' : 'var(--accent-color)'}
+                radius={[10, 10, 0, 0]}
+              />
+            ))}
+            <LabelList
+              dataKey="price"
+              position="top"
+              fill="var(--text-color)"
+              content={renderCustomizedLabel}
+            />
+          </Bar>
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
   );
 }
 
