@@ -1,5 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import useMediaQuery from '@mui/material/useMediaQuery';
+
+import { getReportIncomeCategory } from 'redux/transaction/transaction-operations';
 
 import ArrowsLeft from 'components/icons/Arrows/Left';
 import ArrowsRight from 'components/icons/Arrows/Right';

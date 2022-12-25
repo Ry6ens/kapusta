@@ -27,3 +27,15 @@
 .iconTransactionTable:focus svg {
     fill: var(--btn-hover)
 }
+
+.iconAccount {
+    cursor: pointer;
+}
+
+.iconAccount:hover svg {
+    fill: var(--btn-hover)
+}
+
+.iconAccount:focus svg {
+    fill: var(--btn-hover)
+}

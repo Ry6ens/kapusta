@@ -44,12 +44,13 @@ const CssFormControlMob = styled(FormControl)({
 });
 
 const CssFormControlTab = styled(FormControl)({
-  width: '180px',
+  width: '165px',
 
-  border: '2px solid var(--btn-color)',
-  borderLeft: 'none',
+  display: 'flex',
 
-  background: 'var(--background-color)',
+  border: '2px solid var(--background-color)',
+  borderRadius: '30px',
+  background: 'var(--second-background-color)',
 
   '& div div': {
     padding: '10px 15px',

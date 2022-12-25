@@ -6,6 +6,7 @@ import {
   axiosDeleteTransaction,
   axiosGetExpensesTransaction,
   axiosGetIncomeTransaction,
+  axiosGetReportIncomeCategory,
 } from 'api/transactions';
 
 export const getTransactionsByMonth = createAsyncThunk(

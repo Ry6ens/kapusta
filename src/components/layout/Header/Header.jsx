@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { getLogin } from 'redux/auth/auth-selectors';
@@ -27,7 +27,9 @@ export default function Header() {
 
       {isUserLogin && (
         <header className={style}>
-          <LogoKapusta width="90" height="31" />
+          <Link to="/">
+            <LogoKapusta width="90" height="31" />
+          </Link>
           <UserInfo />
         </header>
       )}

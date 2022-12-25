@@ -55,7 +55,9 @@ export default function UserInfo() {
       )}
       {isTablet && (
         <>
-          <p>{name}</p>
+          <Link to="/settings/account">
+            <p>{name}</p>
+          </Link>
           <VerticalLineIcon height="36" />
           <Button text="Exit" btnClass="btnExit" type="button" onClick={handelClick} />
         </>

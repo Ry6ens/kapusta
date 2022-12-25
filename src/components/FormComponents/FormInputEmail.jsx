@@ -106,6 +106,7 @@ export default function FormInputEmail({ name, control, label, type, required })
             <TextFieldStyledAccount
               variant="outlined"
               placeholder={label}
+              type={type}
               value={value}
               onChange={onChange}
               error={!!error}

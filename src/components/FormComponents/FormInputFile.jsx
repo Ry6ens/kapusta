@@ -4,8 +4,10 @@ import { styled } from '@mui/material/styles';
 
 const TextFieldStyled = styled(TextField)({
   width: '130px',
+
   '& div input': {
     color: 'transparent',
+    cursor: 'pointer',
   },
   '& div fieldset': {
     border: 'none',
