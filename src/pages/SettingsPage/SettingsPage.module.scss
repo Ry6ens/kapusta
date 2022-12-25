@@ -1,0 +1,23 @@
+.nav {
+    margin: 20px auto 0px auto;
+
+    max-width: 425px;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.item {
+    padding: 16px 0px;
+}
+
+.list li a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-weight: 700;
+}

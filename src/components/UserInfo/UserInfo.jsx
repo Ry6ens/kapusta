@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
@@ -41,7 +42,9 @@ export default function UserInfo() {
 
   return (
     <div className={s.userinfo}>
-      <span className={s.userName}>{name[0]}</span>
+      <Link to="/settings/account">
+        <span className={s.userName}>{name[0]}</span>
+      </Link>
       {isMobile && (
         <LogoutIcon
           iconClass="iconUserInfo"

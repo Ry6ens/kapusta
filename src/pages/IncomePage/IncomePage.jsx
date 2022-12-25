@@ -16,6 +16,7 @@ import LinkReport from 'components/ui/LinkReport/LinkReport';
 import ButtonsExpenInc from 'components/ui/ButtonsExpenInc/ButtonsExpenInc';
 
 import FormAddBalance from 'components/FormAddBalance/FormAddBalance';
+import FormAddExpInc from 'components/FormAddTransaction/FormAddTransaction';
 import CalendarHome from 'components/CalendarHome/CalendarHome';
 import TransactionList from 'components/TransactionList/TransactionList';
 import SlideWindow from 'components/SlideWindow/SlideWindow.jsx';
@@ -62,7 +63,10 @@ export default function IncomePage() {
             </div>
 
             <CalendarHome />
-            <SlideWindow text="Add income" />
+            <SlideWindow text="Add income">
+              <ButtonBack btnClass="btnExp" width="18" height="12" to="/expenses" />
+              <FormAddExpInc />
+            </SlideWindow>
             <TransactionList listClass="listIncome" items={transactions} />
           </Section>
           <ButtonsExpenInc />

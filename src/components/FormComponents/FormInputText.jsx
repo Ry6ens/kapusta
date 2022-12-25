@@ -151,6 +151,34 @@ const TextFieldStyledExpIncDesk = styled(TextField)({
   },
 });
 
+const TextFieldStyledAccount = styled(TextField)({
+  width: '100%',
+
+  '& div': {
+    border: 'none',
+    borderRadius: '30px',
+    background: 'var(--second-background-color)',
+  },
+  '& div input': {
+    padding: '17px',
+
+    fontSize: '14px',
+    lineHeight: '1.14',
+    letterSpacing: '0.04em',
+    textTransform: 'initial',
+
+    color: '#A6ABB9',
+    background: '#F6F7FB',
+
+    borderRadius: '30px',
+  },
+  '& p': {
+    margin: '4px 0px',
+
+    textTransform: 'initial',
+  },
+});
+
 export default function FormInputText({ name, control, label, required }) {
   const { pathname } = useLocation();
 
@@ -162,6 +190,7 @@ export default function FormInputText({ name, control, label, required }) {
   const styleFormLogReg = pathname === '/login' || pathname === '/signup' ? true : false;
   const styleFormAddExpInc =
     pathname === '/expenses' || pathname === '/income' ? true : false;
+  const styleFormAccount = pathname === '/settings/account' ? true : false;
 
   return (
     <Controller
@@ -219,6 +248,17 @@ export default function FormInputText({ name, control, label, required }) {
                 />
               )}
             </>
+          )}
+
+          {styleFormAccount && (
+            <TextFieldStyledAccount
+              variant="outlined"
+              placeholder={label}
+              value={value}
+              onChange={onChange}
+              error={!!error}
+              helperText={error ? error.message : null}
+            />
           )}
         </>
       )}

@@ -1,4 +1,3 @@
-import { useLocation } from 'react-router-dom';
 import { Controller } from 'react-hook-form';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import MenuItem from '@mui/material/MenuItem';
@@ -7,14 +6,11 @@ import Select from '@mui/material/Select';
 import { styled } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-import { optionsExp, optionsInc } from './optionsSelect';
-
-const CssFormControl = styled(FormControl)({
+const CssFormControlMob = styled(FormControl)({
   width: '100%',
 
   border: '2px solid var(--background-color)',
-  borderBottomRightRadius: '30px',
-
+  borderRadius: '30px',
   background: 'var(--second-background-color)',
 
   '& div div': {
@@ -34,7 +30,7 @@ const CssFormControl = styled(FormControl)({
   '&.Mui-focused': { borderColor: 'transparent' },
   '& div fieldset': {
     border: '1px solid transparent',
-    borderBottomRightRadius: '30px',
+    borderRadius: '30px',
   },
   '& .MuiFormLabel-root ': {
     fontSize: '14px',
@@ -107,13 +103,9 @@ const MenuItemStyled = styled(MenuItem)({
   },
 });
 
-export default function FormInputSelect({ name, control, label, required }) {
-  const { pathname } = useLocation();
-
+export default function FormInputSelect({ name, options, control, label, required }) {
   const isMobile = useMediaQuery('(max-width: 767.98px)');
   const isTablet = useMediaQuery('(min-width: 768px)');
-
-  const options = pathname === '/expenses' ? optionsExp : optionsInc;
 
   return (
     <Controller
@@ -125,7 +117,7 @@ export default function FormInputSelect({ name, control, label, required }) {
       render={({ field: { onChange, value }, fieldState: { error } }) => (
         <>
           {isMobile && (
-            <CssFormControl>
+            <CssFormControlMob>
               <Select
                 displayEmpty
                 labelId="select-standard-label"
@@ -145,7 +137,7 @@ export default function FormInputSelect({ name, control, label, required }) {
                   </MenuItemStyled>
                 ))}
               </Select>
-            </CssFormControl>
+            </CssFormControlMob>
           )}
           {isTablet && (
             <CssFormControlTab>
