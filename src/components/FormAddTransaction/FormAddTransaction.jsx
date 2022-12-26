@@ -5,7 +5,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 import {
   addTransaction,
-  getExpensesTransaction,
+  getExpensesTransByDate,
 } from 'redux/transaction/transaction-operations';
 import { getCurrentDate } from 'redux/transaction/transaction-selectors';
 
@@ -60,7 +60,7 @@ export default function FormAddTransaction() {
       };
 
       dispatch(addTransaction(addTransactionData));
-      dispatch(getExpensesTransaction());
+      dispatch(getExpensesTransByDate());
     }
 
     reset();

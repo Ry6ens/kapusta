@@ -5,21 +5,21 @@
     max-width: 425px;
     min-height: 220px;
 
-    margin: 75px auto 0px auto;
+    margin: 100px auto 0px auto;
 }
 
 .listIncome {
     max-width: 425px;
     min-height: 220px;
 
-    margin: 75px auto 0 auto;
+    margin: 45px auto 0 auto;
 }
 
 .listExpenses {
     max-width: 425px;
     min-height: 220px;
 
-    margin: 75px auto 0 auto;
+    margin: 45px auto 0 auto;
 }
 
 .item {
@@ -40,21 +40,41 @@
 .title {
     grid-area: title;
 
-    width: 200px;
+    width: 180px;
 
     font-weight: 700;
 }
 
-.price {
+.priceExp {
     grid-area: price;
 
     display: grid;
     justify-items: end;
     align-items: center;
 
-    width: 50px;
+    padding-right: 10px;
+
+    width: 90px;
 
     font-weight: 700;
+
+    color: var(--expenses-color);
+}
+
+.priceInc {
+    grid-area: price;
+
+    display: grid;
+    justify-items: end;
+    align-items: center;
+
+    padding-right: 10px;
+
+    width: 90px;
+
+    font-weight: 700;
+
+    color: var(--income-color);
 }
 
 .date {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment/moment';
 
@@ -6,7 +6,7 @@ import {
   deleteTransaction,
   getTransactionsByMonth,
 } from 'redux/transaction/transaction-operations';
-import { getCurrentDate } from 'redux/transaction/transaction-selectors';
+import { getTransactions } from 'redux/transaction/transaction-selectors';
 
 import Modal from 'components/layout/Modal/Modal';
 
@@ -18,14 +18,19 @@ import CloseIcon from 'components/icons/Close/Close';
 
 import s from './TransactionList.module.scss';
 
-export default function TransactionList({ listClass = 'list', items }) {
+export default function TransactionList({ listClass = 'list' }) {
   const dispatch = useDispatch();
-  const currentDate = useSelector(getCurrentDate);
-
-  useEffect(() => {}, [currentDate]);
 
   const [showModal, setShowModal] = useState(false);
   const [id, setId] = useState('');
+
+  const items = useSelector(getTransactions);
+
+  if (items === undefined) {
+    return;
+  }
+
+  const reversedItems = [...items].reverse();
 
   const handelDelete = ({ currentTarget: { id } }) => {
     document.body.classList.add('no-scroll');
@@ -46,7 +51,7 @@ export default function TransactionList({ listClass = 'list', items }) {
     setShowModal(false);
   };
 
-  const elements = items?.map(
+  const elements = reversedItems.map(
     ({
       _id,
       transitionDescription,
@@ -56,7 +61,18 @@ export default function TransactionList({ listClass = 'list', items }) {
     }) => (
       <li key={_id} className={s.item}>
         <p className={s.title}>{transitionDescription}</p>
-        <p className={s.price}>{transitionValue}</p>
+        <p
+          className={
+            transitionCategory === 'Salary' || transitionCategory === 'Add.Income'
+              ? s.priceInc
+              : s.priceExp
+          }
+        >
+          {transitionCategory === 'Salary' || transitionCategory === 'Add.Income'
+            ? ''
+            : '-'}
+          {transitionValue} UAH
+        </p>
         <DeleteIcon
           iconClass="iconProductList"
           width="20"

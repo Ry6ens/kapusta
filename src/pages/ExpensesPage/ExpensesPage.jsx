@@ -2,11 +2,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-import { getExpensesTransaction } from 'redux/transaction/transaction-operations';
-import {
-  transactionsExpenses,
-  getCurrentDate,
-} from 'redux/transaction/transaction-selectors';
+import { getCurrentDate } from 'redux/transaction/transaction-selectors';
+import { getExpensesTransByDate } from 'redux/transaction/transaction-operations';
 
 import Section from 'components/layout/Section/Section';
 
@@ -29,20 +26,20 @@ import KapustaManyIcon from 'components/icons/KapustaMany/KapustaMany';
 import s from './ExpensesPage.module.scss';
 
 export default function ExpensesPage() {
-  const dispatch = useDispatch();
-
   const isMobile = useMediaQuery('(max-width: 767.98px)');
   const isTabletMin = useMediaQuery('(min-width: 768px)');
   const isTabletMax = useMediaQuery('(max-width: 1279.98px)');
   const isDesktop = useMediaQuery('(min-width: 1280px)');
 
+  const dispatch = useDispatch();
   const currentDate = useSelector(getCurrentDate);
 
   useEffect(() => {
-    dispatch(getExpensesTransaction());
+    if (currentDate === '') {
+      return;
+    }
+    dispatch(getExpensesTransByDate({ reqDate: currentDate }));
   }, [dispatch, currentDate]);
-
-  const transactions = useSelector(transactionsExpenses);
 
   return (
     <>
@@ -65,7 +62,7 @@ export default function ExpensesPage() {
               <ButtonBack btnClass="btnExp" width="18" height="12" to="/expenses" />
               <FormAddExpInc />
             </SlideWindow>
-            <TransactionList listClass="listExpenses" items={transactions} />
+            <TransactionList listClass="listExpenses" />
           </Section>
           <ButtonsExpenInc />
         </>
@@ -80,7 +77,7 @@ export default function ExpensesPage() {
           <ButtonsExpenInc />
           <div className={s.overlayExpInc}>
             <FormAddTransaction />
-            <TransactionTable items={transactions} />
+            <TransactionTable />
           </div>
           <div className={s.overlaySum}>
             <SummaryTable />
@@ -99,7 +96,7 @@ export default function ExpensesPage() {
           <div className={s.overlayExpInc}>
             <FormAddTransaction />
             <div className={s.overlayTablSum}>
-              <TransactionTable items={transactions} />
+              <TransactionTable />
               <SummaryTable />
             </div>
           </div>

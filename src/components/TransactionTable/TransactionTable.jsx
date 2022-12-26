@@ -23,6 +23,14 @@ export default function TransactionTable({ sectionClass = 'tbody', items }) {
   const [showModal, setShowModal] = useState(false);
   const [id, setId] = useState('');
 
+  if (items === undefined) {
+    return;
+  }
+
+  const reversedItems = [...items].sort((a, b) =>
+    b.transitionDate.localeCompare(a.transitionDate)
+  );
+
   const handelDelete = ({ currentTarget: { id } }) => {
     document.body.classList.add('no-scroll');
 
@@ -42,7 +50,7 @@ export default function TransactionTable({ sectionClass = 'tbody', items }) {
     setShowModal(false);
   };
 
-  const elements = items?.map(
+  const elements = reversedItems.map(
     ({
       _id,
       transitionDescription,
