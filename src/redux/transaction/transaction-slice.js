@@ -13,6 +13,7 @@ const initialState = {
   monthlySum: [],
   transactions: [],
   currentDate: '',
+  message: '',
   loading: false,
   error: null,
 };
@@ -46,10 +47,12 @@ const transactions = createSlice({
     // Add transaction
     builder
       .addCase(addTransaction.pending, state => {
+        state.message = '';
         state.loading = true;
         state.error = null;
       })
-      .addCase(addTransaction.fulfilled, (state, _) => {
+      .addCase(addTransaction.fulfilled, (state, { payload }) => {
+        state.message = payload.transitionName;
         state.loading = false;
       })
       .addCase(addTransaction.rejected, (state, { payload }) => {
@@ -60,10 +63,12 @@ const transactions = createSlice({
     // Delete transaction
     builder
       .addCase(deleteTransaction.pending, state => {
+        state.message = '';
         state.loading = true;
         state.error = null;
       })
-      .addCase(deleteTransaction.fulfilled, (state, _) => {
+      .addCase(deleteTransaction.fulfilled, (state, { payload }) => {
+        state.message = payload.message;
         state.loading = false;
       })
       .addCase(deleteTransaction.rejected, (state, { payload }) => {

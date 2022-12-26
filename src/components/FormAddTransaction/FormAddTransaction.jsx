@@ -3,10 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-import {
-  addTransaction,
-  getExpensesTransByDate,
-} from 'redux/transaction/transaction-operations';
+import { addTransaction } from 'redux/transaction/transaction-operations';
 import { getCurrentDate } from 'redux/transaction/transaction-selectors';
 
 import FormInputText from 'components/FormComponents/FormInputText';
@@ -23,7 +20,7 @@ import s from './FormAddTransaction.module.scss';
 
 export default function FormAddTransaction() {
   const dispatch = useDispatch();
-  const location = useLocation();
+  const { pathname } = useLocation();
   const isTablet = useMediaQuery('(min-width: 768px)');
 
   const currentDate = useSelector(getCurrentDate);
@@ -38,7 +35,7 @@ export default function FormAddTransaction() {
   });
 
   const onSubmit = data => {
-    if (location.pathname === '/income') {
+    if (pathname === '/income') {
       const addTransactionData = {
         transitionName: 'income',
         transitionDate: currentDate,
@@ -50,7 +47,7 @@ export default function FormAddTransaction() {
       dispatch(addTransaction(addTransactionData));
     }
 
-    if (location.pathname === '/expenses') {
+    if (pathname === '/expenses') {
       const addTransactionData = {
         transitionName: 'expenses',
         transitionDate: currentDate,
@@ -60,7 +57,6 @@ export default function FormAddTransaction() {
       };
 
       dispatch(addTransaction(addTransactionData));
-      dispatch(getExpensesTransByDate());
     }
 
     reset();
