@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import {
+  userAddBalance,
   getTransactionsByMonth,
   addTransaction,
   deleteTransaction,
@@ -9,7 +10,7 @@ import {
 } from './transaction-operations';
 
 const initialState = {
-  balance: '',
+  balance: 0,
   monthlySum: [],
   transactions: [],
   currentDate: '',
@@ -27,6 +28,21 @@ const transactions = createSlice({
     },
   },
   extraReducers: builder => {
+    // User add balance
+    builder
+      .addCase(userAddBalance.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(userAddBalance.fulfilled, (state, { payload }) => {
+        state.balance = payload.newBalance;
+        state.loading = false;
+      })
+      .addCase(userAddBalance.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload.data.message;
+      });
+
     // Get transactions by month
     builder
       .addCase(getTransactionsByMonth.pending, state => {

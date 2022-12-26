@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 import { getNewUser } from 'redux/auth/auth-selectors';
-import { getCurrentDate } from 'redux/transaction/transaction-selectors';
+import { getCurrentDate, getBalance } from 'redux/transaction/transaction-selectors';
 import { getTransactionsByMonth } from 'redux/transaction/transaction-operations';
 
 import Section from 'components/layout/Section/Section';
@@ -33,6 +33,7 @@ export default function HomePage() {
   const dispatch = useDispatch();
   const newUser = useSelector(getNewUser);
   const currentDate = useSelector(getCurrentDate);
+  const balance = useSelector(getBalance);
 
   useEffect(() => {
     if (currentDate === '') {
@@ -50,7 +51,7 @@ export default function HomePage() {
             <div className={s.overleyTab}>
               <LinkReport />
               <FormAddBalance />
-              {newUser && <NotificationBalance />}
+              {newUser && balance === 0 && <NotificationBalance />}
             </div>
 
             <CalendarHome dateFormat="MMMM yyyy" showMonthYearPicker={true} />
@@ -65,6 +66,7 @@ export default function HomePage() {
           <div className={s.overleyTab}>
             <LinkReport />
             <FormAddBalance />
+            {newUser && balance === 0 && <NotificationBalance />}
           </div>
           <ButtonsExpenInc />
           <div className={s.overlayExpInc}>
@@ -83,6 +85,7 @@ export default function HomePage() {
           <div className={s.overleyTab}>
             <LinkReport />
             <FormAddBalance />
+            {newUser && balance === 0 && <NotificationBalance />}
           </div>
           <ButtonsExpenInc />
           <div className={s.overlayExpInc}>

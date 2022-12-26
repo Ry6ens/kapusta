@@ -77,7 +77,7 @@ export default function ExpensesPage() {
           <ButtonsExpenInc />
           <div className={s.overlayExpInc}>
             <FormAddTransaction />
-            <TransactionTable />
+            <TransactionTable sectionClass="tbodyExpenses" />
           </div>
           <div className={s.overlaySum}>
             <SummaryTable />
@@ -96,7 +96,7 @@ export default function ExpensesPage() {
           <div className={s.overlayExpInc}>
             <FormAddTransaction />
             <div className={s.overlayTablSum}>
-              <TransactionTable />
+              <TransactionTable sectionClass="tbodyExpenses" />
               <SummaryTable />
             </div>
           </div>

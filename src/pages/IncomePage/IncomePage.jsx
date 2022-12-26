@@ -79,7 +79,7 @@ export default function IncomePage() {
           <ButtonsExpenInc />
           <div className={s.overlayExpInc}>
             <FormAddTransaction />
-            <TransactionTable />
+            <TransactionTable sectionClass="tbodyIncome" />
           </div>
           <div className={s.overlaySum}>
             <SummaryTable />
@@ -98,7 +98,7 @@ export default function IncomePage() {
           <div className={s.overlayExpInc}>
             <FormAddTransaction />
             <div className={s.overlayTablSum}>
-              <TransactionTable />
+              <TransactionTable sectionClass="tbodyIncome" />
               <SummaryTable />
             </div>
           </div>
