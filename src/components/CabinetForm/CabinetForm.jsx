@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Avatar } from '@mui/material';
 
 import { getUser } from 'redux/auth/auth-selectors';
-import { userDelete } from 'redux/user/user-operations';
+import { userDelete, userDeleteAvatar } from 'redux/user/user-operations';
 import { logOut } from 'redux/auth/auth-operations';
 
 import TitleH1 from 'components/ui/TitleH1/TitleH1';
@@ -72,7 +72,9 @@ export default function CabinetForm() {
     dispatch(logOut());
   };
 
-  const handleDeleteAvatar = () => {};
+  const handleDeleteAvatar = () => {
+    dispatch(userDeleteAvatar());
+  };
 
   const handelClose = () => {
     setShowModal(false);

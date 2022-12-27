@@ -20,3 +20,9 @@ export const axiosUserDelete = async userData => {
   const { data } = await instance.delete(`api/users/${userData}`);
   return data;
 };
+
+// Delete avatar
+export const axiosUserDeleteAvatar = async userData => {
+  const { data } = await instance.patch('api/avatars/update', userData);
+  return data;
+};

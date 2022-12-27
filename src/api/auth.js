@@ -29,7 +29,6 @@ export const axiosLogIn = async userData => {
 export const axiosGoogleLogIn = async userData => {
   const { data } = await instance.post('api/users/google/signup', userData);
   token.set(data.accessToken);
-  console.log(data);
   return data;
 };
 

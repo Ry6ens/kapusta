@@ -38,6 +38,7 @@ export default function CalendarHome({ dateFormat = 'dd.MM.yyyy', showMonthYearP
       customInput={<ExampleCustomInput />}
       dateFormat={dateFormat}
       showMonthYearPicker={showMonthYearPicker}
+      maxDate={new Date()}
     />
   );
 }
