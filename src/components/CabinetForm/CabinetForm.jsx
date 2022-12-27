@@ -105,7 +105,7 @@ export default function CabinetForm() {
             />
           </div>
         </div>
-        <Text text="Sex (optional):" textClass="textFormEmail" />
+        <Text text="Gender (optional):" textClass="textFormEmail" />
         <FormInputSelect
           name="sex"
           options={optionsSex}
