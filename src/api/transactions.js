@@ -21,6 +21,7 @@ export const axiosDeleteTransaction = async userData => {
 // Get expenses transaction by date
 export const axiosGetExpensesTransByDate = async userData => {
   const { data } = await instance.post('api/transitions/expenses/date', userData);
+  console.log(data);
   return data;
 };
 
