@@ -1,4 +1,12 @@
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import useMediaQuery from '@mui/material/useMediaQuery';
+
+import { getChartData } from 'redux/transaction/transaction-operations';
+import {
+  getCalendarDate,
+  getCategoryData,
+} from 'redux/transaction/transaction-selectors';
 
 import s from './BarChart.module.scss';
 
@@ -15,9 +23,64 @@ import {
   LabelList,
 } from 'recharts';
 
-function Chart({ data }) {
+const da = [
+  {
+    name: 'Pork',
+    price: 4000,
+  },
+  {
+    name: 'Chiken',
+    price: 3000,
+  },
+  {
+    name: 'Coffee',
+    price: 2000,
+  },
+  {
+    name: 'Fish',
+    price: 2780,
+  },
+  {
+    name: 'Spaghetti',
+    price: 1890,
+  },
+  {
+    name: 'Panini',
+    price: 2390,
+  },
+  {
+    name: 'Beef',
+    price: 3490,
+  },
+];
+
+function Chart() {
   const isMobile = useMediaQuery('(max-width: 767px)');
+  const dispatch = useDispatch();
+  const calendarDate = useSelector(getCalendarDate);
+  const ChartData = useSelector(getCategoryData);
+
+  const [data, setData] = useState(da);
+
   const sorteredData = data.sort((a, b) => b.price - a.price);
+
+  useEffect(() => {
+    dispatch(
+      getChartData({
+        reqDate: calendarDate,
+        transitionCategory: 'Other',
+      })
+    );
+  }, []);
+
+  useEffect(() => {
+    const changeObjFormat = ChartData.map(el => {
+      for (const key in el) {
+        return { name: key, price: el[key] };
+      }
+    });
+    setData(changeObjFormat);
+  }, [ChartData]);
 
   const renderCustomizedLabelName = ({ x, y, value }) => {
     return (

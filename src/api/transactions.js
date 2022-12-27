@@ -29,3 +29,11 @@ export const axiosGetIncomeTransByDate = async userData => {
   const { data } = await instance.post('api/transitions/income/date', userData);
   return data;
 };
+
+export const axiosGetChartData = async userData => {
+  const { data } = await instance.post(
+    'api/transitions/report/category/expenses/dateil',
+    userData
+  );
+  return data;
+};

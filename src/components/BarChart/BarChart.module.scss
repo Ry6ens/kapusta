@@ -1,15 +1,14 @@
 .wrap {
   padding-top: 50px;
+  & text {
+    text-transform: initial;
+  }
 }
 
 .name {
   letter-spacing: 0.02em;
   fill: var(--text-color);
-  // text-transform: lowercase;
-  &::first-letter {
-    color: red;
-    text-transform: uppercase !important;
-  }
+  text-transform: initial;
 }
 
 .price {

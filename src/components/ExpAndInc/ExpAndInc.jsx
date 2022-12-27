@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { getReportIncomeCategory } from 'redux/transaction/transaction-operations';
+import { getCalendarDate } from 'redux/transaction/transaction-selectors';
+import { UserGetExpenses } from 'api/user';
+import { getChartData } from 'redux/transaction/transaction-operations';
 
 import ArrowsLeft from 'components/icons/Arrows/Left';
 import ArrowsRight from 'components/icons/Arrows/Right';
@@ -24,34 +25,47 @@ import Rectangle from 'components/icons/Rectangle/Rectangle';
 import s from './ExpAndInc.module.scss';
 
 export default function ExpAndInc() {
-  const isMobile = useMediaQuery('(max-width: 767px)');
+  const dispatch = useDispatch();
+  const calendarDate = useSelector(getCalendarDate);
 
+  // state
   const [isExpenses, setIsExpenses] = useState(true);
   const [isIncome, setIsIncome] = useState(false);
+  const [dataExpenses, setDataExpenses] = useState(null);
 
+  const filteredDataExpenses = dataExpenses?.filter(el => el.price !== 0);
+
+  useEffect(() => {
+    const getExp = async () => {
+      try {
+        const res = await UserGetExpenses({
+          reqDate: calendarDate,
+        });
+
+        console.log(res);
+
+        const changeObjFormat = res.map(el => {
+          for (const key in el) {
+            return { name: key, price: el[key] };
+          }
+        });
+
+        setDataExpenses(changeObjFormat);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    getExp();
+  }, [calendarDate]);
+
+  // functions
   const handlerSwitcher = () => {
     setIsExpenses(!isExpenses);
     setIsIncome(!isIncome);
   };
 
-  const arr2 = [
-    { price: 100, name: 'Products' },
-    { price: 1002, name: 'Alcohol' },
-    { price: 1002, name: 'Entertainment' },
-    { price: 1002, name: 'Health' },
-    { price: 1002, name: 'Transport' },
-    { price: 0, name: 'Housing' },
-    { price: 1002, name: 'Technique' },
-    { price: 1002, name: 'Communal' },
-    { price: 0, name: 'Sports' },
-    { price: 1002, name: 'Education' },
-    { price: 1002, name: 'Other' },
-  ];
-
-  const arr = arr2.filter(el => el.price !== 0);
-
   const FilterIcon = name => {
-    switch (name.toLocaleLowerCase()) {
+    switch (name?.toLocaleLowerCase()) {
       case 'products':
         return <Products />;
       case 'alcohol':
@@ -66,9 +80,9 @@ export default function ExpAndInc() {
         return <Housing />;
       case 'technique':
         return <Technique />;
-      case 'communal':
+      case 'communal, communication':
         return <Communal />;
-      case 'sports':
+      case 'sports, hobbies':
         return <Sports />;
       case 'education':
         return <Education />;
@@ -77,6 +91,16 @@ export default function ExpAndInc() {
       default:
         return 'havant';
     }
+  };
+
+  const chooseCategory = e => {
+    console.log(e);
+    // dispatch(
+    //   getChartData({
+    //     reqDate: calendarDate,
+    //     transitionCategory: 'Other',
+    //   })
+    // );
   };
 
   return (
@@ -92,24 +116,25 @@ export default function ExpAndInc() {
       </div>
       {isExpenses && (
         <ul className={s.list}>
-          {arr.map(({ price, name }, i) => (
-            <li className={s.item} key={name + i}>
-              <p>{price}</p>
-              <div className={s.iconWrap}>
-                {FilterIcon(name)}
-                <div className={s.Rectangle}>
-                  <Rectangle />
+          {filteredDataExpenses ? (
+            filteredDataExpenses?.map(({ price, name }, i) => (
+              <li className={s.item} key={name + i} onClick={chooseCategory}>
+                <p>{price}</p>
+                <div className={s.iconWrap}>
+                  {FilterIcon(name)}
+                  <div className={s.Rectangle}>
+                    <Rectangle />
+                  </div>
                 </div>
-              </div>
-              <p>{name}</p>
-            </li>
-            /* {isMobile && (i === 2 || i === 5 || i === 8 || i === 9) && (
-                <li className={s.line} key={i + name}></li>
-              )} */
-          ))}
+                <p>{name}</p>
+              </li>
+            ))
+          ) : (
+            <h1>Here will be your expenses</h1>
+          )}
         </ul>
       )}
-      {isIncome && <h1>inc</h1>}
+      {isIncome && <h1>Here will be your incomes</h1>}
     </div>
   );
 }
