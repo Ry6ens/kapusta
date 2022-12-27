@@ -1,8 +1,11 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { Avatar } from '@mui/material';
 
 import { getUser } from 'redux/auth/auth-selectors';
+import { userDelete } from 'redux/user/user-operations';
+import { logOut } from 'redux/auth/auth-operations';
 
 import TitleH1 from 'components/ui/TitleH1/TitleH1';
 import Text from 'components/ui/Text/Text';
@@ -25,12 +28,11 @@ import {
 } from './FormComponents/optionsSelect';
 
 import s from './CabinetForm.module.scss';
-import { useSelector } from 'react-redux';
 
 export default function CabinetForm() {
+  const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const user = useSelector(getUser);
-  console.log(user);
 
   const { control, handleSubmit, reset } = useForm({
     defaultValues: {
@@ -46,7 +48,7 @@ export default function CabinetForm() {
   });
 
   const onSubmit = data => {
-    console.log(data);
+    // console.log(data);
     reset();
   };
 
@@ -54,7 +56,10 @@ export default function CabinetForm() {
     setShowModal(true);
   };
 
-  const handleDeleteAccount = () => {};
+  const handleDeleteAccount = () => {
+    dispatch(userDelete(user._id));
+    dispatch(logOut());
+  };
 
   const handleDeleteAvatar = () => {};
 

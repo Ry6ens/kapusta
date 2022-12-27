@@ -14,7 +14,6 @@ const token = {
 };
 
 export const axiosSignUp = async userData => {
-  console.log(userData);
   const { data } = await instance.post('api/users/signup', userData);
   token.set(data.accessToken);
   return data;
@@ -23,14 +22,12 @@ export const axiosSignUp = async userData => {
 export const axiosLogIn = async userData => {
   const { data } = await instance.post('api/users/login', userData);
   token.set(data.accessToken);
-  console.log(data);
   return data;
 };
 
 export const axiosGoogleLogIn = async userData => {
   const { data } = await instance.post('api/users/google/signup', userData);
   token.set(data.accessToken);
-  console.log(data);
   return data;
 };
 
