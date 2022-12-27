@@ -4,3 +4,13 @@ export const axiosUserAddBalance = async userData => {
   const { data } = await instance.post('api/balances/update', userData);
   return data;
 };
+
+export const axiosGetDetailsIncome = async userData => {
+  const { data } = await instance.post('api/transitions/report/category/income/dateil', userData);
+  return data;
+}
+
+export const axiosGetDetailsExpenses = async userData => {
+  const { data } = await instance.post('api/transitions/report/category/expenses/dateil', userData);
+  return data;
+}

@@ -1,5 +1,8 @@
 import Section from 'components/layout/Section/Section';
 
+import { userGetDetailsExpenses, userGetDetailsIncome } from '../../redux/user/user-operations';
+import {getCurrentDate} from 'redux/transaction/transaction-selectors';
+
 import { Link } from 'react-router-dom';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
@@ -11,6 +14,8 @@ import ExpAndInc from 'components/ExpAndInc/ExpAndInc';
 import BarChart from 'components/BarChart/BarChart';
 
 import s from './Report.module.scss';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 const data = [
   {
@@ -43,9 +48,34 @@ const data = [
   },
 ];
 
+
 export default function ReportPage() {
+  const dispatch = useDispatch();
+
+
+  const currentDate = useSelector(getCurrentDate);
+
   const isMobile = useMediaQuery('(max-width: 767px)');
   const isTablet = useMediaQuery('(min-width: 768px)');
+
+  // Data for Expenses
+  const userDataExpenses = {
+    "reqDate": currentDate,
+    "transitionCategory": "Housing"
+  };
+
+
+  // Data for Income
+  const userDataIncome = {
+    "reqDate": currentDate,
+    "transitionCategory": "Salary"
+  };
+
+  useEffect(() => {
+    dispatch(userGetDetailsExpenses(userDataExpenses));
+    dispatch(userGetDetailsIncome(userDataIncome))
+  }, [dispatch]);
+  
   return (
     <Section sectionClass="sectionMarg">
       <div className={s.wrappTop}>
