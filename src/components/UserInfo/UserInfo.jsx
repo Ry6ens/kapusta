@@ -23,6 +23,7 @@ export default function UserInfo() {
   const [showModal, setShowModal] = useState(false);
 
   const { firstName, avatarURL } = useSelector(getUser);
+  console.log(firstName);
 
   const isMobile = useMediaQuery('(max-width:767.98px)');
   const isTablet = useMediaQuery('(min-width:768px)');

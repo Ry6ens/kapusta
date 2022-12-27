@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { signUp, logIn, googleLogIn, logOut } from './auth-operations';
+import { signUp, logIn, googleLogIn, logOut, userUpdateAccount } from './auth-operations';
 
 const initialState = {
   user: {},
@@ -91,6 +91,22 @@ const auth = createSlice({
       })
       .addCase(logOut.fulfilled, () => ({ ...initialState }))
       .addCase(logOut.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload.data.message;
+      });
+
+    // User update account
+    builder
+      .addCase(userUpdateAccount.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(userUpdateAccount.fulfilled, (state, { payload }) => {
+        console.log(payload);
+        accessAuth(state, payload);
+        state.loading = false;
+      })
+      .addCase(userUpdateAccount.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload.data.message;
       });

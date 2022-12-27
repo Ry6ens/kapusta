@@ -4,8 +4,8 @@ import { useForm } from 'react-hook-form';
 import { Avatar } from '@mui/material';
 
 import { getUser } from 'redux/auth/auth-selectors';
-import { userDelete, userDeleteAvatar } from 'redux/user/user-operations';
-import { logOut } from 'redux/auth/auth-operations';
+import { userDelete } from 'redux/user/user-operations';
+import { logOut, userUpdateAccount } from 'redux/auth/auth-operations';
 
 import TitleH1 from 'components/ui/TitleH1/TitleH1';
 import Text from 'components/ui/Text/Text';
@@ -17,7 +17,7 @@ import FormInputSelect from 'components/CabinetForm/FormComponents/FormInputSele
 import FormInputEmail from 'components/FormComponents/FormInputEmail';
 import Modal from 'components/layout/Modal/Modal';
 
-import DeleteIcon from 'components/icons/Delete/Delete';
+// import DeleteIcon from 'components/icons/Delete/Delete';
 import CloseIcon from 'components/icons/Close/Close';
 
 import {
@@ -59,7 +59,8 @@ export default function CabinetForm() {
   });
 
   const onSubmit = data => {
-    // console.log(data);
+    console.log(data);
+    dispatch(userUpdateAccount(data));
     reset();
   };
 
@@ -72,9 +73,9 @@ export default function CabinetForm() {
     dispatch(logOut());
   };
 
-  const handleDeleteAvatar = () => {
-    dispatch(userDeleteAvatar());
-  };
+  // const handleDeleteAvatar = () => {
+  //   dispatch(userDeleteAvatar());
+  // };
 
   const handelClose = () => {
     setShowModal(false);
@@ -84,7 +85,11 @@ export default function CabinetForm() {
     <div className={s.cabinetForm}>
       <TitleH1 text="Account settings" />
       <Text text="Profile photo" textClass="textAccount" />
-      <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className={s.form}
+        onSubmit={handleSubmit(onSubmit)}
+        encType="multipart/form-data"
+      >
         <div className={s.imgForm}>
           <Avatar alt={name} src={avatarURL} width="72px" height="72px" />
           <FormInputFile
@@ -93,12 +98,12 @@ export default function CabinetForm() {
             label="Upload Avatar"
             required={false}
           />
-          <DeleteIcon
+          {/* <DeleteIcon
             iconClass="iconAccount"
             width="20px"
             height="20px"
             onClick={handleDeleteAvatar}
-          />
+          /> */}
         </div>
         <div className={s.names}>
           <div className={s.name}>
@@ -158,7 +163,7 @@ export default function CabinetForm() {
           control={control}
           label={email}
           type="email"
-          required="This is a required field"
+          required={false}
         />
         <Button text="Update my settings" btnClass="btnAccount" type="submit" />
         <Button

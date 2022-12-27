@@ -6,6 +6,12 @@ export const axiosUserAddBalance = async userData => {
   return data;
 };
 
+// Update user account
+export const axiosUserUpdateAccount = async userData => {
+  const { data } = await instance.patch('api/users/update', userData);
+  return data;
+};
+
 // Delete user
 export const axiosUserDelete = async userData => {
   const { data } = await instance.delete(`api/users/${userData}`);

@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { axiosSignUp, axiosLogIn, axiosGoogleLogIn, axiosLogOut } from 'api/auth';
+import { axiosUserUpdateAccount } from 'api/user';
 
 export const signUp = createAsyncThunk(
   'auth/signup',
@@ -50,6 +51,19 @@ export const logOut = createAsyncThunk(
         auth: { accessToken },
       } = getState();
       const data = await axiosLogOut(accessToken);
+      return data;
+    } catch (error) {
+      const { data, status } = error.response;
+      return rejectWithValue({ data, status });
+    }
+  }
+);
+
+export const userUpdateAccount = createAsyncThunk(
+  'user/apdateAccount',
+  async (userData, { rejectWithValue }) => {
+    try {
+      const data = await axiosUserUpdateAccount(userData);
       return data;
     } catch (error) {
       const { data, status } = error.response;
