@@ -23,7 +23,7 @@ export default function FormInputFile({ name, control, label, required }) {
         required: required,
       }}
       render={({ field: { onChange, value }, fieldState: { error } }) => (
-        <input
+        <TextFieldStyled
           placeholder={label}
           type="file"
           accept="image/png, image/jpeg"

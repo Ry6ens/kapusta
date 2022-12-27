@@ -50,9 +50,7 @@ export default function ExpAndInc() {
         });
 
         setDataExpenses(changeObjFormat);
-      } catch (error) {
-        console.log(error.message);
-      }
+      } catch (error) {}
     };
     getExp();
   }, [calendarDate]);
@@ -97,7 +95,6 @@ export default function ExpAndInc() {
   };
 
   const chooseCategory = ({ currentTarget }) => {
-    console.log(activItem);
     setActivItem(currentTarget.dataset.name);
     dispatch(
       getChartData({

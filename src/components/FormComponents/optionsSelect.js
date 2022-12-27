@@ -1,5 +1,6 @@
 export const optionsExp = [
   'Transport',
+  'Products',
   'Health',
   'Alcohol',
   'Entertainment',
