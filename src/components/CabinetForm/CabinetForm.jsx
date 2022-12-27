@@ -30,6 +30,7 @@ import { useSelector } from 'react-redux';
 export default function CabinetForm() {
   const [showModal, setShowModal] = useState(false);
   const user = useSelector(getUser);
+  console.log(user);
 
   const { control, handleSubmit, reset } = useForm({
     defaultValues: {
@@ -49,9 +50,11 @@ export default function CabinetForm() {
     reset();
   };
 
-  const handleDeleteAccount = () => {
+  const handleOpenModal = () => {
     setShowModal(true);
   };
+
+  const handleDeleteAccount = () => {};
 
   const handleDeleteAvatar = () => {};
 
@@ -90,7 +93,7 @@ export default function CabinetForm() {
             <FormInputText
               name="firstName"
               control={control}
-              label="First Name"
+              label={user.firstName}
               required="This is a required field"
             />
           </div>
@@ -99,7 +102,7 @@ export default function CabinetForm() {
             <FormInputText
               name="lastName"
               control={control}
-              label="Last Name"
+              label={user.lastName}
               required="This is a required field"
             />
           </div>
@@ -109,7 +112,7 @@ export default function CabinetForm() {
           name="sex"
           options={optionsSex}
           control={control}
-          label="sex"
+          label={user.gender}
           required={false}
         />
         <Text text="Date of birth (optional):" textClass="textFormEmail" />
@@ -118,21 +121,21 @@ export default function CabinetForm() {
             name="date"
             options={optionsDate}
             control={control}
-            label="date"
+            label={user.dateBirth}
             required={false}
           />
           <FormInputSelect
             name="month"
             options={optionsMonth}
             control={control}
-            label="month"
+            label={user.monthBirth}
             required={false}
           />
           <FormInputSelect
             name="year"
             options={optionsYear}
             control={control}
-            label="year"
+            label={user.yearBirth}
             required={false}
           />
         </div>
@@ -140,7 +143,7 @@ export default function CabinetForm() {
         <FormInputEmail
           name="email"
           control={control}
-          label="your@email.com"
+          label={user.email}
           type="email"
           required="This is a required field"
         />
@@ -149,7 +152,7 @@ export default function CabinetForm() {
           text="Delete Account"
           btnClass="btnAccountDelete"
           type="button"
-          onClick={handleDeleteAccount}
+          onClick={handleOpenModal}
         />
       </form>
       {showModal && (
@@ -157,7 +160,7 @@ export default function CabinetForm() {
           <CloseIcon width="12" height="12" iconClass="iconModal" onClick={handelClose} />
           <Text text="Do you really want to delete account?" textClass="textModal" />
           <div className={s.overlayBtns}>
-            <Button text="Yes" onClick={handleDeleteAvatar} />
+            <Button text="Yes" onClick={handleDeleteAccount} />
             <Button text="No" onClick={handelClose} />
           </div>
         </Modal>

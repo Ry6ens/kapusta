@@ -21,7 +21,7 @@ export default function UserInfo() {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
 
-  const { name } = useSelector(getUser);
+  const { firstName } = useSelector(getUser);
 
   const isMobile = useMediaQuery('(max-width:767.98px)');
   const isTablet = useMediaQuery('(min-width:768px)');
@@ -43,7 +43,7 @@ export default function UserInfo() {
   return (
     <div className={s.userinfo}>
       <Link to="/settings/account">
-        <span className={s.userName}>{name[0]}</span>
+        <span className={s.userName}>{firstName[0]}</span>
       </Link>
       {isMobile && (
         <LogoutIcon
@@ -56,7 +56,7 @@ export default function UserInfo() {
       {isTablet && (
         <>
           <Link to="/settings/account">
-            <p>{name}</p>
+            <p>{firstName}</p>
           </Link>
           <VerticalLineIcon height="36" />
           <Button text="Exit" btnClass="btnExit" type="button" onClick={handelClick} />

@@ -15,12 +15,12 @@ const initialState = {
 };
 
 const accessAuth = (state, payload) => {
-  state.loading = false;
-  state.isLogin = true;
-  state.user = payload.user;
+  state.user = payload;
   state.sid = payload.sid;
   state.accessToken = payload.accessToken;
   state.refreshToken = payload.refreshToken;
+  state.loading = false;
+  state.isLogin = true;
 };
 
 const auth = createSlice({
