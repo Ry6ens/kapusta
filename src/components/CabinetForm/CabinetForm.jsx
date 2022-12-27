@@ -32,7 +32,18 @@ import s from './CabinetForm.module.scss';
 export default function CabinetForm() {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
-  const user = useSelector(getUser);
+  const {
+    _id,
+    avatarURL,
+    name,
+    firstName,
+    lastName,
+    gender,
+    dateBirth,
+    monthBirth,
+    yearBirth,
+    email,
+  } = useSelector(getUser);
 
   const { control, handleSubmit, reset } = useForm({
     defaultValues: {
@@ -57,7 +68,7 @@ export default function CabinetForm() {
   };
 
   const handleDeleteAccount = () => {
-    dispatch(userDelete(user._id));
+    dispatch(userDelete(_id));
     dispatch(logOut());
   };
 
@@ -73,12 +84,7 @@ export default function CabinetForm() {
       <Text text="Profile photo" textClass="textAccount" />
       <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
         <div className={s.imgForm}>
-          <Avatar
-            alt={user.name}
-            src="/static/images/avatar/1.jpg"
-            width="72px"
-            height="72px"
-          />
+          <Avatar alt={name} src={avatarURL} width="72px" height="72px" />
           <FormInputFile
             name="file"
             control={control}
@@ -98,7 +104,7 @@ export default function CabinetForm() {
             <FormInputText
               name="firstName"
               control={control}
-              label={user.firstName}
+              label={firstName}
               required="This is a required field"
             />
           </div>
@@ -107,7 +113,7 @@ export default function CabinetForm() {
             <FormInputText
               name="lastName"
               control={control}
-              label={user.lastName}
+              label={lastName}
               required="This is a required field"
             />
           </div>
@@ -117,7 +123,7 @@ export default function CabinetForm() {
           name="sex"
           options={optionsSex}
           control={control}
-          label={user.gender}
+          label={gender}
           required={false}
         />
         <Text text="Date of birth (optional):" textClass="textFormEmail" />
@@ -126,21 +132,21 @@ export default function CabinetForm() {
             name="date"
             options={optionsDate}
             control={control}
-            label={user.dateBirth}
+            label={dateBirth}
             required={false}
           />
           <FormInputSelect
             name="month"
             options={optionsMonth}
             control={control}
-            label={user.monthBirth}
+            label={monthBirth}
             required={false}
           />
           <FormInputSelect
             name="year"
             options={optionsYear}
             control={control}
-            label={user.yearBirth}
+            label={yearBirth}
             required={false}
           />
         </div>
@@ -148,7 +154,7 @@ export default function CabinetForm() {
         <FormInputEmail
           name="email"
           control={control}
-          label={user.email}
+          label={email}
           type="email"
           required="This is a required field"
         />
