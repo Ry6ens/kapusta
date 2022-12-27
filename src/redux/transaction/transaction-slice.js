@@ -98,14 +98,16 @@ const transactions = createSlice({
         state.error = payload.data.message;
       });
 
-    // Get expenses transaction
+    // Get expenses transaction by date
     builder
       .addCase(getExpensesTransByDate.pending, state => {
         state.loading = true;
         state.error = null;
       })
       .addCase(getExpensesTransByDate.fulfilled, (state, { payload }) => {
-        state.transactions = payload;
+        state.balance = payload.balance;
+        state.monthlySum = payload.monthlySum;
+        state.transactions = payload.transitionByDate;
         state.loading = false;
       })
       .addCase(getExpensesTransByDate.rejected, (state, { payload }) => {
@@ -113,14 +115,16 @@ const transactions = createSlice({
         state.error = payload.data.message;
       });
 
-    // Get income transaction
+    // Get income transaction by date
     builder
       .addCase(getIncomeTransByDate.pending, state => {
         state.loading = true;
         state.error = null;
       })
       .addCase(getIncomeTransByDate.fulfilled, (state, { payload }) => {
-        state.transactions = payload;
+        state.balance = payload.balance;
+        state.monthlySum = payload.monthlySum;
+        state.transactions = payload.transitionByDate;
         state.loading = false;
       })
       .addCase(getIncomeTransByDate.rejected, (state, { payload }) => {

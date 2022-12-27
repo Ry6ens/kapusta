@@ -20,7 +20,7 @@ export default function Budget() {
       }
     };
     getBallance({
-      reqDate: calendarDate,
+      reqDate: calendarDate || '12/01/2022',
     });
   }, [calendarDate]);
   return (

@@ -27,7 +27,7 @@ export default function FormLogin() {
 
   const { control, handleSubmit, setError, reset } = useForm({
     defaultValues: {
-      name: '',
+      firstName: '',
       email: '',
       password: '',
       confirmPassword: '',
@@ -38,7 +38,7 @@ export default function FormLogin() {
     return isActive ? `${s.link} ${s.active}` : s.link;
   };
 
-  const onSubmit = ({ name, email, password, confirmPassword }) => {
+  const onSubmit = ({ firstName, email, password, confirmPassword }) => {
     if (password !== confirmPassword) {
       setError('password', {
         type: 'manual',
@@ -50,7 +50,7 @@ export default function FormLogin() {
       });
       return;
     }
-    dispatch(signUp({ name, email, password }));
+    dispatch(signUp({ firstName, email, password }));
     reset();
   };
 
@@ -59,7 +59,7 @@ export default function FormLogin() {
       <Text text="Sing up using your work email:" textClass="textFormHead" />
       <Text text="Name:" textClass="textFormEmail" />
       <FormInputText
-        name="name"
+        name="firstName"
         control={control}
         label="name"
         required="This is a required field"

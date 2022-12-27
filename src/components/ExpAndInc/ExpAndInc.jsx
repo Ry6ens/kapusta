@@ -32,6 +32,7 @@ export default function ExpAndInc() {
   const [isExpenses, setIsExpenses] = useState(true);
   const [isIncome, setIsIncome] = useState(false);
   const [dataExpenses, setDataExpenses] = useState(null);
+  const [activItem, setActivItem] = useState(null);
 
   const filteredDataExpenses = dataExpenses?.filter(el => el.price !== 0);
 
@@ -39,10 +40,8 @@ export default function ExpAndInc() {
     const getExp = async () => {
       try {
         const res = await UserGetExpenses({
-          reqDate: calendarDate,
+          reqDate: calendarDate || '12/01/2022',
         });
-
-        console.log(res);
 
         const changeObjFormat = res.map(el => {
           for (const key in el) {
@@ -56,6 +55,10 @@ export default function ExpAndInc() {
       }
     };
     getExp();
+  }, [calendarDate]);
+
+  useEffect(() => {
+    setActivItem(null);
   }, [calendarDate]);
 
   // functions
@@ -93,14 +96,15 @@ export default function ExpAndInc() {
     }
   };
 
-  const chooseCategory = e => {
-    console.log(e);
-    // dispatch(
-    //   getChartData({
-    //     reqDate: calendarDate,
-    //     transitionCategory: 'Other',
-    //   })
-    // );
+  const chooseCategory = ({ currentTarget }) => {
+    console.log(activItem);
+    setActivItem(currentTarget.dataset.name);
+    dispatch(
+      getChartData({
+        reqDate: calendarDate,
+        transitionCategory: currentTarget.dataset.name,
+      })
+    );
   };
 
   return (
@@ -118,7 +122,12 @@ export default function ExpAndInc() {
         <ul className={s.list}>
           {filteredDataExpenses ? (
             filteredDataExpenses?.map(({ price, name }, i) => (
-              <li className={s.item} key={name + i} onClick={chooseCategory}>
+              <li
+                className={`${s.item} ${activItem === name && s.active}`}
+                key={name + i}
+                onClick={chooseCategory}
+                data-name={name}
+              >
                 <p>{price}</p>
                 <div className={s.iconWrap}>
                   {FilterIcon(name)}

@@ -82,26 +82,26 @@ const TextFieldStyledTab = styled(TextField)({
 
 const TextFieldStyledDesk = styled(TextField)({
   '& div': {
-    width: '70px',
+    width: '100px',
 
     border: '2px solid var(--btn-color)',
-    borderRight: 'none',
     borderLeft: 'none',
 
     background: 'var(--background-color)',
-    borderRadius: '0px',
+    borderRadius: '0px 16px 16px 0px',
   },
   '& div fieldset': {
     border: '1px solid transparent',
   },
   '& input': {
-    padding: '10px 0px 10px 10px',
+    padding: '10px 35px 10px 10px',
 
     fontWeight: '700',
     fontSize: '12px',
     lineHeight: '1.14',
     letterSpacing: '0.02em',
     textTransform: 'initial',
+    textAlign: 'right',
 
     color: 'var(--second-text-color)',
     background: 'transparent',

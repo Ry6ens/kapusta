@@ -67,11 +67,11 @@ function Chart() {
   useEffect(() => {
     dispatch(
       getChartData({
-        reqDate: calendarDate,
-        transitionCategory: 'Health',
+        reqDate: calendarDate || '12/01/2022',
+        transitionCategory: 'Other',
       })
     );
-  }, []);
+  }, [calendarDate]);
 
   useEffect(() => {
     const changeObjFormat = ChartData.map(el => {

@@ -49,6 +49,7 @@ export default function Calendar() {
       </button>
       <div className={s.wrap}>
         <DatePicker
+          disabled
           selected={startDate}
           onChange={date => setStartDate(date)}
           dateFormat="MMMM yyyy"

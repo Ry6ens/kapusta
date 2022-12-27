@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { Avatar } from '@mui/material';
 
 import { logOut } from 'redux/auth/auth-operations';
 import { getUser } from 'redux/auth/auth-selectors';
@@ -21,7 +22,7 @@ export default function UserInfo() {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
 
-  const { name } = useSelector(getUser);
+  const { firstName, avatarURL } = useSelector(getUser);
 
   const isMobile = useMediaQuery('(max-width:767.98px)');
   const isTablet = useMediaQuery('(min-width:768px)');
@@ -43,7 +44,7 @@ export default function UserInfo() {
   return (
     <div className={s.userinfo}>
       <Link to="/settings/account">
-        <span className={s.userName}>{name[0]}</span>
+        <Avatar alt={firstName} src={avatarURL} width="32px" height="32px" />
       </Link>
       {isMobile && (
         <LogoutIcon
@@ -56,7 +57,7 @@ export default function UserInfo() {
       {isTablet && (
         <>
           <Link to="/settings/account">
-            <p>{name}</p>
+            <p>{firstName}</p>
           </Link>
           <VerticalLineIcon height="36" />
           <Button text="Exit" btnClass="btnExit" type="button" onClick={handelClick} />

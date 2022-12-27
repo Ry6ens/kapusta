@@ -22,6 +22,7 @@ export const axiosSignUp = async userData => {
 export const axiosLogIn = async userData => {
   const { data } = await instance.post('api/users/login', userData);
   token.set(data.accessToken);
+
   return data;
 };
 

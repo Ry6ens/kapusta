@@ -1,8 +1,11 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { Avatar } from '@mui/material';
 
 import { getUser } from 'redux/auth/auth-selectors';
+import { userDelete, userDeleteAvatar } from 'redux/user/user-operations';
+import { logOut } from 'redux/auth/auth-operations';
 
 import TitleH1 from 'components/ui/TitleH1/TitleH1';
 import Text from 'components/ui/Text/Text';
@@ -25,11 +28,22 @@ import {
 } from './FormComponents/optionsSelect';
 
 import s from './CabinetForm.module.scss';
-import { useSelector } from 'react-redux';
 
 export default function CabinetForm() {
+  const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
-  const user = useSelector(getUser);
+  const {
+    _id,
+    avatarURL,
+    name,
+    firstName,
+    lastName,
+    gender,
+    dateBirth,
+    monthBirth,
+    yearBirth,
+    email,
+  } = useSelector(getUser);
 
   const { control, handleSubmit, reset } = useForm({
     defaultValues: {
@@ -45,15 +59,22 @@ export default function CabinetForm() {
   });
 
   const onSubmit = data => {
-    console.log(data);
+    // console.log(data);
     reset();
   };
 
-  const handleDeleteAccount = () => {
+  const handleOpenModal = () => {
     setShowModal(true);
   };
 
-  const handleDeleteAvatar = () => {};
+  const handleDeleteAccount = () => {
+    dispatch(userDelete(_id));
+    dispatch(logOut());
+  };
+
+  const handleDeleteAvatar = () => {
+    dispatch(userDeleteAvatar());
+  };
 
   const handelClose = () => {
     setShowModal(false);
@@ -65,12 +86,7 @@ export default function CabinetForm() {
       <Text text="Profile photo" textClass="textAccount" />
       <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
         <div className={s.imgForm}>
-          <Avatar
-            alt={user.name}
-            src="/static/images/avatar/1.jpg"
-            width="72px"
-            height="72px"
-          />
+          <Avatar alt={name} src={avatarURL} width="72px" height="72px" />
           <FormInputFile
             name="file"
             control={control}
@@ -90,7 +106,7 @@ export default function CabinetForm() {
             <FormInputText
               name="firstName"
               control={control}
-              label="First Name"
+              label={firstName}
               required="This is a required field"
             />
           </div>
@@ -99,7 +115,7 @@ export default function CabinetForm() {
             <FormInputText
               name="lastName"
               control={control}
-              label="Last Name"
+              label={lastName}
               required="This is a required field"
             />
           </div>
@@ -109,7 +125,7 @@ export default function CabinetForm() {
           name="sex"
           options={optionsSex}
           control={control}
-          label="sex"
+          label={gender}
           required={false}
         />
         <Text text="Date of birth (optional):" textClass="textFormEmail" />
@@ -118,21 +134,21 @@ export default function CabinetForm() {
             name="date"
             options={optionsDate}
             control={control}
-            label="date"
+            label={dateBirth}
             required={false}
           />
           <FormInputSelect
             name="month"
             options={optionsMonth}
             control={control}
-            label="month"
+            label={monthBirth}
             required={false}
           />
           <FormInputSelect
             name="year"
             options={optionsYear}
             control={control}
-            label="year"
+            label={yearBirth}
             required={false}
           />
         </div>
@@ -140,7 +156,7 @@ export default function CabinetForm() {
         <FormInputEmail
           name="email"
           control={control}
-          label="your@email.com"
+          label={email}
           type="email"
           required="This is a required field"
         />
@@ -149,7 +165,7 @@ export default function CabinetForm() {
           text="Delete Account"
           btnClass="btnAccountDelete"
           type="button"
-          onClick={handleDeleteAccount}
+          onClick={handleOpenModal}
         />
       </form>
       {showModal && (
@@ -157,7 +173,7 @@ export default function CabinetForm() {
           <CloseIcon width="12" height="12" iconClass="iconModal" onClick={handelClose} />
           <Text text="Do you really want to delete account?" textClass="textModal" />
           <div className={s.overlayBtns}>
-            <Button text="Yes" onClick={handleDeleteAvatar} />
+            <Button text="Yes" onClick={handleDeleteAccount} />
             <Button text="No" onClick={handelClose} />
           </div>
         </Modal>
