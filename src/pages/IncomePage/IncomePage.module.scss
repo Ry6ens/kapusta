@@ -1,0 +1,58 @@
+@use 'styles/mixins';
+
+.overleyTab {
+
+    @include mixins.mq(tablet) {
+        margin: 40px auto 0px auto;
+
+        width: 725px;
+
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    @include mixins.mq(desktop) {
+        width: 1098px;
+    }
+}
+
+.overlayExpInc {
+    margin: 0 auto;
+
+    width: 725px;
+    height: 620px;
+
+    background: var(--background-color);
+
+    box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+    border-radius: 0px 30px 30px 30px;
+
+    @include mixins.mq(tablet) {
+        padding: 25px 40px 40px 40px;
+    }
+
+    @include mixins.mq(desktop) {
+        width: 1098px;
+
+        padding: 30px 30px 60px 30px;
+    }
+}
+
+.overlaySum {
+    margin: 40px auto 60px auto;
+
+    width: 725px;
+
+    display: flex;
+    align-items: flex-end;
+    gap: 235px;
+}
+
+.overlayTablSum {
+    margin-top: 60px;
+
+    display: flex;
+    gap: 75px;
+}

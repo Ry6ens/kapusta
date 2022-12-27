@@ -1,0 +1,49 @@
+@use 'styles/mixins';
+
+.table {
+    width: 230px;
+
+    background-color: var(--second-background-color);
+
+    border-collapse: collapse;
+    border-radius: 30px 30px 0px 0px;
+
+    @include mixins.mq(desktop) {
+        width: 210px;
+
+        height: 280px;
+    }
+}
+
+.item {
+    height: 40px;
+
+    border-bottom: 2px solid var(--background-color);
+    background: var(--second-background-color);
+}
+
+.tbody,
+.thead .tr {
+    display: block;
+}
+
+.tbody {
+    height: 280px;
+
+    overflow: hidden;
+}
+
+.thead .th {
+    border-bottom: 2px solid var(--background-color);
+}
+
+.tbody .td,
+.thead .th {
+    height: 40px;
+    width: 230px;
+}
+
+.tbody .td {
+    padding-left: 20px;
+    text-align: left;
+}

@@ -1,0 +1,12 @@
+@use 'styles/mixins';
+
+.home {
+    position: absolute;
+    top: 86px;
+
+    z-index: 1;
+
+    @include mixins.mq(tablet) {
+        display: none;
+    }
+}

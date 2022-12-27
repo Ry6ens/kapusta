@@ -1,21 +1,19 @@
 @use './mixins';
-@import 'fonts';
-@import 'reset';
-@import 'container';
+
 @import 'common';
+@import 'container';
+@import 'react-datepicker';
+@import 'reset';
 
 :root {
-    --font-family: "Roboto", Sans-serif;
+    --font-family: 'Roboto', Sans-serif;
 
-    --background-color: #ffffff;
-    --second-background-color: #F5F6FB;
-
-    --accent-color: #FF751D;
-    --second-accent-color: #FED9BF;
-
-    --text-color: #52555F;
+    --text-color: #52555f;
+    --text-color-invert: #ffffff;
+    --text-color-input: #C7CCDC;
     --second-text-color: #000000;
-    --accent-text-color: #E7192E;
+    --third-text-color: rgba(82, 85, 95, 0.7);
+    --accent-text-color: #e7192e;
 
     --text-size: 12px;
     --line-height: 1.17;
@@ -23,10 +21,20 @@
 
     --text-transform: uppercase;
 
-    --border-color: #E0E5EB;
+    --border-color: #e0e5eb;
+    --second-border-color: #ffffff;
 
-    --btn-color: #F5F6FB;
-    --btn-hover: #FF751D;
+    --btn-color: #f5f6fb;
+    --btn-hover: #ff751d;
+    --second-btn-hover: #de6418;
+
+    --background-color: #ffffff;
+    --second-background-color: #f5f6fb;
+
+    --accent-color: #ff751d;
+    --second-accent-color: #fed9bf;
+    --expenses-color: #e53935;
+    --income-color: #407946;
 }
 
 body {
@@ -35,9 +43,17 @@ body {
     line-height: var(--line-height);
     letter-spacing: var(--letter-spacing);
 
+    color: var(--text-color);
     text-transform: var(--text-transform);
 
     &.no-scroll {
         overflow: hidden;
     }
+}
+
+#root {
+    max-width: 1440px;
+    min-height: 100vh;
+
+    margin: 0 auto;
 }

@@ -1,0 +1,101 @@
+@use 'styles/mixins';
+
+.list {
+    max-width: 425px;
+    min-height: 220px;
+
+    margin: 100px auto 0px auto;
+}
+
+.listIncome {
+    max-width: 425px;
+    min-height: 220px;
+
+    margin: 45px auto 0 auto;
+}
+
+.listExpenses {
+    max-width: 425px;
+    min-height: 220px;
+
+    margin: 45px auto 0 auto;
+}
+
+.item {
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+
+    display: grid;
+    grid-row-gap: 3px;
+    grid-template-areas:
+        "title title price icon"
+        "date category price icon";
+
+    text-align: left;
+
+    border-bottom: 1px solid var(--btn-color);
+}
+
+.title {
+    grid-area: title;
+
+    width: 180px;
+
+    font-weight: 700;
+}
+
+.priceExp {
+    grid-area: price;
+
+    display: grid;
+    justify-items: end;
+    align-items: center;
+
+    padding-right: 10px;
+
+    width: 90px;
+
+    font-weight: 700;
+
+    color: var(--expenses-color);
+}
+
+.priceInc {
+    grid-area: price;
+
+    display: grid;
+    justify-items: end;
+    align-items: center;
+
+    padding-right: 10px;
+
+    width: 90px;
+
+    font-weight: 700;
+
+    color: var(--income-color);
+}
+
+.date {
+    grid-area: date;
+
+    width: 50px;
+
+    font-size: 8px;
+    line-height: 1.13;
+}
+
+.category {
+    grid-area: category;
+
+    width: 120px;
+
+    font-size: 8px;
+    line-height: 1.13;
+    text-transform: initial;
+}
+
+.overlayBtns {
+    display: flex;
+    gap: 15px
+}

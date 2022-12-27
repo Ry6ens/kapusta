@@ -1,0 +1,22 @@
+.userinfo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.userName {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+    background-color: var(--second-background-color);
+
+    border-radius: 50%;
+}
+
+.overlayBtns {
+    display: flex;
+    gap: 15px
+}

@@ -1,13 +1,13 @@
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Navigate, Outlet } from 'react-router-dom';
-// import { getLogin } from 'redux/auth/auth-selectors';
+
+import { getLogin } from 'redux/auth/auth-selectors';
 
 export default function PrivateRoute() {
-  //   const isLogin = useSelector(getLogin);
-  const isLogin = true;
+  const isUserLogin = useSelector(getLogin);
 
-  if (!isLogin) {
-    return <Navigate to="/" />;
+  if (!isUserLogin) {
+    return <Navigate to="/login" />;
   }
 
   return <Outlet />;

@@ -1,0 +1,20 @@
+@use 'styles/mixins';
+
+.home {
+    display: none;
+
+    @include mixins.mq(tablet) {
+        display: block;
+
+        position: absolute;
+        top: 80px;
+        left: 170px;
+
+        z-index: 2;
+    }
+
+    @include mixins.mq(desktop) {
+        top: 308px;
+        left: 230px;
+    }
+}

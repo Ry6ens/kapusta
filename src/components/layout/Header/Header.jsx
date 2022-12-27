@@ -1,13 +1,38 @@
-import Section from '../Section/Section';
+import { useLocation, Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-import Logo from 'images/logo/logo.png';
+import { getLogin } from 'redux/auth/auth-selectors';
+
+import LogoKapusta from 'components/icons/LogoKapusta/LogoKapusta';
+
+import UserInfo from 'components/UserInfo/UserInfo';
+
+import s from './Header.module.scss';
 
 export default function Header() {
+  const { pathname } = useLocation();
+
+  const isUserLogin = useSelector(getLogin);
+
+  const style =
+    pathname === '/login' || pathname === '/singup' ? s.header : s.headerFixed;
+
   return (
-    <header>
-      <Section>
-        <img src={Logo} alt="logo" />
-      </Section>
-    </header>
+    <>
+      {!isUserLogin && (
+        <header className={style}>
+          <LogoKapusta width="90" height="31" />
+        </header>
+      )}
+
+      {isUserLogin && (
+        <header className={style}>
+          <Link to="/">
+            <LogoKapusta width="90" height="31" />
+          </Link>
+          <UserInfo />
+        </header>
+      )}
+    </>
   );
 }

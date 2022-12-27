@@ -1,0 +1,25 @@
+@use 'styles/mixins';
+
+
+.overlay {
+    width: 45px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid var(--background-color);
+    border-radius: 0px 22px 22px 0px;
+
+    @include mixins.mq(tablet) {
+        position: absolute;
+        right: 0px;
+
+        border: none;
+    }
+
+    @include mixins.mq(desktop) {
+        width: 35px;
+    }
+}

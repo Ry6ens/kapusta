@@ -1,0 +1,27 @@
+@use 'styles/mixins';
+
+.form {
+
+    @include mixins.mq(tablet) {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    @include mixins.mq(desktop) {
+        padding-left: 380px;
+    }
+}
+
+.overlay {
+    display: flex;
+    justify-content: center;
+
+    @include mixins.mq(tablet) {
+        gap: 15px;
+    }
+}
+
+.inpOverlay {
+    position: relative;
+}

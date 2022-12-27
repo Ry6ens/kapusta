@@ -1,0 +1,84 @@
+@use 'styles/mixins';
+
+.form {
+    margin: 200px auto 0px auto;
+    padding: 40px 20px;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 280px;
+
+    background: #FFFFFF;
+
+    box-shadow: 5px 10px 20px rgba(170, 178, 197, 0.4);
+    border-radius: 30px;
+
+    text-align: center;
+
+    @include mixins.mq(tablet) {
+        position: relative;
+
+        margin: 260px auto 0px auto;
+        padding: 56px 85px;
+
+        width: 425px;
+    }
+
+    @include mixins.mq(desktop) {
+        top: 115px;
+
+        margin-top: 0;
+        margin-right: 0;
+    }
+}
+
+.googleButton {
+    margin-top: 15px;
+
+    display: flex;
+    justify-content: center;
+
+    @include mixins.mq(tablet) {
+        margin-top: 35px;
+    }
+}
+
+.buttonsLay {
+    display: flex;
+    gap: 10px;
+
+    margin-top: 40px;
+}
+
+.link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 116px;
+    height: 44px;
+
+    font-weight: 700;
+
+    background-color: var(--btn-color);
+    color: var(--text-color);
+    border-color: transparent;
+    box-shadow: 1px 3px 5px rgba(82, 85, 95, 0.15);
+
+    border-radius: 16px;
+
+    &:hover,
+    :focus {
+        background-color: var(--btn-hover);
+        color: var(--text-color-invert);
+    }
+
+    @include mixins.mq(tablet) {
+        width: 122px;
+    }
+}
+
+.active {
+    color: var(--btn-hover);
+}

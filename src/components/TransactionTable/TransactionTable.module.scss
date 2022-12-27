@@ -1,0 +1,245 @@
+@use 'styles/mixins';
+
+.table {
+    margin: 50px auto 0px auto;
+
+    width: 640px;
+
+    background-color: var(--second-background-color);
+
+    border-collapse: collapse;
+    border-radius: 30px 30px 0px 0px;
+
+    @include mixins.mq(desktop) {
+        margin: 0;
+        width: 745px;
+    }
+}
+
+.item {
+    height: 40px;
+
+    text-transform: initial;
+
+    border-bottom: 2px solid var(--second-background-color);
+    background: var(--background-color);
+}
+
+.tbody,
+.thead .tr {
+    display: block;
+}
+
+.tbodyHome {
+    display: block;
+}
+
+.tbodyExpenses {
+    display: block;
+}
+
+.tbodyIncome {
+    display: block;
+}
+
+.tbody {
+    height: 343px;
+
+    border: 2px solid var(--second-background-color);
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.tbodyHome {
+    height: 440px;
+
+    border: 2px solid var(--second-background-color);
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    @include mixins.mq(desktop) {
+        height: 343px;
+    }
+}
+
+.tbodyExpenses {
+    height: 340px;
+
+    border: 2px solid var(--second-background-color);
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    @include mixins.mq(desktop) {
+        height: 343px;
+    }
+}
+
+.tbodyIncome {
+    height: 340px;
+
+    border: 2px solid var(--second-background-color);
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    @include mixins.mq(desktop) {
+        height: 343px;
+    }
+}
+
+.tbody td,
+.thead .th {
+    height: 40px;
+    width: 165px;
+
+    @include mixins.mq(desktop) {
+        width: 185px;
+    }
+}
+
+.tbodyHome td {
+    height: 40px;
+    width: 165px;
+
+    &:first-child {
+        width: 100px;
+
+        @include mixins.mq(desktop) {
+            width: 185px;
+        }
+    }
+
+    &:last-child {
+        width: 50px;
+    }
+
+    @include mixins.mq(desktop) {
+        width: 185px;
+    }
+}
+
+.tbodyExpenses td {
+    height: 40px;
+    width: 165px;
+
+    &:first-child {
+        width: 100px;
+
+        @include mixins.mq(desktop) {
+            width: 185px;
+        }
+    }
+
+    &:last-child {
+        width: 50px;
+    }
+
+    @include mixins.mq(desktop) {
+        width: 185px;
+    }
+}
+
+.tbodyIncome td {
+    height: 40px;
+    width: 165px;
+
+    &:first-child {
+        width: 100px;
+
+        @include mixins.mq(desktop) {
+            width: 185px;
+        }
+    }
+
+    &:last-child {
+        width: 50px;
+    }
+
+    @include mixins.mq(desktop) {
+        width: 185px;
+    }
+}
+
+.th:first-child {
+    width: 100px;
+
+    @include mixins.mq(desktop) {
+        width: 185px;
+    }
+}
+
+.th:last-child {
+    width: 50px;
+}
+
+.tbody::-webkit-scrollbar {
+    width: 5px;
+    height: 130px;
+}
+
+.tbodyHome::-webkit-scrollbar {
+    width: 5px;
+    height: 130px;
+}
+
+.tbodyExpenses::-webkit-scrollbar {
+    width: 5px;
+    height: 130px;
+}
+
+.tbodyIncome::-webkit-scrollbar {
+    width: 5px;
+    height: 130px;
+}
+
+.tbody::-webkit-scrollbar-thumb {
+    background-color: var(--accent-color);
+    border-radius: 5px;
+}
+
+.tbodyHome::-webkit-scrollbar-thumb {
+    background-color: var(--accent-color);
+    border-radius: 5px;
+}
+
+.tbodyExpenses::-webkit-scrollbar-thumb {
+    background-color: var(--accent-color);
+    border-radius: 5px;
+}
+
+.tbodyIncome::-webkit-scrollbar-thumb {
+    background-color: var(--accent-color);
+    border-radius: 5px;
+}
+
+.overlayBtns {
+    display: flex;
+    gap: 15px
+}
+
+.priceInc {
+    padding-right: 40px;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    color: var(--income-color);
+}
+
+.priceExp {
+    padding-right: 40px;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    color: var(--expenses-color)
+}
+
+.icon {
+    padding-right: 20px;
+}

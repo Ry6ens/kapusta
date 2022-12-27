@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import { register, login, logout, refresh, getUser } from './auth-opetations';
+
+import { signUp, logIn, googleLogIn, logOut, userUpdateAccount } from './auth-operations';
 
 const initialState = {
   user: {},
@@ -11,117 +12,105 @@ const initialState = {
   loading: false,
   isRefreshing: false,
   error: null,
-  newUser: {},
 };
 
-// const accessAuth = (store, payload) => {
-//   store.loading = false;
-//   store.isLogin = true;
-//   store.user = payload.user;
-//   store.sid = payload.sid;
-//   store.accessToken = payload.accessToken;
-//   store.refreshToken = payload.refreshToken;
-// };
+const accessAuth = (state, payload) => {
+  state.user = payload;
+  state.sid = payload.sid;
+  state.accessToken = payload.accessToken;
+  state.refreshToken = payload.refreshToken;
+  state.loading = false;
+  state.isLogin = true;
+};
 
 const auth = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    clearNewUser: store => {
-      store.newUser = {};
+    clearNewUser: state => {
+      state.newUser = {};
+    },
+    clearError: state => {
+      state.error = null;
     },
   },
+  extraReducers: builder => {
+    // SignUp by email
+    builder
+      .addCase(signUp.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(signUp.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.isLogin = false;
+        state.newUser = payload;
+        state.user = { ...state.user };
+        state.sid = '';
+        state.accessToken = '';
+        state.refreshToken = '';
+      })
+      .addCase(signUp.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload.data.message;
+      });
 
-  //   extraReducers: {
-  //     // * REGISTER
+    // LogIn
+    builder
+      .addCase(logIn.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(logIn.fulfilled, (state, { payload }) => {
+        accessAuth(state, payload);
+      })
+      .addCase(logIn.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload.data.message;
+      });
 
-  //     [register.pending]: store => {
-  //       store.loading = true;
-  //       store.error = null;
-  //     },
+    // Google LogIn
+    builder
+      .addCase(googleLogIn.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(googleLogIn.fulfilled, (state, { payload }) => {
+        accessAuth(state, payload);
+      })
+      .addCase(googleLogIn.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload.data.message;
+      });
 
-  //     [register.fulfilled]: (store, { payload }) => {
-  //       store.loading = false;
-  //       store.isLogin = false;
-  //       store.newUser = payload;
-  //       store.user = { ...store.user };
-  //       store.sid = '';
-  //       store.accessToken = '';
-  //       store.refreshToken = '';
-  //     },
+    // LogOut
+    builder
+      .addCase(logOut.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(logOut.fulfilled, () => ({ ...initialState }))
+      .addCase(logOut.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload.data.message;
+      });
 
-  //     [register.rejected]: (store, { payload }) => {
-  //       store.loading = false;
-  //       store.error = payload.data.message;
-  //     },
-
-  //     // * LOGIN
-
-  //     [login.pending]: store => {
-  //       store.loading = true;
-  //       store.error = null;
-  //     },
-
-  //     [login.fulfilled]: (store, { payload }) => accessAuth(store, payload),
-
-  //     [login.rejected]: (store, { payload }) => {
-  //       store.loading = false;
-  //       store.error = payload.data.message;
-  //     },
-
-  //     // * LOGOUT
-
-  //     [logout.pending]: store => {
-  //       store.loading = true;
-  //       store.error = null;
-  //     },
-  //     [logout.fulfilled]: () => ({ ...initialState }),
-  //     [logout.rejected]: (store, { payload }) => {
-  //       store.loading = false;
-  //       store.error = payload;
-  //     },
-
-  //     // * REFRESH
-
-  //     [refresh.pending]: store => {
-  //       store.loading = true;
-  //       store.error = null;
-  //       store.isRefreshing = true;
-  //     },
-
-  //     [refresh.fulfilled]: (store, { payload }) => {
-  //       store.isLogin = true;
-  //       store.loading = false;
-  //       store.sid = payload.sid;
-  //       store.accessToken = payload.newAccessToken;
-  //       store.refreshToken = payload.newRefreshToken;
-  //       store.isRefreshing = false;
-  //     },
-
-  //     [refresh.rejected]: (store, { payload }) => {
-  //       store.loading = false;
-  //       store.error = payload;
-  //     },
-
-  //     // * GET USER
-
-  //     [getUser.pending]: store => {
-  //       store.loading = true;
-  //       store.error = null;
-  //     },
-
-  //     [getUser.fulfilled]: (store, { payload }) => {
-  //       store.isLogin = true;
-  //       store.loading = false;
-  //       store.user = payload;
-  //     },
-
-  //     [getUser.rejected]: (store, { payload }) => {
-  //       store.loading = false;
-  //       store.error = payload;
-  //     },
-  //   },
+    // User update account
+    builder
+      .addCase(userUpdateAccount.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(userUpdateAccount.fulfilled, (state, { payload }) => {
+        accessAuth(state, payload);
+        state.loading = false;
+      })
+      .addCase(userUpdateAccount.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload.data.message;
+      });
+  },
 });
 
 export default auth.reducer;
-export const { clearNewUser } = auth.actions;
+export const { clearNewUser, clearError } = auth.actions;

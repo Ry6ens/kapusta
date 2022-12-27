@@ -1,0 +1,11 @@
+.iconUserInfo {
+    cursor: pointer;
+}
+
+.iconUserInfo:hover svg g {
+    fill: var(--btn-hover)
+}
+
+.iconUserInfo:focus svg g {
+    fill: var(--btn-hover)
+}
