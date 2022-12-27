@@ -68,7 +68,7 @@ function Chart() {
     dispatch(
       getChartData({
         reqDate: calendarDate,
-        transitionCategory: 'Other',
+        transitionCategory: 'Health',
       })
     );
   }, []);

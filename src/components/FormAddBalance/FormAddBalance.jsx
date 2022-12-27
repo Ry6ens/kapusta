@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 
-import { userAddBalance } from 'redux/user/user-operations';
+import { userAddBalance } from 'redux/transaction/transaction-operations';
 import { getBalance } from 'redux/transaction/transaction-selectors';
 
 import FormInputNumber from './FormInputNumber';

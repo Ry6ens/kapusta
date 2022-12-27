@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import {
+  userAddBalance,
   getTransactionsByMonth,
   addTransaction,
   deleteTransaction,
@@ -10,10 +11,11 @@ import {
 } from './transaction-operations';
 
 const initialState = {
-  balance: '',
+  balance: 0,
   monthlySum: [],
   transactions: [],
   currentDate: '',
+  message: '',
   loading: false,
   error: null,
   calendarDate: null,
@@ -32,6 +34,21 @@ const transactions = createSlice({
     },
   },
   extraReducers: builder => {
+    // User add balance
+    builder
+      .addCase(userAddBalance.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(userAddBalance.fulfilled, (state, { payload }) => {
+        state.balance = payload.newBalance;
+        state.loading = false;
+      })
+      .addCase(userAddBalance.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload.data.message;
+      });
+
     // Get transactions by month
     builder
       .addCase(getTransactionsByMonth.pending, state => {
@@ -52,10 +69,12 @@ const transactions = createSlice({
     // Add transaction
     builder
       .addCase(addTransaction.pending, state => {
+        state.message = '';
         state.loading = true;
         state.error = null;
       })
-      .addCase(addTransaction.fulfilled, (state, _) => {
+      .addCase(addTransaction.fulfilled, (state, { payload }) => {
+        state.message = payload.transitionName;
         state.loading = false;
       })
       .addCase(addTransaction.rejected, (state, { payload }) => {
@@ -66,10 +85,12 @@ const transactions = createSlice({
     // Delete transaction
     builder
       .addCase(deleteTransaction.pending, state => {
+        state.message = '';
         state.loading = true;
         state.error = null;
       })
-      .addCase(deleteTransaction.fulfilled, (state, _) => {
+      .addCase(deleteTransaction.fulfilled, (state, { payload }) => {
+        state.message = payload.message;
         state.loading = false;
       })
       .addCase(deleteTransaction.rejected, (state, { payload }) => {
