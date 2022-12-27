@@ -23,3 +23,16 @@ export const axiosUserDeleteAvatar = async userData => {
   const { data } = await instance.patch('api/avatars/update', userData);
   return data;
 };
+
+export const UserGetBalance = async userData => {
+  const { data } = await instance.post('api/transitions/report/category', userData);
+  return data;
+};
+
+export const UserGetExpenses = async userData => {
+  const { data } = await instance.post(
+    'api/transitions/report/category/expenses',
+    userData
+  );
+  return data;
+};

@@ -7,6 +7,7 @@ import {
   deleteTransaction,
   getExpensesTransByDate,
   getIncomeTransByDate,
+  getChartData,
 } from './transaction-operations';
 
 const initialState = {
@@ -17,6 +18,8 @@ const initialState = {
   message: '',
   loading: false,
   error: null,
+  calendarDate: null,
+  chartData: [],
 };
 
 const transactions = createSlice({
@@ -25,6 +28,9 @@ const transactions = createSlice({
   reducers: {
     addDate: (state, { payload }) => {
       state.currentDate = payload;
+    },
+    addCalendarDate: (state, { payload }) => {
+      state.calendarDate = payload;
     },
   },
   extraReducers: builder => {
@@ -125,9 +131,25 @@ const transactions = createSlice({
         state.loading = false;
         state.error = payload.data.message;
       });
+
+    // Get chart data
+    builder
+      .addCase(getChartData.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getChartData.fulfilled, (state, { payload }) => {
+        state.chartData = payload;
+        state.loading = false;
+      })
+      .addCase(getChartData.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload.data.message;
+      });
   },
 });
 
 export default transactions.reducer;
 
 export const { addDate } = transactions.actions;
+export const { addCalendarDate } = transactions.actions;
