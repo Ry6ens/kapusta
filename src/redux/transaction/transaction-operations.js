@@ -4,10 +4,23 @@ import {
   axiosGetTransactionsByMonth,
   axiosAddTransaction,
   axiosDeleteTransaction,
-  axiosGetExpensesTransaction,
-  axiosGetIncomeTransaction,
-  axiosGetReportIncomeCategory,
+  axiosGetExpensesTransByDate,
+  axiosGetIncomeTransByDate,
 } from 'api/transactions';
+import { axiosUserAddBalance } from 'api/user';
+
+export const userAddBalance = createAsyncThunk(
+  'user/addBalance',
+  async (userData, { rejectWithValue }) => {
+    try {
+      const data = await axiosUserAddBalance(userData);
+      return data;
+    } catch (error) {
+      const { data, status } = error.response;
+      return rejectWithValue({ data, status });
+    }
+  }
+);
 
 export const getTransactionsByMonth = createAsyncThunk(
   'transactions/byMonth',
@@ -51,11 +64,11 @@ export const deleteTransaction = createAsyncThunk(
   }
 );
 
-export const getExpensesTransaction = createAsyncThunk(
-  'transactions/getExpensesTransaction',
-  async (_, { rejectWithValue }) => {
+export const getExpensesTransByDate = createAsyncThunk(
+  'transactions/getExpTransByDate',
+  async (userData, { rejectWithValue }) => {
     try {
-      const data = await axiosGetExpensesTransaction();
+      const data = await axiosGetExpensesTransByDate(userData);
       return data;
     } catch (error) {
       const { data, status } = error.response;
@@ -65,11 +78,11 @@ export const getExpensesTransaction = createAsyncThunk(
   }
 );
 
-export const getIncomeTransaction = createAsyncThunk(
-  'transactions/getIncomeTransaction',
-  async (_, { rejectWithValue }) => {
+export const getIncomeTransByDate = createAsyncThunk(
+  'transactions/getIncTransByDate',
+  async (userData, { rejectWithValue }) => {
     try {
-      const data = await axiosGetIncomeTransaction();
+      const data = await axiosGetIncomeTransByDate(userData);
       return data;
     } catch (error) {
       const { data, status } = error.response;

@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { userAddBalance, userGetDetailsExpenses, userGetDetailsIncome } from './user-operations';
+import { userAddBalance, userGetDetailsExpenses, userGetDetailsIncome, userDelete } from './user-operations';
+
 
 const initialState = {
-  user: {},
-  newBalance: null,
+  message: '',
   loading: false,
   error: null,
 };
@@ -14,17 +14,17 @@ const user = createSlice({
   initialState,
   reducers: {},
   extraReducers: builder => {
-    // User add balance
+    // Delete user
     builder
-      .addCase(userAddBalance.pending, state => {
+      .addCase(userDelete.pending, state => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(userAddBalance.fulfilled, (state, { payload }) => {
-        state.newBalance = payload.newBalance;
+      .addCase(userDelete.fulfilled, (state, { payload }) => {
+        state.message = payload.message;
         state.loading = false;
       })
-      .addCase(userAddBalance.rejected, (state, { payload }) => {
+      .addCase(userDelete.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload.data.message;
       })

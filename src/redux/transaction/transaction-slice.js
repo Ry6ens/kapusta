@@ -1,16 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import {
+  userAddBalance,
   getTransactionsByMonth,
   addTransaction,
   deleteTransaction,
-  getExpensesTransaction,
-  getIncomeTransaction,
+  getExpensesTransByDate,
+  getIncomeTransByDate,
 } from './transaction-operations';
 
 const initialState = {
-  user: {},
+  balance: 0,
+  monthlySum: [],
+  transactions: [],
   currentDate: '',
+  message: '',
   loading: false,
   error: null,
 };
@@ -24,6 +28,21 @@ const transactions = createSlice({
     },
   },
   extraReducers: builder => {
+    // User add balance
+    builder
+      .addCase(userAddBalance.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(userAddBalance.fulfilled, (state, { payload }) => {
+        state.balance = payload.newBalance;
+        state.loading = false;
+      })
+      .addCase(userAddBalance.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload.data.message;
+      });
+
     // Get transactions by month
     builder
       .addCase(getTransactionsByMonth.pending, state => {
@@ -31,7 +50,9 @@ const transactions = createSlice({
         state.error = null;
       })
       .addCase(getTransactionsByMonth.fulfilled, (state, { payload }) => {
-        state.user = payload;
+        state.balance = payload.balance;
+        state.monthlySum = payload.monthlySum;
+        state.transactions = payload.transitions;
         state.loading = false;
       })
       .addCase(getTransactionsByMonth.rejected, (state, { payload }) => {
@@ -42,10 +63,12 @@ const transactions = createSlice({
     // Add transaction
     builder
       .addCase(addTransaction.pending, state => {
+        state.message = '';
         state.loading = true;
         state.error = null;
       })
-      .addCase(addTransaction.fulfilled, (state, _) => {
+      .addCase(addTransaction.fulfilled, (state, { payload }) => {
+        state.message = payload.transitionName;
         state.loading = false;
       })
       .addCase(addTransaction.rejected, (state, { payload }) => {
@@ -56,10 +79,12 @@ const transactions = createSlice({
     // Delete transaction
     builder
       .addCase(deleteTransaction.pending, state => {
+        state.message = '';
         state.loading = true;
         state.error = null;
       })
-      .addCase(deleteTransaction.fulfilled, (state, _) => {
+      .addCase(deleteTransaction.fulfilled, (state, { payload }) => {
+        state.message = payload.message;
         state.loading = false;
       })
       .addCase(deleteTransaction.rejected, (state, { payload }) => {
@@ -69,30 +94,30 @@ const transactions = createSlice({
 
     // Get expenses transaction
     builder
-      .addCase(getExpensesTransaction.pending, state => {
+      .addCase(getExpensesTransByDate.pending, state => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(getExpensesTransaction.fulfilled, (state, { payload }) => {
-        state.user = payload;
+      .addCase(getExpensesTransByDate.fulfilled, (state, { payload }) => {
+        state.transactions = payload;
         state.loading = false;
       })
-      .addCase(getExpensesTransaction.rejected, (state, { payload }) => {
+      .addCase(getExpensesTransByDate.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload.data.message;
       });
 
     // Get income transaction
     builder
-      .addCase(getIncomeTransaction.pending, state => {
+      .addCase(getIncomeTransByDate.pending, state => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(getIncomeTransaction.fulfilled, (state, { payload }) => {
-        state.user = payload;
+      .addCase(getIncomeTransByDate.fulfilled, (state, { payload }) => {
+        state.transactions = payload;
         state.loading = false;
       })
-      .addCase(getIncomeTransaction.rejected, (state, { payload }) => {
+      .addCase(getIncomeTransByDate.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload.data.message;
       });

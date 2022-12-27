@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import { useState } from 'react';
+// import { useDispatch } from 'react-redux';
+// import useMediaQuery from '@mui/material/useMediaQuery';
 
-import { getReportIncomeCategory } from 'redux/transaction/transaction-operations';
+// import { getReportIncomeCategory } from 'redux/transaction/transaction-operations';
 
 import ArrowsLeft from 'components/icons/Arrows/Left';
 import ArrowsRight from 'components/icons/Arrows/Right';
@@ -24,7 +24,7 @@ import Rectangle from 'components/icons/Rectangle/Rectangle';
 import s from './ExpAndInc.module.scss';
 
 export default function ExpAndInc() {
-  const isMobile = useMediaQuery('(max-width: 767px)');
+  // const isMobile = useMediaQuery('(max-width: 767px)');
 
   const [isExpenses, setIsExpenses] = useState(true);
   const [isIncome, setIsIncome] = useState(false);

@@ -18,14 +18,14 @@ export const axiosDeleteTransaction = async userData => {
   return data;
 };
 
-// Get expenses transaction
-export const axiosGetExpensesTransaction = async () => {
-  const { data } = await instance.get('api/transitions/expenses/monthly');
+// Get expenses transaction by date
+export const axiosGetExpensesTransByDate = async userData => {
+  const { data } = await instance.post('api/transitions/expenses/date', userData);
   return data;
 };
 
-// Get income transaction
-export const axiosGetIncomeTransaction = async () => {
-  const { data } = await instance.get('api/transitions/income/monthly');
+// Get income transaction by date
+export const axiosGetIncomeTransByDate = async userData => {
+  const { data } = await instance.post('api/transitions/income/date', userData);
   return data;
 };

@@ -1,17 +1,14 @@
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import moment from 'moment/moment';
+import { useDispatch, useSelector } from 'react-redux';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 import { getNewUser } from 'redux/auth/auth-selectors';
-import {
-  transactionsByMonth,
-  // summaryBalaceByMonth,
-} from 'redux/transaction/transaction-selectors';
+import { getCurrentDate, getBalance } from 'redux/transaction/transaction-selectors';
 import { getTransactionsByMonth } from 'redux/transaction/transaction-operations';
 
 import Section from 'components/layout/Section/Section';
 
+import ButtonBack from 'components/ui/ButtonBack/ButtonBack';
 import ButtonsExpenInc from 'components/ui/ButtonsExpenInc/ButtonsExpenInc';
 import LinkReport from 'components/ui/LinkReport/LinkReport';
 
@@ -28,36 +25,37 @@ import KapustaManyIcon from 'components/icons/KapustaMany/KapustaMany';
 import s from './HomePage.module.scss';
 
 export default function HomePage() {
-  const dispatch = useDispatch();
-
   const isMobile = useMediaQuery('(max-width: 767.98px)');
   const isTabletMin = useMediaQuery('(min-width: 768px)');
   const isTabletMax = useMediaQuery('(max-width: 1279.98px)');
   const isDesktop = useMediaQuery('(min-width: 1280px)');
 
-  useEffect(() => {
-    dispatch(
-      getTransactionsByMonth({ reqDate: moment(new Date()).format('MM/DD/yyyy') })
-    );
-  }, [dispatch]);
-
+  const dispatch = useDispatch();
   const newUser = useSelector(getNewUser);
-  const transactions = useSelector(transactionsByMonth);
-  // const summary = useSelector(summaryBalaceByMonth);
+  const currentDate = useSelector(getCurrentDate);
+  const balance = useSelector(getBalance);
+
+  useEffect(() => {
+    if (currentDate === '') {
+      return;
+    }
+    dispatch(getTransactionsByMonth({ reqDate: currentDate }));
+  }, [dispatch, currentDate]);
 
   return (
     <>
       {isMobile && (
         <>
           <Section sectionClass="sectionMarg">
+            <ButtonBack btnClass="btnExp" width="0px" height="12px" />
             <div className={s.overleyTab}>
               <LinkReport />
               <FormAddBalance />
-              {newUser && <NotificationBalance />}
+              {newUser && balance === 0 && <NotificationBalance />}
             </div>
 
             <CalendarHome dateFormat="MMMM yyyy" showMonthYearPicker={true} />
-            <TransactionList items={transactions} />
+            <TransactionList />
           </Section>
           <ButtonsExpenInc />
         </>
@@ -68,11 +66,12 @@ export default function HomePage() {
           <div className={s.overleyTab}>
             <LinkReport />
             <FormAddBalance />
+            {newUser && balance === 0 && <NotificationBalance />}
           </div>
           <ButtonsExpenInc />
           <div className={s.overlayExpInc}>
             <CalendarHome dateFormat="MMMM yyyy" showMonthYearPicker={true} />
-            <TransactionTable sectionClass="tbodyHome" items={transactions} />
+            <TransactionTable sectionClass="tbodyHome" />
           </div>
           <div className={s.overlaySum}>
             <SummaryTable />
@@ -86,12 +85,13 @@ export default function HomePage() {
           <div className={s.overleyTab}>
             <LinkReport />
             <FormAddBalance />
+            {newUser && balance === 0 && <NotificationBalance />}
           </div>
           <ButtonsExpenInc />
           <div className={s.overlayExpInc}>
             <CalendarHome dateFormat="MMMM yyyy" showMonthYearPicker={true} />
             <div className={s.overlayTablSum}>
-              <TransactionTable sectionClass="tbodyHome" items={transactions} />
+              <TransactionTable sectionClass="tbodyHome" />
               <SummaryTable />
             </div>
           </div>

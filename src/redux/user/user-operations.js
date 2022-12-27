@@ -1,12 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { axiosUserAddBalance, axiosGetDetailsIncome, axiosGetDetailsExpenses, axiosUserDelete } from 'api/user';
 
-import { axiosUserAddBalance, axiosGetDetailsIncome, axiosGetDetailsExpenses } from 'api/user';
 
-export const userAddBalance = createAsyncThunk(
-  'user/addBalance',
+export const userDelete = createAsyncThunk(
+  'user/delete',
   async (userData, { rejectWithValue }) => {
     try {
-      const data = await axiosUserAddBalance(userData);
+      const data = await axiosUserDelete(userData);
       return data;
     } catch (error) {
       const { data, status } = error.response;

@@ -1,8 +1,7 @@
+export const getBalance = ({ transactions }) => transactions.balance;
+export const getMonthlySum = ({ transactions }) => transactions.monthlySum;
+export const getTransactions = ({ transactions }) => transactions.transactions;
 export const getCurrentDate = ({ transactions }) => transactions.currentDate;
-export const getBalance = ({ transactions }) => transactions.user?.balance;
 
-export const transactionsByMonth = ({ transactions }) => transactions.user?.transitions;
-export const transactionsExpenses = ({ transactions }) => transactions.user?.transitions;
-export const transactionsIncome = ({ transactions }) => transactions.user?.transitions;
-
-export const summaryBalaceByMonth = ({ transactions }) => transactions.user?.monthlySum;
+export const isMessage = ({ transactions }) => transactions.message;
+export const isLoading = ({ transactions }) => transactions.loading;
