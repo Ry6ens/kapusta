@@ -102,7 +102,6 @@ const auth = createSlice({
         state.error = null;
       })
       .addCase(userUpdateAccount.fulfilled, (state, { payload }) => {
-        console.log(payload);
         accessAuth(state, payload);
         state.loading = false;
       })

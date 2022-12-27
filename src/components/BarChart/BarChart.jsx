@@ -71,9 +71,11 @@ function Chart() {
         transitionCategory: 'Other',
       })
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [calendarDate]);
 
   useEffect(() => {
+    // eslint-disable-next-line array-callback-return
     const changeObjFormat = ChartData.map(el => {
       for (const key in el) {
         return { name: key, price: el[key] };

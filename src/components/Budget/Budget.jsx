@@ -16,7 +16,7 @@ export default function Budget() {
         const res = await UserGetBalance(par);
         setBudget({ ...res[0], ...res[1] });
       } catch (error) {
-        console.log(error.message);
+        // console.log(error.message);
       }
     };
     getBallance({
