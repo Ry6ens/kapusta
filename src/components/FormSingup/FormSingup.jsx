@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 import { signUp } from 'redux/auth/auth-operations';
-import { getErrorSignUp } from 'redux/auth/auth-selectors';
+import { getErrorSignUp, getRegNewUser } from 'redux/auth/auth-selectors';
 import { clearError } from 'redux/auth/auth-slice';
 
 import Button from 'components/ui/Button/Button';
@@ -20,6 +20,7 @@ export default function FormLogin() {
   const dispatch = useDispatch();
 
   const errorSignUp = useSelector(getErrorSignUp);
+  const newUser = useSelector(getRegNewUser);
 
   useEffect(() => {
     dispatch(clearError());
@@ -89,6 +90,9 @@ export default function FormLogin() {
         required="This is a required field"
       />
       {errorSignUp && <Text textClass="textError" text={errorSignUp} />}
+      {newUser && (
+        <Text textClass="textError" text="Thank you for registration. Please Login!" />
+      )}
       <div className={s.buttonsLay}>
         <NavLink className={getClassName} to="/login">
           Log in
