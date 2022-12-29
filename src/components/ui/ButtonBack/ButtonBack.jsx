@@ -5,7 +5,7 @@ import Text from 'components/ui/Text/Text';
 
 import s from './ButtonBack.module.scss';
 
-export default function ButtonBack({ btnClass, width, height, text, to }) {
+export default function ButtonBack({ btnClass = 'btn', width, height, text, to }) {
   return (
     <Link className={s[btnClass]} to={to}>
       <ArrowLeftIcon width={width} height={height} />

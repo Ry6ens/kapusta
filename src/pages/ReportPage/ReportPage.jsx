@@ -1,10 +1,10 @@
-import Section from 'components/layout/Section/Section';
-
-import { Link } from 'react-router-dom';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
+import Section from 'components/layout/Section/Section';
+
+import ButtonBack from 'components/ui/ButtonBack/ButtonBack';
+
 import Balance from 'components/Balance/Balance';
-import ArrowLeft from 'components/icons/ArrowLeft/ArrowLeft';
 import Calendar from 'components/Calendar/Calendar';
 import Budget from 'components/Budget/Budget';
 import ExpAndInc from 'components/ExpAndInc/ExpAndInc';
@@ -17,13 +17,9 @@ export default function ReportPage() {
   const isTablet = useMediaQuery('(min-width: 768px)');
   return (
     <Section sectionClass="sectionMarg">
+      <ButtonBack text="Main page" width="18" height="12" to="/" />
+
       <div className={s.wrappTop}>
-        <Link to="/">
-          <div className={s.arrowWrap}>
-            <ArrowLeft />
-            {isTablet && <p>Main page</p>}
-          </div>
-        </Link>
         {isTablet && <Balance />}
         <Calendar />
         {isMobile && <Balance />}

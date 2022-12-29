@@ -47,13 +47,7 @@ export default function IncomePage() {
       {isMobile && (
         <>
           <Section sectionClass="sectionMarg">
-            <ButtonBack
-              btnClass="btnExp"
-              text="Main page"
-              width="18"
-              height="12"
-              to="/"
-            />
+            <ButtonBack text="Main page" width="18" height="12" to="/" />
             <div className={s.overleyTab}>
               <LinkReport />
               <FormAddBalance />
@@ -61,7 +55,7 @@ export default function IncomePage() {
 
             <CalendarHome />
             <SlideWindow text="Add income">
-              <ButtonBack btnClass="btnExp" width="18" height="12" to="/income" />
+              <ButtonBack width="18" height="12" to="/income" />
               <FormAddExpInc />
             </SlideWindow>
             <TransactionList listClass="listIncome" />

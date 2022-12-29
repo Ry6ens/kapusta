@@ -46,20 +46,14 @@ export default function ExpensesPage() {
       {isMobile && (
         <>
           <Section sectionClass="sectionMarg">
-            <ButtonBack
-              btnClass="btnExp"
-              text="Main page"
-              width="18"
-              height="12"
-              to="/"
-            />
+            <ButtonBack text="Main page" width="18" height="12" to="/" />
             <div className={s.overleyTab}>
               <LinkReport />
               <FormAddBalance />
             </div>
             <CalendarHome />
             <SlideWindow text="Add expenses">
-              <ButtonBack btnClass="btnExp" width="18" height="12" to="/expenses" />
+              <ButtonBack width="18" height="12" to="/expenses" />
               <FormAddExpInc />
             </SlideWindow>
             <TransactionList listClass="listExpenses" />
