@@ -20,6 +20,7 @@ export default function Calendar() {
 
   useEffect(() => {
     dispatch(addCalendarDate(moment(new Date(year, mounth, day)).format('MM/DD/yyyy')));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [startDate]);
 
   const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (

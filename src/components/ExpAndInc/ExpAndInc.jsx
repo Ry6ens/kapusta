@@ -43,6 +43,7 @@ export default function ExpAndInc() {
           reqDate: calendarDate || '12/01/2022',
         });
 
+        // eslint-disable-next-line array-callback-return
         const changeObjFormat = res.map(el => {
           for (const key in el) {
             return { name: key, price: el[key] };
