@@ -15,7 +15,7 @@ export default function Header() {
   const isUserLogin = useSelector(getLogin);
 
   const style =
-    pathname === '/login' || pathname === '/singup' ? s.header : s.headerFixed;
+    pathname === '/login' || pathname === '/signup' ? s.header : s.headerFixed;
 
   return (
     <>
