@@ -46,7 +46,7 @@ export default function CabinetForm() {
 
   const { control, register, handleSubmit } = useForm({
     defaultValues: {
-      avatar: '',
+      avatar: null,
       firstName: '',
       lastName: '',
       sex: '',
@@ -57,7 +57,9 @@ export default function CabinetForm() {
     },
   });
 
-  const onSubmit = data => {
+  const onSubmit = ({ avatar, firstName, lastName, sex, date, month, year, email }) => {
+    const avatarIMG = avatar[0];
+    const data = { avatarIMG, firstName, lastName, sex, date, month, year, email };
     dispatch(userUpdateAccount(data));
     // reset();
   };

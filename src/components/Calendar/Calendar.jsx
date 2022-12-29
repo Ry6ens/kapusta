@@ -1,63 +1,96 @@
-import DatePicker from 'react-datepicker';
-import { useState, useEffect, forwardRef } from 'react';
+import { useState, forwardRef, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import DatePicker from 'react-datepicker';
 
 import moment from 'moment';
-import { addCalendarDate } from 'redux/transaction/transaction-slice';
-import ArrowsLeft from 'components/icons/Arrows/Left';
-import ArrowsRight from 'components/icons/Arrows/Right';
 
-import 'react-datepicker/dist/react-datepicker.css';
+import { addDate } from 'redux/transaction/transaction-slice';
+
+import CalendarIcon from 'components/icons/Calendar/Calendar';
+import ArrowCalendLeftIcon from 'components/icons/ArrowCalendLeft/ArrowCalendLeft';
+import ArrowCalendRightIcon from 'components/icons/ArrowCalendRight/ArrowCalendRight';
+
 import s from './Calendar.module.scss';
 
-export default function Calendar() {
+export default function Calendar({ dateFormat = 'MM.dd.yyyy', showMonthYearPicker }) {
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
+
   const [startDate, setStartDate] = useState(new Date());
+
+  useEffect(() => {
+    dispatch(addDate(moment(new Date()).format('MM/DD/yyyy')));
+  }, [dispatch]);
+
+  const pathNamePage =
+    pathname === '/' || pathname === '/expenses' || pathname === '/income' ? true : false;
+
+  const handleChange = data => {
+    const setDate = moment(data).format('MM/DD/yyyy');
+    setStartDate(data);
+    dispatch(addDate(setDate));
+  };
 
   const year = startDate.getUTCFullYear();
   const mounth = startDate.getUTCMonth();
   const day = startDate.getUTCDate();
 
-  useEffect(() => {
-    dispatch(addCalendarDate(moment(new Date(year, mounth, day)).format('MM/DD/yyyy')));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [startDate]);
-
-  const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
-    <button className={s.btn} onClick={onClick} ref={ref}>
-      {value}
-    </button>
-  ));
-
-  const handleDecrementDate = () => {
+  const handleDecrementMonth = () => {
     const newDate = new Date(year, mounth - 1, day);
     setStartDate(newDate);
   };
 
-  const handleIncrementDate = () => {
+  const handleIncrementMonth = () => {
     const newDate = new Date(year, mounth + 1, day);
     setStartDate(newDate);
   };
 
+  const CustomInputExpInc = forwardRef(({ value, onClick }, ref) => (
+    <button className={s.btn} onClick={onClick} ref={ref}>
+      <CalendarIcon width="20" height="18" />
+      {value}
+    </button>
+  ));
+
+  const CustomInputRep = forwardRef(({ value, onClick }, ref) => (
+    <button className={s.btnReport} onClick={onClick} ref={ref}>
+      {value}
+    </button>
+  ));
+
   return (
-    <div className={s.calWrap}>
-      <p className={s.CurrentPeriod}>Current period:</p>
-      <button className={s.arrowLeft} onClick={handleDecrementDate}>
-        <ArrowsLeft />
-      </button>
-      <button className={s.arrowRight} onClick={handleIncrementDate}>
-        <ArrowsRight />
-      </button>
-      <div className={s.wrap}>
+    <>
+      {pathNamePage && (
         <DatePicker
-          disabled
           selected={startDate}
-          onChange={date => setStartDate(date)}
-          dateFormat="MMMM yyyy"
-          customInput={<ExampleCustomInput />}
-          showMonthYearPicker
+          onChange={handleChange}
+          customInput={<CustomInputExpInc />}
+          dateFormat={dateFormat}
+          showMonthYearPicker={showMonthYearPicker}
+          maxDate={new Date()}
         />
-      </div>
-    </div>
+      )}
+      {pathname === '/report' && (
+        <div className={s.reportCalendar}>
+          <ArrowCalendLeftIcon width="7px" height="10px" onClick={handleDecrementMonth} />
+          <div>
+            <DatePicker
+              selected={startDate}
+              onChange={handleChange}
+              customInput={<CustomInputRep />}
+              dateFormat={dateFormat}
+              showMonthYearPicker={showMonthYearPicker}
+              maxDate={new Date()}
+            />
+          </div>
+          <ArrowCalendRightIcon
+            width="7px"
+            height="10px"
+            onClick={handleIncrementMonth}
+          />
+        </div>
+      )}
+    </>
   );
 }

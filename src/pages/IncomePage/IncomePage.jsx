@@ -14,7 +14,7 @@ import ButtonsExpenInc from 'components/ui/ButtonsExpenInc/ButtonsExpenInc';
 
 import FormAddBalance from 'components/FormAddBalance/FormAddBalance';
 import FormAddExpInc from 'components/FormAddTransaction/FormAddTransaction';
-import CalendarHome from 'components/CalendarHome/CalendarHome';
+import Calendar from 'components/Calendar/Calendar';
 import TransactionList from 'components/TransactionList/TransactionList';
 import SlideWindow from 'components/SlideWindow/SlideWindow.jsx';
 import TransactionTable from 'components/TransactionTable/TransactionTable';
@@ -53,7 +53,7 @@ export default function IncomePage() {
               <FormAddBalance />
             </div>
 
-            <CalendarHome />
+            <Calendar />
             <SlideWindow text="Add income">
               <ButtonBack width="18" height="12" to="/income" />
               <FormAddExpInc />

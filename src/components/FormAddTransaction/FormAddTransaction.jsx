@@ -14,7 +14,7 @@ import Button from 'components/ui/Button/Button';
 
 import CalculatorIcon from 'components/icons/Calculator/Calculator';
 
-import CalendarHome from 'components/CalendarHome/CalendarHome';
+import CalendarHome from 'components/Calendar/Calendar';
 
 import s from './FormAddTransaction.module.scss';
 

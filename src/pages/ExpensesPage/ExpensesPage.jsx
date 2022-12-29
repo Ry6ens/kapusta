@@ -13,7 +13,7 @@ import LinkReport from 'components/ui/LinkReport/LinkReport';
 
 import FormAddBalance from 'components/FormAddBalance/FormAddBalance';
 import FormAddExpInc from 'components/FormAddTransaction/FormAddTransaction';
-import CalendarHome from 'components/CalendarHome/CalendarHome';
+import CalendarHome from 'components/Calendar/Calendar';
 import TransactionList from 'components/TransactionList/TransactionList';
 import SlideWindow from 'components/SlideWindow/SlideWindow.jsx';
 import FormAddTransaction from 'components/FormAddTransaction/FormAddTransaction.jsx';

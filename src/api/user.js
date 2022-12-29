@@ -8,7 +8,17 @@ export const axiosUserAddBalance = async userData => {
 
 // Update user account
 export const axiosUserUpdateAccount = async userData => {
+  await instance.patch(
+    'api/users/update',
+    { avatar: userData.avatarIMG },
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    }
+  );
   const { data } = await instance.patch('api/users/update', userData);
+  console.log(data);
   return data;
 };
 
