@@ -16,7 +16,7 @@ import rootReducer from './rootReducer';
 const persistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['auth'],
+  // whitelist: ['auth'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
