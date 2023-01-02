@@ -1,8 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  // baseURL: 'https://kapusta-server.herokuapp.com/',
-  baseURL: 'http://localhost:4000/',
+  baseURL: 'https://kapusta-server.herokuapp.com/',
 });
 
 const token = {
@@ -15,13 +14,13 @@ const token = {
 };
 
 export const axiosSignUp = async userData => {
-  const { data } = await instance.post('api/auth/signup', userData);
+  const { data } = await instance.post('api/users/signup', userData);
   token.set(data.accessToken);
   return data;
 };
 
 export const axiosLogIn = async userData => {
-  const { data } = await instance.post('api/auth/login', userData);
+  const { data } = await instance.post('api/users/login', userData);
   token.set(data.accessToken);
 
   return data;
@@ -34,9 +33,8 @@ export const axiosGoogleLogIn = async userData => {
 };
 
 export const axiosLogOut = async accessToken => {
-  console.log(accessToken);
   token.set(accessToken);
-  const { data } = await instance.post('api/auth/logout');
+  const { data } = await instance.get('api/users/logout');
   token.unset();
   return data;
 };

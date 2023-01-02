@@ -15,11 +15,11 @@ const initialState = {
   error: null,
 };
 
-const accessAuth = (state, { accessToken, refreshToken, sid, userData }) => {
-  state.user = userData;
-  state.accessToken = accessToken;
-  state.refreshToken = refreshToken;
-  state.sid = sid;
+const accessAuth = (state, payload) => {
+  state.user = payload;
+  state.sid = payload.sid;
+  state.accessToken = payload.accessToken;
+  state.refreshToken = payload.refreshToken;
   state.loading = false;
   state.isLogin = true;
 };
