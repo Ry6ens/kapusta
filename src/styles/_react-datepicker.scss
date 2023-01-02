@@ -12,13 +12,11 @@
 .react-datepicker-wrapper {
 
     @include mixins.mq(tablet) {
-        width: 100px;
+        width: 130px;
         height: 40px;
 
         display: flex;
         align-items: center;
-
-        margin-right: 40px;
     }
 }
 

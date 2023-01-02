@@ -13,12 +13,15 @@ import CommunalIcon from 'components/icons/Communal/Communal';
 import SportsIcon from 'components/icons/Sports/Sports';
 import EducationIcon from 'components/icons/Education/Education';
 import OtherIcon from 'components/icons/Other/Other';
+import SalaryIcon from 'components/icons/Salary/Salary';
+import AddIncomeIcon from 'components/icons/AddIncome/AddIncome';
+import RectangleIcon from 'components/icons/Rectangle/Rectangle';
 
 import Text from 'components/ui/Text/Text';
 
 import s from './SliderReport.module.scss';
 
-import data from './data.js';
+import { expenses, income } from './data.js';
 
 const FilterIcon = (category, height) => {
   switch (category?.toLocaleLowerCase()) {
@@ -44,6 +47,10 @@ const FilterIcon = (category, height) => {
       return <EducationIcon height={height} />;
     case 'other':
       return <OtherIcon height={height} />;
+    case 'salary':
+      return <SalaryIcon height={height} />;
+    case 'add.income':
+      return <AddIncomeIcon height={height} />;
     default:
       return '';
   }
@@ -58,21 +65,44 @@ export default function SliderReport() {
 
   return (
     <div className={s.overlay}>
-      <ArrowCalendLeftIcon width="7px" height="10px" onClick={handlerToggle} />
-      {item ? <Text text="Expenses" /> : <Text text="Income" />}
-      <ArrowCalendRightIcon width="7px" height="10px" onClick={handlerToggle} />
+      <div className={s.overlayBtn}>
+        <ArrowCalendLeftIcon width="7px" height="10px" onClick={handlerToggle} />
+        {item ? (
+          <Text text="Expenses" textClass="textSliderTitle" />
+        ) : (
+          <Text text="Income" textClass="textSliderTitle" />
+        )}
+        <ArrowCalendRightIcon width="7px" height="10px" onClick={handlerToggle} />
+      </div>
+
       {item && (
         <ul className={s.list}>
-          {data.map(({ category, sum }) => (
-            <li key={category}>
-              <Text text={category} />
-              {FilterIcon(category, '56')}
+          {expenses.map(({ category, sum }) => (
+            <li key={category} className={s.item}>
               <Text text={sum} />
+              {FilterIcon(category, '56')}
+              <div className={s.overlayIcon}>
+                <RectangleIcon width="59px" height="46px" fill="#F5F6FB" />
+              </div>
+              <Text text={category} />
             </li>
           ))}
         </ul>
       )}
-      {!item && <ul>Income</ul>}
+      {!item && (
+        <ul className={s.list}>
+          {income.map(({ category, sum }) => (
+            <li key={category} className={s.item}>
+              <Text text={sum} />
+              {FilterIcon(category, '56')}
+              <div className={s.overlayIcon}>
+                <RectangleIcon width="59px" height="46px" fill="#F5F6FB" />
+              </div>
+              <Text text={category} />
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

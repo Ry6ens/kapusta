@@ -1,3 +1,5 @@
+@use 'styles/mixins';
+
 .btn {
   margin-top: 30px;
 
@@ -9,4 +11,8 @@
   background-color: transparent;
 
   cursor: pointer;
+
+  @include mixins.mq(tablet) {
+    width: 200px;
+  }
 }

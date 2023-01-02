@@ -82,7 +82,7 @@ const TextFieldStyledTab = styled(TextField)({
 
 const TextFieldStyledDesk = styled(TextField)({
   '& div': {
-    width: '100px',
+    width: '110px',
 
     border: '2px solid var(--btn-color)',
     borderLeft: 'none',
@@ -94,7 +94,7 @@ const TextFieldStyledDesk = styled(TextField)({
     border: '1px solid transparent',
   },
   '& input': {
-    padding: '10px 35px 10px 10px',
+    padding: '10px 20px 10px 10px',
 
     fontWeight: '700',
     fontSize: '12px',

@@ -88,9 +88,9 @@ after registering:"
       />
       {errorLogIn && <Text textClass="textError" text={errorLogIn} />}
       <div className={s.buttonsLay}>
-        <Button text="Log in" btnClass="btnLogin" />
+        <Button text="Log In" btnClass="btnLogin" />
         <NavLink className={getClassName} to="/signup">
-          Registration
+          Sign Up
         </NavLink>
       </div>
     </form>

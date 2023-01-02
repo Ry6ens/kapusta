@@ -108,6 +108,10 @@
 
   text-transform: initial;
   opacity: 0.7;
+
+  @include mixins.mq(tablet) {
+    margin: 0px;
+  }
 }
 
 .textBalance {
@@ -129,6 +133,13 @@
 
   border: 2px solid var(--second-border-color);
   border-radius: 22px;
+
+  @include mixins.mq(tablet) {
+    width: 125px;
+    padding: 13px;
+
+    border-radius: 16px;
+  }
 }
 
 .textBalanceChart {
@@ -144,4 +155,17 @@
   font-weight: 700;
   font-size: 14px;
   line-height: 1.14;
+
+  @include mixins.mq(tablet) {
+    margin: 0px;
+  }
+}
+
+.textSliderTitle {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.14;
+  letter-spacing: 0.02em;
+
+  color: var(--second-text-color);
 }

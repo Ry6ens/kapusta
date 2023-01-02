@@ -6,20 +6,20 @@ const initialState = {
   user: {},
   newUser: false,
   todaySummary: {},
-  sid: '',
   accessToken: '',
   refreshToken: '',
+  sid: '',
   isLogin: false,
   loading: false,
   isRefreshing: false,
   error: null,
 };
 
-const accessAuth = (state, payload) => {
-  state.user = payload;
-  state.sid = payload.sid;
-  state.accessToken = payload.accessToken;
-  state.refreshToken = payload.refreshToken;
+const accessAuth = (state, { accessToken, refreshToken, sid, userData }) => {
+  state.user = userData;
+  state.accessToken = accessToken;
+  state.refreshToken = refreshToken;
+  state.sid = sid;
   state.loading = false;
   state.isLogin = true;
 };

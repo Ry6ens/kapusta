@@ -95,9 +95,9 @@ export default function FormLogin() {
       )}
       <div className={s.buttonsLay}>
         <NavLink className={getClassName} to="/login">
-          Log in
+          Log In
         </NavLink>
-        <Button text="Registration" btnClass="btnLogin" />
+        <Button text="Sign Up" btnClass="btnLogin" />
       </div>
     </form>
   );

@@ -18,7 +18,6 @@ export const axiosUserUpdateAccount = async userData => {
     }
   );
   const { data } = await instance.patch('api/users/update', userData);
-  console.log(data);
   return data;
 };
 

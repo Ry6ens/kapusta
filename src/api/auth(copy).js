@@ -34,9 +34,8 @@ export const axiosGoogleLogIn = async userData => {
 };
 
 export const axiosLogOut = async accessToken => {
-  console.log(accessToken);
   token.set(accessToken);
-  const { data } = await instance.post('api/auth/logout');
+  const { data } = await instance.get('api/users/logout');
   token.unset();
   return data;
 };

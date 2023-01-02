@@ -39,7 +39,7 @@ export default function FormInputPassword({ name, control, label, type, required
       control={control}
       rules={{
         required: required,
-        minLength: 6,
+        minLength: 3,
       }}
       render={({ field: { onChange, value }, fieldState: { error } }) => (
         <TextFieldStyled

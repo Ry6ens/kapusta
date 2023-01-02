@@ -1,4 +1,4 @@
-const data = [
+export const expenses = [
   { category: 'Transport', sum: 100 },
   { category: 'Housing', sum: 250 },
   { category: 'Sports, hobbies', sum: 60 },
@@ -12,4 +12,7 @@ const data = [
   { category: 'Alcohol', sum: 530 },
 ];
 
-export default data;
+export const income = [
+  { category: 'Salary', sum: 10000 },
+  { category: 'Add.Income', sum: 2505 },
+];
